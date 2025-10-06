@@ -1,8 +1,8 @@
 # Ingeniería del software I
 
-Repo de materiales y proyectos de la asignatura **NombreAsignatura** del [Grado de Ingeniería Informática](https://www.uneatlantico.es/escuela-politecnica-superior/estudios-grado-oficial-en-ingenieria-informatica) la [Universidad Europea del Atlántico](https://www.uneatlantico.es).
+Repo de materiales y proyectos de la asignatura **Ingeniería del software** del [Grado de Ingeniería Informática](https://www.uneatlantico.es/escuela-politecnica-superior/estudios-grado-oficial-en-ingenieria-informatica) la [Universidad Europea del Atlántico](https://www.uneatlantico.es).
 
-## Curso *[x][x+1]*
+## Curso *[25][26]*
 
 - [Temario](https://github.com/mmasias/IdSw1/blob/main/README.md)
   - [A día de hoy, deberíamos saber...](temario/aDiaDeHoy.md)
@@ -22,11 +22,7 @@ Repo de materiales y proyectos de la asignatura **NombreAsignatura** del [Grado 
 - [GIT](https://git-scm.com/) & [GitHub](https://github.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [PlantText](https://www.planttext.com/), para usar el formato [PlantUML](https://plantuml.com/es/) al realizar diagramas de:
-  - [actividades](https://plantuml.com/es/activity-diagram-beta)
-  - [estados](https://plantuml.com/es/state-diagram)
-  - [clases](https://plantuml.com/es/class-diagram)
-  - [objetos](https://plantuml.com/es/object-diagram)
-  - [y otros...](https://plantuml.com/es/sitemap-language-specification)
+  - [clases](https://plantuml.com/es/class-diagram) / [objetos](https://plantuml.com/es/object-diagram) / [estados](https://plantuml.com/es/state-diagram) / [actividades](https://plantuml.com/es/activity-diagram-beta) / [y otros...](https://plantuml.com/es/sitemap-language-specification)
 - [Google Docs](https://drive.google.com/drive/u/0/my-drive)
 - [Plantillas](/documentos/plantillas.md)
 
