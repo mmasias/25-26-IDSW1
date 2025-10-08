@@ -11,5 +11,5 @@ Este repositorio contiene el modelo de dominio para el concepto **Menú**, repre
 - **Categoría**: Agrupa productos dentro de un menú, por ejemplo “Entradas” o “Postres”.  
 - **Producto**: Elemento genérico del menú, con nombre, descripción y precio.
 - **Alimento**: Producto alimenticio, incluye tipo de comida e ingredientes.  
-- **Bebida**
+- **Bebida**: Producto líquido, incluye tipo de bebida y volumen.
 
