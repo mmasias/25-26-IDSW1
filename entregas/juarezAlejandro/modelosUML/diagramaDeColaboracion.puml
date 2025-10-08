@@ -1,0 +1,10 @@
+@startuml
+object responsable1
+object almacen1
+object elemento1
+
+responsable1 -> almacen1 : solicitaRegistro(elemento1)
+almacen1 -> elemento1 : crear()
+elemento1 --> almacen1 : confirmacion
+almacen1 --> responsable1 : notificacion
+@enduml

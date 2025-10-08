@@ -1,0 +1,30 @@
+@startuml
+object almacen1 {
+  nombre = "Almacen Central"
+  ubicacion = "Madrid"
+}
+
+object elemento1 {
+  codigo = "E001"
+  descripcion = "Laptop"
+  cantidad = 5
+}
+
+object responsable1 {
+  nombre = "Ana"
+  email = "ana@email.com"
+}
+
+object fuente1 {
+  nombre = "Proveedor X"
+}
+
+object destino1 {
+  nombre = "Sucursal Y"
+}
+
+almacen1 -- elemento1
+elemento1 -- responsable1
+elemento1 -- fuente1
+elemento1 -- destino1
+@enduml

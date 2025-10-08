@@ -1,0 +1,10 @@
+@startuml
+actor Responsable
+participant Almacen
+participant Elementos
+
+Responsable -> Almacen : solicitarRegistro(elemento)
+Almacen -> Elementos : crearElemento(datos)
+Elementos --> Almacen : confirmarCreacion()
+Almacen --> Responsable : notificarRegistro()
+@enduml
