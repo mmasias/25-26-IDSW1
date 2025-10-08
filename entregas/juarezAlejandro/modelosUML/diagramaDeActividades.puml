@@ -1,0 +1,13 @@
+@startuml
+start
+:Seleccionar elemento;
+:Verificar cantidad;
+if (cantidad suficiente?) then (sí)
+  :Actualizar inventario origen;
+  :Actualizar inventario destino;
+  :Notificar responsable;
+else (no)
+  :Mostrar error;
+endif
+stop
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+
+class Almacen {
+}
+
+class Elementos {
+}
+
+class Responsable {
+}
+
+class Fuente {
+}
+
+class Destino {
+}
+
+Almacen -- Elementos : tiene
+Elementos -- Responsable : tiene
+Elementos -- Fuente : tiene
+Elementos -- Destino : tiene
+
+@enduml
