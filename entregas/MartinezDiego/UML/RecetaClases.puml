@@ -1,0 +1,23 @@
+@startuml
+
+class Receta {
+  - nombre: String
+  - descripcion: String
+  - tiempoPreparacion: int
+  - instrucciones: String
+}
+
+class Ingrediente {
+  - nombre: String
+  - cantidad: float
+  - unidad: String
+}
+
+class Categoria {
+  - nombre: String
+}
+
+Receta "1" *-- "*" Ingrediente
+Receta "1" -- "*" Categoria
+
+@enduml
