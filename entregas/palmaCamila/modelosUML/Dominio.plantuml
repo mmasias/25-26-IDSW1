@@ -1,5 +1,4 @@
 @startuml
-' Modelo de Dominio de Presupuesto (ajustado)
 package "Presupuesto" {
 class Presupuesto {
 
