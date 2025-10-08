@@ -1,0 +1,14 @@
+@startuml
+class Almacen
+class Seccion
+class Producto
+class Pedido
+class Proveedor
+class Venta
+
+Almacen *-- Seccion : Contiene
+Seccion o-- Producto : Contiene
+Producto --> Proveedor : Tiene un
+Pedido --> Producto : Tiene un
+Venta --> Pedido : Es un 
+@enduml
