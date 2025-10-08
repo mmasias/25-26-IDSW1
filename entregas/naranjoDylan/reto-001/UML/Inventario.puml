@@ -1,0 +1,39 @@
+@startuml
+' Modelo del Dominio: Gestión de Inventario
+
+class Producto {
+  id
+  nombre
+  descripcion
+  codigo
+  stock
+}
+
+class Categoria {
+  id
+  nombre
+}
+
+class Proveedor {
+  id
+  nombre
+  contacto
+}
+
+class MovimientoInventario {
+  id
+  cantidad
+  fecha
+  motivo
+}
+
+enum TipoMovimiento {
+  ENTRADA
+  SALIDA
+}
+
+Producto "1" --> "1" Categoria 
+Producto "1" --> "1" Proveedor 
+Producto "1" --> "0..*" MovimientoInventario 
+MovimientoInventario --> "1" TipoMovimiento 
+@enduml
