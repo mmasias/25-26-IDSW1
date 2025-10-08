@@ -1,0 +1,10 @@
+@startuml
+[*] --> Creacion
+
+Creacion --> Creacion : cocinarIngredientes()
+Creacion --> DocumentarPasoseIngredientes : recetaCompleta()
+DocumentarPasoseIngredientes --> Publicada : publicar()
+Publicada --> Archivada : archivar()
+Archivada --> Creacion : restaurar() 
+
+@enduml

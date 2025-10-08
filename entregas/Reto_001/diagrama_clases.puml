@@ -1,0 +1,20 @@
+@startuml
+class Receta
+class Ingrediente
+class Pasos
+class Persona
+class Categoria
+class Tiempo
+enum Estadodereceta
+
+Receta -- Ingrediente : contiene
+Receta -- Pasos : incluye
+Persona -- Receta : crea
+Categoria -- Receta : clasifica
+Receta --> Estadodereceta : tiene
+Tiempo -- Receta : cuanto
+Pasos -- Estadodereceta : en que
+Persona --> Ingrediente : usa
+
+
+@enduml
