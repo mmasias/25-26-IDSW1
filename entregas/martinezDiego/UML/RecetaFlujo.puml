@@ -1,0 +1,24 @@
+@startuml
+start
+
+:Comienzo;
+:Selecciona opción "Crear receta";
+:Introduce nombre, descripción, tiempo, porciones;
+
+repeat
+  :Agrega ingrediente (nombre, cantidad, unidad);
+repeat while (¿Agregar otro ingrediente?) is (sí)
+
+:Agrega instrucciones paso a paso;
+:Selecciona una o más categorías;
+:Guarda la receta;
+
+if (¿Datos válidos?) then (sí)
+  :Mostrar mensaje "Receta guardada con éxito";
+
+else (no)
+  :Mostrar error y solicitar corrección;
+endif
+
+stop
+@enduml

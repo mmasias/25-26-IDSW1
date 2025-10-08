@@ -1,0 +1,16 @@
+@startuml
+[*] --> Iniciado : crear receta nueva
+
+Iniciado --> Editado : guardar borrador y continuar editando
+Editado --> Editado : modificar receta
+Editado --> Terminado : guardar y finalizar edición
+
+Terminado --> Editado : volver a editar
+Terminado --> Archivado : archivar receta
+
+Archivado --> Eliminado : eliminar receta
+Archivado --> Terminado : restaurar receta
+
+Eliminado --> [*] : receta eliminada
+
+@enduml
