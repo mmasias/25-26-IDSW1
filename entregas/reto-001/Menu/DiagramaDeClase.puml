@@ -1,0 +1,10 @@
+@startuml
+package Menu{
+class Categoria
+class Producto
+class Precio
+}
+
+Categoria "1" --> "*" Producto : contiene
+Producto -> Precio : tiene un
+@enduml
