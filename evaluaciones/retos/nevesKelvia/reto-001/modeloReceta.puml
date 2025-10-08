@@ -1,0 +1,39 @@
+@startuml
+title Modelo de Dominio: Receta
+
+class Receta {
+    - id
+    - titulo
+    - autor
+    - fechaCreacion
+}
+
+class RecetaMedica {
+    - diagnostico
+}
+
+class Medicamento {
+    - nombre
+    - dosis
+    - frecuencia
+    - duracion
+}
+
+class RecetaCulinaria {
+    - tiempoPreparacion
+    - modoDePreparo
+    - porciones
+}
+
+class Ingrediente {
+    - nombre
+    - cantidad
+    - unidad
+}
+
+Receta <|-- RecetaMedica
+Receta <|-- RecetaCulinaria
+
+RecetaMedica *-- Medicamento : contiene >
+RecetaCulinaria *-- Ingrediente : usa >
+@enduml
