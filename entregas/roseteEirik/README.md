@@ -1,2 +1,1 @@
-# Diagrama de Modelado de Dominio
-## Receta
+# Diagrama de Modelado de Dominio: Receta
