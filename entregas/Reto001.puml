@@ -1,0 +1,87 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Proveedor {
+  +idProveedor
+  +EvaluacionProveedor
+  +categoria
+  +pais
+  +observaciones
+  +contacto
+}
+
+
+class Direccion {
+  +idDireccion
+  +tipo
+  +calle
+  +ciudad
+  +provincia
+  +pais
+  +cp
+}
+
+class Catalogo {
+  +idCatalogo
+  +nombre
+  +vigenciaDesde
+  +vigenciaHasta
+  +moneda
+  +version
+}
+
+class Producto {
+  +idProducto
+  +nombre
+  +descripcion
+  +unidades
+  +precio
+  +codigoProveedor
+}
+
+
+class Entrega {
+  +idEntrega
+  +fechaCompromiso
+  +fechaEntregaReal
+  +cantidadEntregada
+  +estado
+}
+
+class Factura {
+  +idFactura
+  +numero
+  +fechaEmision
+  +importe
+  +impuestos
+  +estado
+}
+
+class Pago {
+  +idPago
+  +fechaPago
+  +metodoPago
+  +importePagado
+}
+
+
+class Cliente{
+    +idCliente
+    +Nombre
+    +NumeroContacto
+    +Direccion
+}
+
+Producto "1" -- "0..*" Cliente
+Cliente "1" -- "0..*" Direccion
+Cliente "1" -- "0..*" Pago
+Proveedor "1" -- "0..*" Catalogo
+Catalogo "1" -- "1..*" Producto
+Direccion "1" -- "0..*" Entrega
+Producto "1" -- "0..*" Entrega
+Proveedor "1" -- "0..*" Factura
+Factura "1" -- "0..*" Pago
+Pago "1" -- "0..*" Direccion 
+
+
+@enduml
