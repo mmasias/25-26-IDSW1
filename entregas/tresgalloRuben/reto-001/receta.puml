@@ -1,0 +1,17 @@
+@startuml
+[*] --> Borrador
+
+Borrador --> Revisando : enviar para revisión
+Revisando --> Publicada : aprobar
+Revisando --> Borrador : solicitar cambios
+
+Publicada --> Archivada : archivar
+Archivada --> Publicada : restaurar
+
+Borrador --> Eliminada : eliminar
+Revisando --> Eliminada : eliminar
+Publicada --> Eliminada : eliminar
+Archivada --> Eliminada : eliminar
+
+Eliminada --> [*]
+@enduml
