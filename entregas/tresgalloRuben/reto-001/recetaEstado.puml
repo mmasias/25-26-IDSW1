@@ -13,5 +13,6 @@ Revisando --> Eliminada : eliminar
 Publicada --> Eliminada : eliminar
 Archivada --> Eliminada : eliminar
 
+Publicada --> [*]
 Eliminada --> [*]
 @enduml
