@@ -1,0 +1,32 @@
+@startuml
+title Modelo de dominio — Presupuesto
+
+
+class Presupuesto
+class Cliente
+class Empresa
+class Empleado
+class PosiblePresupuesto
+class Producto
+class Impuesto
+class Dinero
+class Estado
+class Moneda
+
+
+Presupuesto -d-> Cliente : "Emitido para >"
+Presupuesto -d-> Empresa : "Emitido por >"
+Presupuesto -d-> Estado : "Tiene >"
+Presupuesto *-- PosiblePresupuesto : "Contiene varias >"
+
+PosiblePresupuesto -d-> Producto : "Describe  >"
+PosiblePresupuesto --> Impuesto : "Aplica >"
+PosiblePresupuesto -d-> Dinero : "Valor estimado >"
+Dinero -d-> Moneda : "Expresado en >"
+
+Empresa <-- Empleado : "Pertenece <"
+Empleado -u-> Presupuesto : "Elabora >"
+
+Cliente ... Presupuesto : "acepta o rechaza >"
+
+@enduml
