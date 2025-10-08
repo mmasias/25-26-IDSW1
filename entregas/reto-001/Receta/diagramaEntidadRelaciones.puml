@@ -1,0 +1,38 @@
+@startuml
+title Diagrama ER - Recetas
+
+entity Receta {
+  * id
+  --
+  nombre
+  descripcion
+  porciones
+  tiempo_coccion
+}
+
+entity Ingrediente {
+  * id
+  --
+  nombre
+}
+
+entity RecetaIngrediente {
+  * receta_id
+  * ingrediente_id
+  cantidad
+  unidad
+}
+
+entity Paso {
+  * id
+  --
+  receta_id
+  orden
+  instruccion
+}
+
+Receta ||--o{ RecetaIngrediente : tiene
+Ingrediente ||--o{ RecetaIngrediente : contiene
+Receta ||--o{ Paso : tiene
+
+@enduml

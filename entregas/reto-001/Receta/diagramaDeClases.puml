@@ -1,0 +1,36 @@
+@startuml
+' Título del diagrama
+title Diagrama de Clases - Receta
+
+' Clase principal: Receta
+class Receta {
+  - nombre: String
+  - descripcion: String
+  - porciones: int
+  - tiempoCoccion: int
+}
+
+' Ingrediente con cantidad y unidad
+class Ingrediente {
+  - nombre: String
+  - cantidad: float
+  - unidad: String
+}
+
+' Paso de preparación
+class Paso {
+  - orden: int
+  - instruccion: String
+}
+
+' Categoría o etiqueta de la receta (opcional)
+class Categoria {
+  - nombre: String
+}
+
+' Relaciones
+Receta "1" *-- "1..*" Ingrediente : contiene
+Receta "1" *-- "1..*" Paso : tiene
+Receta "1" o-- "0..*" Categoria : clasificada en
+
+@enduml
