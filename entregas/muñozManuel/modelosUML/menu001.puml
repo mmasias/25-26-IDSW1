@@ -1,0 +1,8 @@
+@startuml
+
+state Menu
+
+state Producto
+
+state Estilo
+@enduml
