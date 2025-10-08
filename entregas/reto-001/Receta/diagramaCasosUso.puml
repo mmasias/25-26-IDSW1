@@ -1,0 +1,12 @@
+@startuml
+title Diagrama de Casos de Uso - Receta
+
+actor Usuario
+
+Usuario --> (Buscar receta)
+Usuario --> (Crear receta)
+Usuario --> (Editar receta)
+Usuario --> (Eliminar receta)
+Usuario --> (Ver detalles de receta)
+
+@enduml
