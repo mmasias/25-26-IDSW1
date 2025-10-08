@@ -7,7 +7,7 @@ class Carta {
     
 }
 
-class Alimento {
+class Comida {
     
 }
 
@@ -21,10 +21,10 @@ class Precio {
     
 }
 
-Carta <|-- Alimento : tiene
+Carta <|-- Comida : tiene
 Carta <|-- Bebida : tiene
 
-Alimento <|-- Precio : tiene
+Comida <|-- Precio : tiene
 Bebida <|-- Precio : tiene
 
 
