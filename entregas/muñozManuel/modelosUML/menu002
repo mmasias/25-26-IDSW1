@@ -6,4 +6,7 @@ entity Producto
 
 entity Estilo
 
+"Menu" -- "Producto"
+"Menu" -- "Estilo"
+
 @enduml
