@@ -1,0 +1,54 @@
+@startuml
+
+class Producto {
+  +nombre: String
+  +sku: String
+  +descripcion: String
+  +precioUnitario: Money
+  +stockActual: int
+  +stockMinimo: int
+  +estado: EstadoProducto
+  +fechaCreacion: DateTime
+}
+
+class Categoria {
+  +nombre: String
+  +descripcion: String
+}
+
+class Proveedor {
+  +nombre: String
+  +nif: String
+  +telefono: String
+  +email: String
+  +direccion: String
+  +estado: EstadoComun
+}
+
+class Pedido {
+  +tipo: TipoPedido
+  +estado: EstadoPedido
+  +fecha: DateTime
+  +observaciones: String
+  +total(): Money
+}
+
+class ItemPedido {
+  +cantidad: int
+  +precioUnitario: Money
+  +subtotal(): Money
+}
+
+class Cliente {
+  +nombre: String
+  +email: String
+  +rol: RolUsuario
+  +estado: EstadoComun
+}
+
+Categoria "1" o-- "0..*" Producto : clasifica
+Producto "1" o-- "0..*" ItemPedido : se utiliza en
+Pedido "1" *-- "1..*" ItemPedido : contiene
+Cliente "1" -- "0..*" Pedido : realiza
+Proveedor "1" -- "0..*" Producto : suministra
+@enduml
