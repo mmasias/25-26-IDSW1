@@ -1,0 +1,65 @@
+@startuml
+left to right direction
+hide empty description
+
+[*] --> Menu
+state Menu {
+  state Carta {
+    ' Secciones principales de la carta
+    state "Secciones" as Secciones {
+      state Entrantes
+      state Primeros
+      state Segundos
+      state "Acompañamientos" as Acompanamientos
+      state Postres
+      state Bebidas {
+        state Vino
+        state Cerveza
+        state Refresco
+        state Agua
+        state CafeInfusion
+      }
+    }
+
+    ' Menús especiales como parte de la carta
+    state "Menús Especiales" as MenusEspeciales {
+      state MenuDelDia
+      state MenuInfantil
+      state MenuDegustacion
+    }
+  }
+}
+
+' Navegación principal
+Menu --> Carta
+Carta --> Secciones
+Carta --> MenusEspeciales
+
+' Desde Secciones a cada sub-sección
+Secciones --> Entrantes
+Secciones --> Primeros
+Secciones --> Segundos
+Secciones --> Acompanamientos
+Secciones --> Postres
+Secciones --> Bebidas
+
+' Flujo típico entre secciones
+Entrantes --> Primeros
+Primeros --> Segundos
+Segundos --> Postres
+Postres --> Bebidas
+
+' Navegación dentro de Bebidas
+Bebidas --> Vino
+Bebidas --> Cerveza
+Bebidas --> Refresco
+Bebidas --> Agua
+Bebidas --> CafeInfusion
+
+' Regreso desde Menús Especiales a Secciones (ver carta general)
+MenusEspeciales --> Secciones
+MenuDelDia --> Secciones
+MenuInfantil --> Secciones
+MenuDegustacion --> Secciones
+
+@enduml
