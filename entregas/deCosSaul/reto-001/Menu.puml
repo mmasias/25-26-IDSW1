@@ -15,17 +15,17 @@ hide circle
 
 Menu --* ElementoMenu: Contiene
 
-ElementoMenu --|> Precio: Tiene
-ElementoMenu --|> Descripcion: Incluye
-ElementoMenu --|> Ingredientes: Hecho de
+ElementoMenu --* Precio: Tiene
+ElementoMenu --* Descripcion: Incluye
+ElementoMenu --* Ingredientes: Hecho de
 
 Descripcion --|>  Ingredientes: Incluye
 
-Persona --> Chef
-Persona --> Cliente
+Persona --* Chef
+Persona --* Cliente
 
-Chef --> ElementoMenu : Prepara
-Cliente --> Menu: Busca
+Chef --|> ElementoMenu : Prepara
+Cliente --> Menu: Recibe
 Cliente --> ElementoMenu: Pide
 
 @enduml
