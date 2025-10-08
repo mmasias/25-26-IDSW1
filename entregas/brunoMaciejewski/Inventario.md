@@ -3,6 +3,7 @@
 - Seccion
 - Producto
 - Pedido
-- Categoría
 - Proveedor
 - Venta
+
+![plantUML](./PlanUML.png)
