@@ -1,0 +1,18 @@
+@startuml
+
+rectangle "Receta" as Receta
+rectangle "Resultado" as Resultado
+rectangle "Ingredientes" as Ingredientes
+rectangle "Procedimiento" as Procedimiento
+rectangle "Utensilios" as Utensilios
+rectangle "Pasos" as Pasos
+rectangle "Condiciones" as Condiciones
+
+Receta -- Resultado : busca >
+Receta -- Procedimiento : es >
+Procedimiento -- Pasos : son >
+Procedimiento -- Ingredientes : tiene >
+Procedimiento -- Utensilios : tiene >
+Pasos -- Condiciones : tiene >
+
+@enduml
