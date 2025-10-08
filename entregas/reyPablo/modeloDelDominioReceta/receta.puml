@@ -1,0 +1,23 @@
+@startuml
+[*] --> Borrador : crear receta
+
+Borrador --> EnRevision : enviar a revisión
+Borrador --> Eliminada : eliminar
+
+EnRevision --> Publicada : aprobar
+EnRevision --> Borrador : rechazar
+EnRevision --> Eliminada : eliminar
+
+Publicada --> Archivada : archivar
+Publicada --> Eliminada : eliminar
+Publicada --> Editada : editar
+
+Editada --> EnRevision : enviar a revisión
+Editada --> Borrador : cancelar edición
+
+Archivada --> Publicada : restaurar
+Archivada --> Eliminada : eliminar
+
+Eliminada --> [*] : purgar
+
+@enduml
