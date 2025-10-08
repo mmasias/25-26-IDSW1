@@ -1,0 +1,58 @@
+@startuml
+
+
+class Menu {
+  - id: menu
+  - nombre
+  - descripcion
+  - fechaInicio
+  - fechaFin
+  - activo
+  + getSecciones()
+}
+
+class SeccionDeMenu {
+  - id: menu
+  - nombre
+  - orden
+  + getItems()
+}
+
+class ItemDeMenu {
+  - id: menu
+  - nombre
+  - descripcion
+  - precio
+  - disponible
+  - tiempoPreparacionMinutos
+  + getIngredientes()
+  + getCategorias()
+  + getRestricciones()
+}
+
+class Ingrediente {
+  - id: menu
+  - nombre
+  - cantidad
+  - alergeno
+}
+
+class Categoria {
+  - id: menu
+  - nombre
+}
+
+class RestriccionAlimenticia {
+  - id: menu
+  - descripcion
+  - tipo
+}
+
+
+Menu  --  SeccionDeMenu : contiene
+SeccionDeMenu  --  ItemDeMenu : contiene
+ItemDeMenu  --  Ingrediente : tiene
+ItemDeMenu  --  Categoria : clasificado_como
+ItemDeMenu  --  RestriccionAlimenticia : tiene
+
+@enduml
