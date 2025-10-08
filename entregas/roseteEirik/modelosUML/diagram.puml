@@ -1,0 +1,33 @@
+@startuml
+
+object Receta {
+  nombre
+  descripcion
+}
+
+object Seccion {
+  titulo
+  orden
+}
+
+object Ingrediente {
+  nombre
+  cantidad
+  unidad
+}
+
+object Paso {
+  orden
+  descripcion
+}
+
+object Categoria {
+  nombre
+}
+
+Receta -- Seccion : Contiene
+Seccion -- Ingrediente : Agrupa
+Seccion -- Paso : Agrupa
+Ingrediente -- Categoria : Clasificada-por
+
+@enduml

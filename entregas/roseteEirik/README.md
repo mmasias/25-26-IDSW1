@@ -1,0 +1,1 @@
+# Diagrama de Modelado de Dominio: Receta
