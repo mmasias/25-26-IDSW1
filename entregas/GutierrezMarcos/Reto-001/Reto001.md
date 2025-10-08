@@ -99,4 +99,5 @@ Por ejemplo:
 
 ## Diagrama
 
-![UML](/Reto-001/uml/menu.svg)
+
+![UML](https://github.com/marcosgutierrez6/25-26-IDSW1/blob/eb096666b7ebe03e662ffc234b5cd2b92479096d/entregas/GutierrezMarcos/Reto-001/uml/menu.svg)
