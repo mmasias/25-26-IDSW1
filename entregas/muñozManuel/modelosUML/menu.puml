@@ -1,0 +1,30 @@
+@startuml
+
+class Menu {
+  - titulo: String
+  - producto: Producto
+  - estilo: Estilo
+  - gastronomia: String
+  + getMenu()
+}
+
+class Producto{
+  - nombre: String
+  - precio: float
+  - bebidaAlcolica: booleano
+  + getProducto()
+}
+
+class Estilo{
+  - colorPrimario: String
+  - colorSecundario: String
+  - colorTernario: String
+  - formato: String
+  + getColores()
+  + getFormato()
+}
+
+"Menu" --> "Producto": contiene
+"Menu" --> "Estilo": tiene
+
+@enduml
