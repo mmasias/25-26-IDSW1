@@ -1,35 +1,40 @@
-# Ingeniería del software I
+# Modelo de Dominio: Presupuesto de Proyecto de Software
 
-Repo de materiales y proyectos de la asignatura **Ingeniería del software** del [Grado de Ingeniería Informática](https://www.uneatlantico.es/escuela-politecnica-superior/estudios-grado-oficial-en-ingenieria-informatica) la [Universidad Europea del Atlántico](https://www.uneatlantico.es).
+Este modelo de dominio representa la estructura lógica de un sistema de **gestión de presupuestos** para proyectos de software. Se enfoca en planificar, controlar y estimar elementos como costos, tiempos, ingresos, egresos y recursos humanos a lo largo de las fases del proyecto.
 
-## Curso *[25][26]*
 
-- [Temario](https://github.com/mmasias/IdSw1/blob/main/README.md)
-  - [A día de hoy, deberíamos saber...](temario/aDiaDeHoy.md)
-  - [Casos de uso](temario/casosDeUso/README.md)
-  - [Ejercicios](temario/ejercicios/README.md)
-- Evaluaciones
-  - Evaluación continua: [Retos!](evaluaciones/retos/README.md)
-  - Exámenes
-    - Parcial: [Enunciado](evaluaciones/examenes/examenParcial/README.md) | Repositorio de trabajo y entrega.
-    - Final: [Enunciado](evaluaciones/examenes/examenFinal/README.md) | Repositorio de trabajo y entrega.
-    - Extraordinario: [Enunciado](evaluaciones/examenes/examenExtraordinario/README.md) | Repositorio de trabajo y entrega.
+## Glosario
 
-> ***NOTA:*** Los repositorios de entrega de exámenes estarán disponible días antes del examen. El repositorio con el enunciado del examen se activa al inicio del examen y permitirá entregas hasta la finalización del mismo.
+### 1. `Presupuesto`
+Entidad principal que representa la estimación económica de un proyecto. Está compuesto por:
+- Un `Proyecto`
+- Un bloque de `Dinero` (finanzas generales)
+- Fases y costos
 
-## Herramientas et al
+### 2. `Proyecto`
+Representa el proyecto de software al que está asignado el presupuesto. Puede tener múltiples fases.
 
-- [GIT](https://git-scm.com/) & [GitHub](https://github.com/)
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [PlantText](https://www.planttext.com/), para usar el formato [PlantUML](https://plantuml.com/es/) al realizar diagramas de:
-  - [clases](https://plantuml.com/es/class-diagram) / [objetos](https://plantuml.com/es/object-diagram) / [estados](https://plantuml.com/es/state-diagram) / [actividades](https://plantuml.com/es/activity-diagram-beta) / [y otros...](https://plantuml.com/es/sitemap-language-specification)
-- [Google Docs](https://drive.google.com/drive/u/0/my-drive)
-- [Plantillas](/documentos/plantillas.md)
+### 3. `Fase`
+Etapas del ciclo de vida del proyecto. Cada fase:
+- Pertenece a un proyecto
+- Tiene un presupuesto (`Dinero`) asignado
+- Contiene múltiples `Actividades`
 
-## Bibliografía & enlaces interesantes
+### 4. `Actividad`
+Unidad de trabajo específica dentro de una fase. Consume tiempo (`Horas`) y requiere personal (`RRHH`).
 
-NOTA: *Algunos enlaces podrían requerir **credenciales de acceso al campus** o a otros espacios colaborativos.*
+### 5. `RRHH` (Recursos Humanos)
+Personas asignadas a las actividades. Se asume que tienen un costo asociado por hora.
 
-- Hoja de asistencia et-al
-- Libro de la asignatura
-- Este repo, versión de ediciones pasadas
+### 6. `Horas`
+Tiempo estimado o trabajado sobre una actividad. Se relaciona con `Dinero` porque permite calcular costos en base a tarifas.
+
+### 7. `Dinero`
+Entidad que agrupa la parte financiera. Puede representar:
+- El total del presupuesto
+- Lo asignado a una fase
+- El resultado de las horas trabajadas
+
+Incluye dos entidades financieras:
+- `Ingreso`: Aportes, ventas, inversión
+- `Egreso`: Pagos, sueldos, herramientas
