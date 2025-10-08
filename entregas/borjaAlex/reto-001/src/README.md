@@ -1,10 +1,8 @@
 # Modelo de Dominio - Menú
 
-Este repositorio contiene el modelo de dominio para el concepto **Menú**, representando la estructura de menús, categorías y productos en un sistema de restaurante.
+Este repositorio contiene el modelo de dominio para el concepto **Menú**, representando la estructura de menús, categorías y productos.
 
 ## Diagrama UML
-
-El diagrama UML está disponible en formato **SVG**:
 
 ![Diagrama UML del Menú](./modelosUML/menuuml.svg)
 
