@@ -1,4 +1,4 @@
-# Modelo de Dominio: Presupuesto de Proyecto de Software
+# Modelo de Dominio: Presupuesto
 
 Este modelo de dominio representa la estructura lógica de un sistema de **gestión de presupuestos** para proyectos de software. Se enfoca en planificar, controlar y estimar elementos como costos, tiempos, ingresos, egresos y recursos humanos a lo largo de las fases del proyecto.
 
