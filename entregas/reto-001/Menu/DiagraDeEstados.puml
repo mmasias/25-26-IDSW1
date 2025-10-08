@@ -1,0 +1,12 @@
+@startuml
+top to bottom direction
+
+[*] --> Cerrado
+
+Cerrado -> Abierto : abrirMenu()
+Abierto -> SeleccionandoCategoria : seleccionarCategoria()
+SeleccionandoCategoria -> SeleccionandoProducto : seleccionarProducto()
+SeleccionandoProducto -> MostrandoDetalles : verDetalles()
+MostrandoDetalles -> Abierto : regresar()
+Abierto -> Cerrado : cerrarMenu()
+@enduml
