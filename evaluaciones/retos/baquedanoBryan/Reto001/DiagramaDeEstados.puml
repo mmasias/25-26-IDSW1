@@ -1,0 +1,5 @@
+@startuml
+[*] --> EnPreparacion
+EnPreparacion --> Terminada : pasosCompletados()
+Terminada --> [*]
+@enduml

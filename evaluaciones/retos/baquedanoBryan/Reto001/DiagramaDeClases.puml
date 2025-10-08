@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+package Receta {
+top to bottom direction
+
+    class Ingredientes
+    class Pasos
+    class Tiempo
+
+    Ingredientes <.. Pasos: usa
+    Pasos *-- Tiempo: dura
+
+}
+Receta --> Producto : produce
+class Producto
+@enduml
