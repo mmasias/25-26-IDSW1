@@ -1,0 +1,47 @@
+@startuml
+
+title Modelo del Dominio de un Menú Restaurante
+
+
+class Carta {
+    
+}
+
+class PrimerPlato {
+    
+}
+
+class SegundoPlato {
+    
+}
+
+class Postre {
+    
+}
+
+class Bebida {
+    
+}
+
+class Pan {
+    
+}
+
+class Precio {
+    
+}
+
+Carta <|-- Bebida : tiene
+Carta <|-- Pan : tiene
+Carta <|-- PrimerPlato : tiene
+Carta <|-- SegundoPlato : tiene
+Carta <|-- Postre : tiene
+Carta <|-- Precio : tiene
+
+Pan --> Bebida
+Bebida --> PrimerPlato
+PrimerPlato --> SegundoPlato
+SegundoPlato --> Postre
+
+
+@enduml

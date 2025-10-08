@@ -1,0 +1,31 @@
+@startuml
+
+title Modelo del Dominio de un Menú Comida Rápida
+
+
+class Carta {
+    
+}
+
+class Alimento {
+    
+}
+
+
+class Bebida {
+    
+}
+
+
+class Precio {
+    
+}
+
+Carta <|-- Alimento : tiene
+Carta <|-- Bebida : tiene
+
+Alimento <|-- Precio : tiene
+Bebida <|-- Precio : tiene
+
+
+@enduml
