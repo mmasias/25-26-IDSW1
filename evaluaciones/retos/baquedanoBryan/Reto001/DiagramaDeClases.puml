@@ -3,12 +3,12 @@ left to right direction
 package Receta {
 top to bottom direction
 
-    class Ingredientes
-    class Pasos
+    class Ingrediente
+    class Paso
     class Tiempo
 
-    Ingredientes <.. Pasos: usa
-    Pasos *-- Tiempo: dura
+    Ingrediente <.. Paso: usa
+    Paso *-- Tiempo: dura
 
 }
 Receta --> Producto : produce
