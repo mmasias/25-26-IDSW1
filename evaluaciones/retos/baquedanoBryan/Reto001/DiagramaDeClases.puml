@@ -11,6 +11,6 @@ top to bottom direction
     Paso *-- Tiempo: dura
 
 }
-Receta --> Producto : produce
-class Producto
+Receta --> Platillo : produce
+class Platillo
 @enduml
