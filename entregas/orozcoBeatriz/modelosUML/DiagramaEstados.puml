@@ -1,0 +1,28 @@
+@startuml name DiagramaEstados
+
+[*] --> Abierta
+
+state GestionInventario {
+    Abierta --> RevisandoStock : IniciarJornada
+    RevisandoStock --> FaltaStock : StockBajo
+    RevisandoStock --> SuficienteStock : StockOk
+}
+
+state GestionProveedor {
+    FaltaStock --> PedidoRealizado : RealizarPedido
+    PedidoRealizado --> SuficienteStock : PedidoRecibido
+}
+
+state GestionMenu {
+    [*] --> ClientePidiendo : ClienteLlega
+}
+
+state GestionReceta {
+    ClientePidiendo --> PreparandoReceta : HacerPedido
+    PreparandoReceta --> EntregandoReceta : RecetaLista
+    EntregandoReceta --> [*] : RecetaEntregada
+}
+
+state GestionPresupuesto {
+
+}
