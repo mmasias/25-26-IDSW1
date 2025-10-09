@@ -1,0 +1,26 @@
+@startuml
+
+hide empty members
+hide circle
+
+Cafeteria -- Persona : tiene >
+Cafeteria -- Menu : tiene >
+Cafeteria -- Inventario : tiene >
+Cafeteria -- Presupuesto : sigue >
+Persona -- Empleado : es >
+Persona -- Cliente : es >
+Empleado -- Cliente : sirve a >
+Empleado -- Producto : prepara >
+Cliente -- Producto : consume >
+Cliente -- Presupuesto : alimenta >
+Menu -- Producto : tiene >
+Producto -- Ingrediente : esta hecha >
+Producto -- Receta : sigue >
+Presupuesto -- Proveedor : paga >
+Proveedor -- Ingrediente : vende >
+Inventario -- Ingrediente : tiene >
+Inventario -- Utensilio : tiene >
+Receta -- Paso : tiene >
+Receta -- Utensilio : utiliza >
+
+@enduml
