@@ -25,17 +25,9 @@ class OrdenCompra {
     - estado: String
 }
 
-class DetalleOrden {
-    ' Aquí puedes añadir atributos si lo deseas
-    - id: int
-    - cantidad: int
-    - precioUnitario: float
-}
-
 ' Relaciones
 Presupuesto "1" --> "1..*" CategoriaPresupuesto : tiene
 CategoriaPresupuesto "1" --> "1..*" Gasto : contiene
 Presupuesto "1" --> "1..*" OrdenCompra : incluye
-OrdenCompra "1" --> "1..*" DetalleOrden : contiene
 
 @enduml
