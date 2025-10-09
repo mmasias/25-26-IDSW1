@@ -1,0 +1,26 @@
+@startuml
+
+
+class Menu {
+            - id: int
+            - nombre: String
+            - descripcion: String
+            - precio: float
+        }
+
+        class CategoriaPlato {
+            - id: int
+            - nombre: String
+        }
+
+        class Receta {
+            - cantidad: float
+            - unidadMedida: String
+        }
+
+        ' Relaciones Menú
+        Menu --> CategoriaPlato : pertenece a
+        Menu "1" --> "*" Receta : incluye
+
+
+@enduml
