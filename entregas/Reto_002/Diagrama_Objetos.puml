@@ -1,0 +1,77 @@
+@startuml
+title Diagrama de Objetos - Cafetería
+
+object Cafeteria {
+  sede: principal
+}
+
+object Cocina {
+  turno: mañana
+}
+
+object Menu {
+  tipo: diario
+}
+
+object Categoria {
+  nombre: Principal
+}
+
+object Precio {
+  3.00  EUR
+}
+
+object Plato {
+  Hamburguesa
+}
+
+object Receta {
+  pasos: 3
+}
+
+object Ingrediente {
+  cantidad: 150
+  unidadMedida: gramos
+}
+
+object Inventario {
+  vasos
+  platos
+  servilletas
+}
+
+object Menaje {
+  tazas
+  cubiertos
+  vajillas
+}
+
+object Proveedor {
+  nombre: proveedorA
+}
+
+object Presupuesto {
+  periodo: mensual
+}
+
+Cafeteria -- Menu : ofrece >
+Cafeteria -- Cocina : tiene >
+Cafeteria -- Proveedor : contrata >
+Cafeteria -- Presupuesto : administra >
+
+Menu -- Categoria : contiene >
+Categoria -- Plato : ofrece >
+Cocina -- Plato : produce >
+Plato -- Receta : basadoEn >
+Plato -- Precio : tiene >
+
+Cocina -- Receta : usa >
+Receta -- Ingrediente : contiene >
+
+Inventario -- Ingrediente : contiene >
+Inventario -- Menaje : contiene >
+
+Proveedor -- Inventario : manda >
+Presupuesto -- Proveedor : estimaCostos >
+Presupuesto -- Inventario : calculaCostos >
+@enduml

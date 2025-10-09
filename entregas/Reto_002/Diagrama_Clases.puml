@@ -1,0 +1,62 @@
+@startuml
+title Modelo de entidades - Cafetería
+
+class Cafeteria {
+}
+
+class Cocina {
+}
+
+class Menu{
+}
+
+class Categoria{
+}
+
+class Precio{
+}
+
+class Plato{
+}
+
+class Receta {
+}
+
+class Ingrediente {
+  cantidad
+  unidadMedida
+}
+
+class Inventario {
+}
+
+class Menaje {
+}
+
+class Proveedor {
+}
+
+class Presupuesto {
+}
+
+Cafeteria -- Menu : ofrece >
+Cafeteria -- Cocina : tiene >
+Cafeteria -- Proveedor : contrata >
+Cafeteria -- Presupuesto : administra >
+
+Menu -- Categoria : contiene >
+Categoria -- Plato : ofrece >
+Cocina -- Plato : produce >
+Plato -- Receta : basadoEn >
+Plato -- Precio : tiene >
+
+Cocina -- Receta : usa >
+Receta -- Ingrediente : contiene >
+
+Inventario -- Ingrediente : contiene >
+Inventario -- Menaje : contiene >
+
+Proveedor -- Inventario : manda >
+Presupuesto -- Proveedor : estimaCostos >
+Presupuesto -- Inventario : calculaCostos >
+@enduml
