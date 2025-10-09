@@ -1,0 +1,29 @@
+@startuml Diagrama de Estados
+title Diagrama de Estados - Ciclo de Vida de un Plato (solo clases)
+
+[*] --> EnPreparacion : creación
+
+state EnPreparacion {
+  note right
+    El plato está siendo configurado:
+    - Se definen ingredientes
+    - Se asigna categoría
+    - Se establece el precio
+  end note
+}
+
+EnPreparacion --> Disponible : se publica en el menú
+
+state Disponible {
+  note right
+    El plato está activo y visible
+    en el menú para los clientes.
+  end note
+}
+
+Disponible --> NoDisponible : se agotan ingredientes
+NoDisponible --> Disponible : se reponen ingredientes
+Disponible --> Retirado : se elimina del menú
+Retirado --> [*] : fin de vida del plato
+
+@enduml

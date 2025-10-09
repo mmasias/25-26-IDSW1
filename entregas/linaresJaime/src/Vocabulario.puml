@@ -1,0 +1,46 @@
+@startuml Modelo de Vocabulario
+title Modelo de Vocabulario - Menú de Restaurante
+
+class Menu {
+  - nombre
+  - fechaVigencia
+}
+
+class Plato {
+  - nombre
+  - descripcion
+  - disponible
+}
+
+class Ingrediente {
+  - nombre
+}
+
+class TipoIngrediente {
+  - nombre
+  - descripcion
+}
+
+class Alergeno {
+  - nombre
+  - descripcion
+}
+
+class Categoria {
+  - nombre
+  - descripcion
+}
+
+class Dinero {
+  - monto
+  - moneda
+}
+
+Menu "1" -- "1..*" Plato : contiene >
+Plato "1" -- "1..*" Ingrediente : utiliza >
+Plato "1" -- "1" Categoria : pertenece a >
+Plato "1" -- "1" Dinero : tiene precio >
+Ingrediente "1" -- "1" TipoIngrediente : es de tipo >
+Ingrediente "1" -- "0..*" Alergeno : puede contener >
+
+@enduml
