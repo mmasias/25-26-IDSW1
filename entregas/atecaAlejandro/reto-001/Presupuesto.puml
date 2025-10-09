@@ -1,0 +1,41 @@
+@startuml
+' Definición de clases
+class Ingrediente {
+    - id: int
+    - nombre: String
+    - unidadMedida: String
+    - cantidadActual: float
+    - stockMinimo: float
+}
+
+class CategoriaIngrediente {
+    - id: int
+    - nombre: String
+}
+
+class Proveedor {
+    - id: int
+    - nombre: String
+    - telefono: String
+    - email: String
+    - direccion: String
+}
+
+class OrdenCompra {
+    - id: int
+    - fecha: Date
+    - estado: String
+}
+
+class DetalleOrden {
+    - cantidad: float
+    - precioUnitario: float
+}
+
+' Relaciones
+Ingrediente --> CategoriaIngrediente : pertenece a
+Ingrediente "0..*" --> "0..*" Proveedor : suministrado por
+OrdenCompra "1" --> "*" DetalleOrden : contiene
+DetalleOrden --> Ingrediente : se refiere a
+
+@enduml
