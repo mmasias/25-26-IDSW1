@@ -1,0 +1,13 @@
+@startuml
+[*] --> Registrado : Nuevo producto
+
+Registrado --> Disponible : Verificación correcta
+Disponible --> EnUso : Producto seleccionado
+EnUso --> Actualizado : Inventario actualizado
+Actualizado --> Disponible : Queda stock
+Actualizado --> SinStock : No queda stock
+SinStock --> Reabastecido : Llega nueva cantidad
+Reabastecido --> Disponible
+
+[*] <-- SinStock : Producto eliminado o descontinuado
+@enduml
