@@ -1,0 +1,36 @@
+@startuml name DiagramaClases
+
+class Presupuesto {
+    periodoDeTiempo
+    costoTotal
+}
+
+class Proveedor {
+    nombre
+    telefono
+    direccion
+    productos
+}
+
+class Inventario {
+    productos
+}
+
+class Receta {
+    nombre
+    listaIngredientes
+    tiempoPreparacion
+    pasos
+}
+
+class Menu {
+    comida
+    precio
+}
+
+Presupuesto *-- Proveedor : paga
+Proveedor *-- Inventario : suministra
+Inventario *--  Receta : permite preparar
+Receta *--  Menu : crea
+Menu --* Presupuesto : ajusta a
+@enduml
