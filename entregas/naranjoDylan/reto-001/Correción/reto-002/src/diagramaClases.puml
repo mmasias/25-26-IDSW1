@@ -1,25 +1,8 @@
 @startuml
-class Presupuesto {
-  - id: int
-  - fecha: String
-  - total: double
-  - estado: String
-  + calcularTotal()
-  + aprobar()
-  + rechazar()
-}
+class Usuario
+class Presupuesto
+class Item
 
-class Item {
-  - id: int
-  - descripcion: String
-  - monto: double
-}
-
-class Usuario {
-  - id: int
-  - nombre: String
-}
-
-Usuario "1" --> "0..*" Presupuesto : crea >
-Presupuesto "1" *-- "0..*" Item : contiene >
+Usuario --> Presupuesto : crea
+Presupuesto --> Item : contiene
 @enduml
