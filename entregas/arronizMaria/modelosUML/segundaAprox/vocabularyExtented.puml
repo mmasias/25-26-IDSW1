@@ -1,0 +1,53 @@
+@startuml
+
+class Cafeteria {
+}
+
+package "Inventario" {
+    class Inventario {
+    }
+
+    class Categoria {
+    }
+
+    class Producto {
+    }
+
+    class Pedido {
+    }
+
+    Cafeteria *-- Inventario : contiene
+    Categoria  o--  Producto : clasifica
+    Inventario  --  Producto : contiene
+    Inventario -->  Pedido : genera
+    Pedido --> Producto : incluye
+}
+
+
+class Proveedor {
+}
+    
+Proveedor --> Pedido : recibe
+Proveedor --> Producto : suministra
+
+
+class Menu {
+}
+
+
+class Presupuesto {
+}
+Menu --> Presupuesto : ajusta
+Cafeteria *-- Presupuesto : gestiona
+
+
+class Receta {
+}
+
+Cafeteria *--  Menu : ofrece    
+Menu *-- Receta : contiene
+Receta --> Producto : utiliza
+
+
+
+@enduml
