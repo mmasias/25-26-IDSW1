@@ -1,0 +1,17 @@
+@startuml
+
+start
+:Mostrar menu;
+:Seleccionar categoría (Alimento / Bebida);
+:Mostrar productos de esa categoría;
+:Seleccionar producto;
+:Mostrar descripción, precio, alérgenos;
+repeat
+  if (Desea añadir más productos?) then (si)
+    :Seleccionar categoría (Alimento / Bebida);
+  endif
+repeat while (Desea añadir más productos?) is (si) not (no)
+:Confirmar pedido;
+end
+
+@enduml

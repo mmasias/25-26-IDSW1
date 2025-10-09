@@ -1,0 +1,28 @@
+@startuml
+
+object menu1{
+  - idMenu = 1
+  - nombre = Pizzeria
+  + getProductos()
+  + agregarProducto()
+  + quitarProducto()
+}
+
+object producto1{
+  - idProducto = 10
+  - nombre = Pizza Margaritha
+  + obtenerDescripcion()
+  + obtenerPrecio()
+}
+
+object producto2{
+  - idProducto: 15
+  - nombre: Pizza Oregano
+  + obtenerDescripcion()
+  + obtenerPrecio()
+}
+
+menu1 --> producto1
+menu1 --> producto2
+
+@enduml
