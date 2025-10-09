@@ -1,0 +1,72 @@
+@startuml EstadoInicial
+title Diagrama de Objetos — Estado inicial (Cafetería)
+top to bottom direction
+
+'================ OBJETO PRINCIPAL =================
+object "cafeteria : Cafeteria" as cafeteria
+
+'================ SUBSISTEMAS =================
+object "menu : Menu" as menu
+object "inventario : Inventario" as inventario
+object "presupuesto : Presupuesto" as presupuesto
+
+'================ MENÚ =================
+object "plato1 : Plato" as plato1
+object "categoria1 : Categoria" as categoria1
+object "precio1 : Precio" as precio1
+object "receta1 : Receta" as receta1
+object "paso1 : Paso" as paso1
+object "ingrediente1 : Ingrediente" as ingrediente1
+
+'================ INVENTARIO =================
+object "almacen1 : Almacen" as almacen1
+object "stock1 : Stock" as stock1
+object "movimiento1 : Movimiento" as movimiento1
+object "empleado1 : Empleado" as empleado1
+
+'================ PRESUPUESTO =================
+object "linea1 : LineaPresupuesto" as linea1
+object "cliente1 : Cliente" as cliente1
+object "empresa1 : Empresa" as empresa1
+object "moneda1 : Moneda" as moneda1
+object "impuesto1 : Impuesto" as impuesto1
+
+'================ RELACIONES =================
+cafeteria --> menu
+cafeteria --> inventario
+cafeteria --> presupuesto
+
+menu --> plato1
+plato1 --> categoria1
+plato1 --> precio1
+plato1 --> receta1
+receta1 --> paso1
+receta1 --> ingrediente1
+
+inventario --> almacen1
+almacen1 --> stock1
+stock1 --> ingrediente1
+inventario --> movimiento1
+movimiento1 --> empleado1
+movimiento1 --> almacen1
+movimiento1 --> ingrediente1
+
+presupuesto --> cliente1
+presupuesto --> empresa1
+presupuesto --> linea1
+presupuesto --> moneda1
+linea1 --> plato1
+linea1 --> impuesto1
+empleado1 --> presupuesto
+
+'================ NOTA CONTEXTO =================
+note right of cafeteria
+Estado inicial del sistema:
+- Cafetería registrada con sus subsistemas.
+- Menú cargado con platos y recetas.
+- Inventario verificado (stock inicial).
+- Presupuesto preparado, sin emitir.
+- Personal asignado.
+end note
+
+@enduml
