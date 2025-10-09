@@ -1,0 +1,104 @@
+@startuml
+package "Restaurante" {
+
+    '==============================
+    ' INVENTARIO
+    '==============================
+    
+        class Ingrediente {
+            - id: int
+            - nombre: String
+            - unidadMedida: String
+            - cantidadActual: float
+            - stockMinimo: float
+        }
+
+        class CategoriaIngrediente {
+            - id: int
+            - nombre: String
+        }
+
+        class Proveedor {
+            - id: int
+            - nombre: String
+            - telefono: String
+            - email: String
+            - direccion: String
+        }
+
+        class DetalleOrden {
+            - cantidad: float
+            - precioUnitario: float
+        }
+
+        ' Relaciones Inventario
+        Ingrediente --> CategoriaIngrediente : pertenece a
+        Ingrediente "0.." --> "0.." Proveedor : suministrado por
+        DetalleOrden --> Ingrediente : se refiere a
+    
+
+    '==============================
+    ' PRESUPUESTO
+    '==============================
+   
+        class Presupuesto {
+            - id: int
+            - periodo: String
+            - montoTotal: float
+            - montoGastado: float
+        }
+
+        class CategoriaPresupuesto {
+            - id: int
+            - nombre: String
+        }
+
+        class Gasto {
+            - id: int
+            - fecha: Date
+            - descripcion: String
+            - monto: float
+        }
+
+        class OrdenCompra {
+            - id: int
+            - fecha: Date
+            - estado: String
+        }
+
+        ' Relaciones Presupuesto
+        Presupuesto "1" --> "*" CategoriaPresupuesto : tiene
+        CategoriaPresupuesto "1" --> "*" Gasto : contiene
+        Presupuesto "1" --> "*" OrdenCompra : incluye
+        OrdenCompra "1" --> "*" DetalleOrden : contiene
+    
+
+    '==============================
+    ' MENÚ
+    '==============================
+    
+        class Menu {
+            - id: int
+            - nombre: String
+            - descripcion: String
+            - precio: float
+        }
+
+        class CategoriaPlato {
+            - id: int
+            - nombre: String
+        }
+
+        class Receta {
+            - cantidad: float
+            - unidadMedida: String
+        }
+
+        ' Relaciones Menú
+        Menu --> CategoriaPlato : pertenece a
+        Menu "1" --> "*" Receta : incluye
+        Receta --> Ingrediente : se refiere a
+    
+}
+
+@enduml
