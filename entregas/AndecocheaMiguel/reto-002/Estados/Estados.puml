@@ -1,0 +1,56 @@
+@startuml  DiagramaEstados
+title Diagrama de estados — Cafetería
+
+[*] --> Cerrada
+
+Cerrada --> Apertura : hora_apertura
+Apertura --> Operativa : tareas_apertura_ok
+Apertura --> Cerrada : incidencia_apertura
+
+state Operativa {
+  [*] --> Servicio
+
+  Servicio --> Pausa : descanso_programado
+  Pausa --> Servicio : fin_descanso
+
+  '---- Servicio (estado compuesto del turno) ----
+  state Servicio {
+    [*] --> TomandoPedidos
+
+    TomandoPedidos --> Preparando : pedido_creado [stock_ok]
+    TomandoPedidos --> FueraDeStock : pedido_creado [stock_insuficiente]
+
+    FueraDeStock --> TomandoPedidos : stock_repuesto
+
+    state Preparando {
+      [*] --> Barra        : bebidas
+      Barra --> Cocina     : bebidas_listas
+      Cocina --> Listo     : comida_lista
+    }
+
+    Preparando --> Entregando : items_listos
+    Listo --> Entregando
+
+    Entregando --> Cobro : pedido_entregado
+    Cobro --> TomandoPedidos : pago_confirmado
+  }
+
+  Servicio --> CierreParcial : fin_servicio_parcial
+  CierreParcial --> Servicio : reabrir_area
+}
+
+Operativa --> Cierre : hora_cierre
+
+Cierre --> Limpieza : cierre_caja_ok
+Limpieza --> Inventario : limpieza_ok
+
+state Inventario {
+  [*] --> Chequeo
+  Chequeo --> Reposicion : bajo_stock
+  Reposicion --> Chequeo : reposicion_ok
+  Chequeo --> [*] : inventario_ok
+}
+
+Inventario --> Cerrada : fin_de_dia
+
+@enduml
