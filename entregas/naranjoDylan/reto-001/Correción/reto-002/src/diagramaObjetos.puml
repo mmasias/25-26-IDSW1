@@ -1,0 +1,29 @@
+@startuml
+object usuario1 {
+  id = 5
+  nombre = "Ana López"
+}
+
+object presupuesto1 {
+  id = 1
+  fecha = "01/06/2024"
+  total = 1200.0
+  estado = "EnRevision"
+}
+
+object item1 {
+  id = 101
+  descripcion = "Café en grano"
+  monto = 800.0
+}
+
+object item2 {
+  id = 102
+  descripcion = "Vasos desechables"
+  monto = 400.0
+}
+
+usuario1 --> presupuesto1
+presupuesto1 --> item1
+presupuesto1 --> item2
+@enduml
