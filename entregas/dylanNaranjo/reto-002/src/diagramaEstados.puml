@@ -1,0 +1,52 @@
+@startuml
+
+state "Inventario (Producto)" as Inventario {
+  [*] --> Registrado : Nuevo producto
+  Registrado --> Disponible : Verificación correcta
+  Disponible --> EnUso : Producto seleccionado
+  EnUso --> Actualizado : Inventario actualizado
+  Actualizado --> Disponible : Queda stock
+  Actualizado --> SinStock : No queda stock
+  SinStock --> Reabastecido : Llega nueva cantidad
+  Reabastecido --> Disponible
+  SinStock --> [*] : Producto eliminado o descontinuado
+}
+
+state "Presupuesto" as Presupuesto {
+  [*] --> Borrador
+  Borrador --> EnRevision : enviar()
+  EnRevision --> Aprobado : aprobar()
+  EnRevision --> Rechazado : rechazar()
+  Rechazado --> Borrador : editar()
+  Aprobado --> [*]
+}
+
+state "Receta" as Receta {
+  [*] --> Borrador
+  Borrador --> EnPreparacion : Ingredientes listos
+  EnPreparacion --> EnCoccion : Comienza cocción
+  EnCoccion --> Finalizada : Todos los pasos completados
+  Finalizada --> Publicada : Aprobada y compartida
+  Publicada --> [*]
+}
+
+state "Proveedor" as Proveedor {
+  [*] --> Registrado
+  Registrado --> Activo : Validación completada
+  Activo --> EnEvaluacion : Problemas de calidad
+  EnEvaluacion --> Activo : Reautorizado
+  Activo --> Suspendido : Incumplimiento de contrato
+  Suspendido --> [*]
+}
+
+state "Menú / Pedido" as Menu {
+  [*] --> Seleccionar
+  Seleccionar --> Verificar : verificarDisponibilidad()
+  Verificar --> Disponible : verificarPedido()
+  Verificar --> Agotado : verificarPedido()
+  Agotado --> Seleccionar : seleccionarProducto()
+  Disponible --> Pedir : ordenarProducto()
+  Pedir --> Ordenado : confirmarPedido()
+  Ordenado --> [*]
+}
+@enduml
