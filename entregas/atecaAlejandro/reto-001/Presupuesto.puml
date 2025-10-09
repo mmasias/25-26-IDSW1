@@ -1,24 +1,22 @@
 @startuml
-' Definición de clases
-class Ingrediente {
+
+class Presupuesto {
     - id: int
-    - nombre: String
-    - unidadMedida: String
-    - cantidadActual: float
-    - stockMinimo: float
+    - periodo: String
+    - montoTotal: float
+    - montoGastado: float
 }
 
-class CategoriaIngrediente {
+class CategoriaPresupuesto {
     - id: int
     - nombre: String
 }
 
-class Proveedor {
+class Gasto {
     - id: int
-    - nombre: String
-    - telefono: String
-    - email: String
-    - direccion: String
+    - fecha: Date
+    - descripcion: String
+    - monto: float
 }
 
 class OrdenCompra {
@@ -27,15 +25,8 @@ class OrdenCompra {
     - estado: String
 }
 
-class DetalleOrden {
-    - cantidad: float
-    - precioUnitario: float
-}
-
-' Relaciones
-Ingrediente --> CategoriaIngrediente : pertenece a
-Ingrediente "0..*" --> "0..*" Proveedor : suministrado por
-OrdenCompra "1" --> "*" DetalleOrden : contiene
-DetalleOrden --> Ingrediente : se refiere a
+Presupuesto "1" --> "*" CategoriaPresupuesto : tiene
+CategoriaPresupuesto "1" --> "*" Gasto : contiene
+Gasto "0..1" --> "0..1" OrdenCompra : asociado a
 
 @enduml
