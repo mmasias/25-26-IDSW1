@@ -1,0 +1,26 @@
+@startuml
+
+Class Menu
+
+Class Producto
+
+Class Categorias
+
+Menu *-- Producto : tiene
+
+Producto o-- Descripcion : tienen
+
+Producto o-- Precio : tienen
+
+Producto o-- Categorias : estan en
+
+Categorias --> Alimento
+
+Alimento --> Entrada
+Alimento --> PlatoPrincipal
+Alimento --> Postre
+
+Alimento *-- Alergenos
+
+
+@enduml

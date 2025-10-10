@@ -1,0 +1,12 @@
+@startuml
+
+[*] --> Seleccionar
+Seleccionar --> Verificar : verificarDisponibilidad()
+Verificar --> Disponible : verificarPedido()
+Verificar --> Agotado : verificarPedido()
+Agotado --> Seleccionar : seleccionarProducto()
+Disponible --> Pedir : ordenarProducto()
+Pedir --> Ordenado : confirmarPedido()
+Ordenado--> [*]
+
+@enduml

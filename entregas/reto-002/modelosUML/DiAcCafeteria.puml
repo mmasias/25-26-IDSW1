@@ -1,0 +1,92 @@
+@startuml
+
+start
+
+:Iniciar sesión (Usuario);
+:Crear nuevo presupuesto;
+
+repeat
+  :Agregar o editar items;
+  :Calcular total del presupuesto;
+  
+  if (¿Total correcto?) then (no)
+    :Ajustar items;
+  endif
+repeat while (¿Total correcto?) is (no) not (sí)
+
+repeat
+  :Enviar a revisión;
+  :Esperar respuesta;
+  
+  if (¿Aprobado?) then (no)
+    :Notificar rechazo;
+    :Editar items;
+  endif
+repeat while (¿Aprobado?) is (no) not (sí)
+
+:Presupuesto listo;
+
+:Registrar proveedor;
+:Validar información;
+:Agregar catálogo de productos;
+:Recibir pedido;
+:Preparar envío;
+:Entregar pedido;
+:Emitir factura;
+
+:Seleccionar producto;
+:Verificar cantidad;
+if (cantidad suficiente?) then (sí)
+  :Actualizar inventario proveedor;
+  :Actualizar inventario uso;
+  :Notificar encargado;
+else (no)
+  :Mostrar error;
+  stop
+endif
+
+:Seleccionar receta;
+:Revisar ingredientes disponibles;
+
+if (¿Faltan ingredientes?) then (Sí)
+  :Comprar ingredientes faltantes;
+  stop
+endif
+
+:Reunir ingredientes;
+:Preparar ingredientes;
+:Seguir pasos de la receta;
+
+:Verificar cocción;
+
+if (¿Cocción correcta?) then (Sí)
+  :Servir plato;
+  :Disfrutar comida;
+else (No)
+  :Ajustar tiempo o temperatura;
+  :Verificar cocción nuevamente;
+  if (¿Cocción correcta?) then (Sí)
+    :Servir plato;
+    :Disfrutar comida;
+  else (No)
+    :Descartar preparación;
+  endif
+endif
+
+:Mostrar menu;
+:Seleccionar categoría (Alimento / Bebida);
+:Mostrar productos de esa categoría;
+:Seleccionar producto;
+:Mostrar descripción, precio, alérgenos;
+repeat
+  if (Desea añadir más productos?) then (si)
+    :Seleccionar categoría (Alimento / Bebida);
+    :Mostrar productos de esa categoría;
+    :Seleccionar producto;
+    :Mostrar descripción, precio, alérgenos;
+  endif
+repeat while (Desea añadir más productos?) is (si) not (no)
+:Confirmar pedido;
+
+stop
+@enduml
