@@ -213,4 +213,4 @@ Transacción asociada a un pedido.
 
 ---
 
-![UML](marcosgutierrez6/25-26-IDSW1/entregas/GutierrezMarcos/Reto-001/Reto-002/uml/diagrama-cafeteria.svg)
+![UML](https://github.com/marcosgutierrez6/25-26-IDSW1/blob/978a7f5a8efee41e15bcedce4f8a0a7ba9497653/entregas/GutierrezMarcos/Reto-002/uml/diagrama.svg)
