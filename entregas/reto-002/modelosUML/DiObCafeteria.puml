@@ -1,0 +1,140 @@
+@startuml
+
+object "inventario1 : Inventario" as inventario1
+
+object "inv_producto1 : Producto" as inv_producto1 {
+  nombre = "Café en grano"
+  cantidad = 25
+  estado = "Disponible"
+}
+
+object "inv_producto2 : Producto" as inv_producto2 {
+  nombre = "Vasos desechables"
+  cantidad = 0
+  estado = "Sin stock"
+}
+
+object "encargado1 : Encargado" as encargado1 {
+  nombre = "Carlos Méndez"
+}
+
+object "proveedor1 : Proveedor" as proveedor1 {
+  nombre = "Cafés del Sur S.A."
+}
+
+object "uso1 : Uso" as uso1 {
+  area = "Barra principal"
+  fecha = "09/10/2025"
+}
+
+inventario1 -- inv_producto1
+inventario1 -- inv_producto2
+inv_producto1 -- encargado1
+inv_producto1 -- proveedor1
+inv_producto1 -- uso1
+inv_producto2 -- encargado1
+inv_producto2 -- proveedor1
+
+object "usuario1 : Usuario" as usuario1 {
+  id = 5
+  nombre = "Ana López"
+}
+
+object "presupuesto1 : Presupuesto" as presupuesto1 {
+  id = 1
+  fecha = "01/06/2024"
+  total = 1200.0
+  estado = "EnRevision"
+}
+
+object "item1 : Item" as item1 {
+  id = 101
+  descripcion = "Café en grano"
+  monto = 800.0
+}
+
+object "item2 : Item" as item2 {
+  id = 102
+  descripcion = "Vasos desechables"
+  monto = 400.0
+}
+
+usuario1 --> presupuesto1
+presupuesto1 --> item1
+presupuesto1 --> item2
+
+object "Receta_1 : Receta" as Receta_1 {
+  nombre = "Tarta de Manzana"
+}
+
+object "Ingrediente_1 : Ingrediente" as Ingrediente_1 {
+  nombre = "Manzana"
+  cantidad = "3"
+  unidad = "unidades"
+}
+
+object "Ingrediente_2 : Ingrediente" as Ingrediente_2 {
+  nombre = "Harina"
+  cantidad = "200"
+  unidad = "gramos"
+}
+
+object "Paso_1 : Paso" as Paso_1 {
+  descripcion = "Pelar y cortar las manzanas"
+}
+
+object "Paso_2 : Paso" as Paso_2 {
+  descripcion = "Mezclar con harina y hornear"
+}
+
+Receta_1 *-- Ingrediente_1
+Receta_1 *-- Ingrediente_2
+Receta_1 *-- Paso_1
+Receta_1 *-- Paso_2
+
+object "Proveedor_1 : Proveedor" as Proveedor_1 {
+  nombre = "Distribuidora El Buen Sabor"
+}
+
+object "prov_Producto_1 : Producto" as prov_Producto_1 {
+  nombre = "Harina de trigo"
+}
+
+object "prov_Producto_2 : Producto" as prov_Producto_2 {
+  nombre = "Aceite vegetal"
+}
+
+object "Pedido_1 : Pedido" as Pedido_1 {
+  numero = "PED-2025-001"
+}
+
+Proveedor_1 *-- prov_Producto_1
+Proveedor_1 *-- prov_Producto_2
+Proveedor_1 *-- Pedido_1
+
+object "menu1 : Menu" as menu1 {
+  idMenu = 1
+  nombre = "Menú Cafetería"
+  + getProductos()
+  + agregarProducto()
+  + quitarProducto()
+}
+
+object "menu_producto1 : Producto" as menu_producto1 {
+  idProducto = 10
+  nombre = "Capuchino"
+  + obtenerDescripcion()
+  + obtenerPrecio()
+}
+
+object "menu_producto2 : Producto" as menu_producto2 {
+  idProducto = 15
+  nombre = "Tarta de manzana"
+  + obtenerDescripcion()
+  + obtenerPrecio()
+}
+
+menu1 --> menu_producto1
+menu1 --> menu_producto2
+
+@enduml

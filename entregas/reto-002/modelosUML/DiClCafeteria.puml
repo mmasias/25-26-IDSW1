@@ -1,0 +1,95 @@
+@startuml
+
+class Inventario {
+}
+
+class Producto {
+}
+
+class Encargado {
+}
+
+class Proveedor {
+}
+
+class Uso {
+}
+
+class Usuario {
+}
+
+class Presupuesto {
+}
+
+class Item {
+}
+
+class Receta {
+}
+
+class Ingrediente {
+}
+
+class Paso {
+}
+
+class Pedido {
+}
+
+class Menu {
+}
+
+class Categoria {
+}
+
+class Alimento {
+}
+
+class Entrada {
+}
+
+class PlatoPrincipal {
+}
+
+class Postre {
+}
+
+class Alergeno {
+}
+
+class Descripcion {
+}
+
+class Precio {
+}
+
+Inventario -- Producto : tiene
+Producto -- Encargado : tiene
+Producto -- Proveedor : tiene
+Producto -- Uso : tiene
+
+Usuario --> Presupuesto : tiene
+Presupuesto --> Item : tiene
+
+Receta *-- Ingrediente : tiene >
+Receta *-- Paso : tiene >
+
+Proveedor *-- Producto : tiene >
+Proveedor *-- Pedido : tiene >
+
+Menu *-- Producto : tiene
+
+Producto o-- Descripcion : tienen
+Producto o-- Precio : tienen
+Producto o-- Categoria : tiene
+
+Categoria--> Alimento
+Alimento --> Entrada : es un
+Alimento --> PlatoPrincipal : es un
+Alimento --> Postre : es un
+
+Alimento *-- Alergeno : tiene
+
+Producto <|-- Alimento : es un
+
+@enduml
