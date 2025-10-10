@@ -1,0 +1,59 @@
+@startuml
+title Modelo de Dominio - Cafetería
+
+object Menu
+object Plato
+object Categoria
+object PrecioVenta
+
+Menu --> Plato : contiene
+Plato --> Categoria : pertenece a
+Plato --> PrecioVenta : tiene
+
+object Receta
+object Ingrediente
+object Paso
+object Porcion
+
+Receta --> Ingrediente : requiere
+Receta --> Paso : define
+Receta --> Porcion : produce
+
+object Inventario
+object Producto
+object Stock
+object Lote
+object Almacen
+
+Inventario --> Producto : gestiona
+Producto --> Stock : tiene
+Stock --> Lote : agrupa
+Producto --> Almacen : ubicado en
+
+object Proveedor
+object Contacto
+object Pedido
+object Cotizacion
+
+Proveedor --> Contacto : tiene
+Proveedor --> Pedido : recibe
+Proveedor --> Cotizacion : emite
+
+object Presupuesto
+object Partida
+object Gasto
+object Periodo
+
+Presupuesto --> Partida : contiene
+Partida --> Gasto : registra
+Presupuesto --> Periodo : vigente en
+
+Plato --> Receta : se prepara con
+Ingrediente --> Producto : corresponde a
+Pedido --> Producto : solicita
+Cotizacion --> Producto : cotiza
+Gasto --> Pedido : generado por
+Partida --> Proveedor : asignada a
+Lote --> Pedido : recibido de
+
+@enduml
