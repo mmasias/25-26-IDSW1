@@ -1,0 +1,62 @@
+@startuml
+' Asana Plus como plataforma
+package "AsanaPlus" {
+    abstract class Usuario {
+        id
+        nombre
+        email
+    }
+
+    class Proyecto {
+        nombre
+    }
+
+    class Sprint {
+        fechaInicio
+        fechaFin
+    }
+
+    class HistoriaDeUsuario {
+        descripcion
+        puntosHistoria
+        estado
+        fechaFinalizacion
+    }
+
+    class Subtarea {
+        descripcion
+        estado
+    }
+
+    class RegistroDeHoras {
+        horas
+        fecha
+    }
+
+    class Equipo {
+        nombre
+    }
+
+    Proyecto "1" o-- "N" Sprint : contiene
+    Sprint "1" o-- "N" HistoriaDeUsuario : contiene
+    HistoriaDeUsuario "1" o-- "N" Subtarea : compuestaPor
+
+    Equipo "1" o-- "N" Usuario : contiene
+    Equipo -left Proyecto : tiene
+
+    Usuario "1" o-- "N" HistoriaDeUsuario : finaliza
+    Subtarea "1" o-- "N" RegistroDeHoras : contiene
+}
+
+package "SERVICIO EXTERNO" {
+    abstract class ServicioExterno {
+        url
+    }
+    class AsanaDeveloper extends ServicioExterno {
+        apiKey
+        workspaceID
+    }
+}
+
+AsanaPlus ..> ServicioExterno : se comunica
+@enduml

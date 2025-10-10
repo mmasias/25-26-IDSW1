@@ -1,0 +1,46 @@
+@startuml
+object Proyecto1 {
+    nombre = " Sprint 29 Septiembre / 10 Octubre - 2025"
+}
+
+object EquipoA {
+    nombre = "Presencia Web"
+}
+
+object Sprint01 {
+    fechaInicio = "29-09-2025"
+    fechaFin = "10-10-2025"
+}
+
+object Usuario1 {
+    id = "U001"
+    nombre = "Ana"
+    email = "ana@ctuneatlantico.com"
+}
+
+object Historia1 {
+    descripcion = "Como CWO solicito el diseño de la página de proyectos"
+    puntosHistoria = 5
+    estado = "completada"
+    fechaFinalizacion = "10-10-2025"
+}
+
+object SubtareaA {
+    descripcion = "Propuesta de diseño"
+    estado = "completada"
+}
+
+object RegistroHoras1 {
+    horas = 12
+    fecha = "10-10-2025"
+}
+
+' Relaciones entre objetos
+Proyecto1 -- EquipoA
+EquipoA -- Usuario1
+Proyecto1 -- Sprint01
+Sprint01 -- Historia1
+Historia1 -- SubtareaA
+Usuario1 -- Historia1
+SubtareaA -- RegistroHoras1
+@enduml
