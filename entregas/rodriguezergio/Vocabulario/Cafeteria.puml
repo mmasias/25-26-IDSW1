@@ -1,0 +1,62 @@
+@startuml Cafeteria
+title Modelo de dominio — Cafetería
+top to bottom direction
+
+class Cafeteria
+
+class Menu
+class Plato
+class Categoria
+class Precio
+class Receta
+class Pasos
+class Ingrediente
+
+class Inventario
+class Almacen
+class Stock
+class MovimientoDeInventario
+class Empleado
+
+class Presupuesto
+class LineaPresupuesto
+class Cliente
+class Empresa
+class Moneda
+class Impuesto
+
+
+Cafeteria --> Menu : ofrece >
+Cafeteria --> Inventario : gestiona >
+Cafeteria --> Presupuesto : emite >
+
+
+Menu --> Plato : contiene >
+Plato --> Categoria : pertenece a >
+Plato --> Precio : tiene precio >
+
+
+Plato --> Receta : se prepara con >
+Receta --> Pasos : tiene >
+Receta --> Ingrediente : utiliza >
+
+
+Inventario --> Almacen : gestiona >
+Almacen --> Stock : mantiene >
+Stock --> Ingrediente : de >
+Inventario --> MovimientoDeInventario : registra >
+MovimientoDeInventario --> Ingrediente : sobre >
+MovimientoDeInventario --> Almacen : ocurre en >
+Empleado --> MovimientoDeInventario : registra >
+
+
+Presupuesto --> Cliente : emitido para >
+Presupuesto --> Empresa : emitido por >
+Presupuesto *-- LineaPresupuesto : contiene >
+Presupuesto --> Moneda : expresado en >
+LineaPresupuesto --> Plato : describe >
+LineaPresupuesto --> Impuesto : aplica >
+Empleado --> Presupuesto : elabora >
+Cliente ..> Presupuesto : puede aceptar o rechazar >
+
+@enduml
