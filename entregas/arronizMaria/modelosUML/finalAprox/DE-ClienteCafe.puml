@@ -1,0 +1,40 @@
+@startuml
+title Diagrama de Estados - Cliente
+
+[*] --> Abierta : iniciarJornada
+[*] --> Cerrada : noIniciarJornada
+Abierta --> ClienteEsperando: clienteLlega
+
+
+state GestionInventario {
+    Abierta --> RevisadoStock : revisarStock
+    RevisadoStock --> FaltaStock : stockBajo
+    RevisadoStock --> SuficienteStock : stockOk
+}
+
+state GestionProveedor {
+    FaltaStock --> PedidoRealizado : realizarPedido
+    PedidoRealizado --> SuficienteStock : pedidoRecibido
+}
+
+state GestionMenu {
+    ClienteEsperando --> MenuListo : mirandoMenu
+    CreandoMenu --> MenuListo : menuCreado
+    MenuListo --> PlatoEscogido : clienteElige
+}
+
+state GestionPresupuesto {
+    DineroDisponible --> CreandoMenu: ajustar
+}
+
+state GestionReceta {
+    SuficienteStock --> OrganizadoIngredientesYPlato : elegirIngredientes
+    PlatoEscogido --> OrganizadoIngredientesYPlato : platoElegido
+    OrganizadoIngredientesYPlato --> Cocinado : cocinando
+}
+
+Cocinado --> Servido : darAlCliente
+Servido --> [*] : clienteSeVa
+Cerrada --> [*]
+
+@enduml
