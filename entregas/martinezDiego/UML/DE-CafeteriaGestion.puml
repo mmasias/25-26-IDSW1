@@ -1,0 +1,54 @@
+@startuml DE-GestiónCafetería
+
+title Diagrama de Estados - Gestión Cafetería
+
+[*] --> Preparacion : Inicio del sistema
+
+state Preparacion {
+  [*] --> Inicializacion
+  Inicializacion : Inicializar inventario, menú, recetas y presupuesto
+  Inicializacion --> [*]
+}
+Preparacion --> Operando : Inventario verificado
+
+state Operando {
+  [*] --> AtendiendoPedidos
+  AtendiendoPedidos : Atender pedidos del menú y actualizar presupuesto
+  AtendiendoPedidos --> VerificandoStock : Fin de pedido
+  VerificandoStock : Verificar inventario
+  VerificandoStock --> [*]
+}
+Operando --> SolicitandoProveedor : Inventario bajo
+Operando --> CierreDiario : Fin de jornada
+
+state SolicitandoProveedor {
+  [*] --> GenerandoOrden
+  GenerandoOrden : Generar orden de compra al proveedor
+  GenerandoOrden --> EsperandoEntrega
+  EsperandoEntrega : Esperar confirmación y entrega
+  EsperandoEntrega --> [*]
+}
+SolicitandoProveedor --> ReabasteciendoInventario : Pedido confirmado
+
+state ReabasteciendoInventario {
+  [*] --> ActualizandoStock
+  ActualizandoStock : Actualizar inventario y presupuesto
+  ActualizandoStock --> [*]
+}
+ReabasteciendoInventario --> Operando : Inventario suficiente
+
+state CierreDiario {
+  [*] --> CalculandoGanancias
+  CalculandoGanancias : Calcular ganancias y actualizar presupuesto
+  CalculandoGanancias --> [*]
+}
+CierreDiario --> Operando : Día siguiente
+CierreDiario --> Finalizado : Fin de operaciones
+
+state Finalizado {
+  [*] --> Inactivo
+  Inactivo : Sistema inactivo
+  Inactivo --> [*]
+}
+
+@enduml
