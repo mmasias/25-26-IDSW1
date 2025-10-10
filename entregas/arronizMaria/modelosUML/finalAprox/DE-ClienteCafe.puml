@@ -28,7 +28,7 @@ state GestionPresupuesto {
 }
 
 state GestionReceta {
-    SuficienteStock --> OrganizadoIngredientesYPlato : elegirIngrdientes
+    SuficienteStock --> OrganizadoIngredientesYPlato : elegirIngredientes
     PlatoEscogido --> OrganizadoIngredientesYPlato : platoElegido
     OrganizadoIngredientesYPlato --> Cocinado : cocinando
 }
