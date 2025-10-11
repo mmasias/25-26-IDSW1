@@ -1,5 +1,6 @@
 @startuml
 ' Asana Plus como plataforma
+hide empty members
 package "AsanaPlus" {
     abstract class Usuario {
         id
@@ -32,6 +33,9 @@ package "AsanaPlus" {
         horas
         fecha
     }
+class Administrador
+{
+}
 
     class Equipo {
         nombre
@@ -40,6 +44,7 @@ package "AsanaPlus" {
     Proyecto "1" o-- "N" Sprint : contiene
     Sprint "1" o-- "N" HistoriaDeUsuario : contiene
     HistoriaDeUsuario "1" o-- "N" Subtarea : compuestaPor
+Usuario <|-- Administrador
 
     Equipo "1" o-- "N" Usuario : contiene
     Equipo -left Proyecto : tiene
