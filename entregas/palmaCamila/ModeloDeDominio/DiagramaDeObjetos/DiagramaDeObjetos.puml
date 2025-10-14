@@ -1,6 +1,9 @@
 @startuml
+
+object Asana1
+
 object Proyecto1 {
-    nombre = " Sprint 29 Septiembre / 10 Octubre - 2025"
+    nombre = "Sprint 29 Septiembre / 10 Octubre - 2025"
 }
 
 object EquipoA {
@@ -18,7 +21,7 @@ object Usuario1 {
     email = "ana@ctuneatlantico.com"
 }
 
-object Historia1 {
+object HistoriaDeUsuario1 {
     descripcion = "Como CWO solicito el diseño de la página de proyectos"
     puntosHistoria = 5
     estado = "completada"
@@ -35,12 +38,28 @@ object RegistroHoras1 {
     fecha = "10-10-2025"
 }
 
-' Relaciones entre objetos
+object Estadistica1 {
+    totalStoryPoints= 5
+    promedioStoryPoints = 5
+}
+
+object Grafica1 {
+    tipo = "Barras"
+    datos = "[Ana: 5; 5]"
+    titulo = "Story Points por Usuario"
+}
+
+
+Asana1 -- Proyecto1
 Proyecto1 -- EquipoA
 EquipoA -- Usuario1
 Proyecto1 -- Sprint01
-Sprint01 -- Historia1
-Historia1 -- SubtareaA
-Usuario1 -- Historia1
+Sprint01 -- HistoriaDeUsuario1
+HistoriaDeUsuario1 -- SubtareaA
 SubtareaA -- RegistroHoras1
+Usuario1 -- HistoriaDeUsuario1 : asignadaA
+SubtareaA -- Usuario1 : realizadaPor
+HistoriaDeUsuario1-- Estadistica1
+Estadistica1 -- Grafica1
+
 @enduml

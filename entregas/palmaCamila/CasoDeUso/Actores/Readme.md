@@ -1,3 +1,4 @@
 # Actores
 
-- Administradores de la plataforma
+- Administrador
+- Tiempo

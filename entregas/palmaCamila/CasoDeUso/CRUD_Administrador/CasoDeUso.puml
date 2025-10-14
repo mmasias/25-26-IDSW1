@@ -1,0 +1,37 @@
+@startuml
+title Casos de uso – Administrador
+
+left to right direction
+
+actor "Administrador" as Admin
+
+
+
+  package "Gestión de Tareas" {
+    usecase "crearHistoriaUsuario()"
+    usecase "editarHistoriaUsuario()"
+    usecase "eliminarHistoriaUsuario()"
+
+    usecase "crearSubtarea()"
+    usecase "editarSubtarea()"
+    usecase "eliminarSubtarea()"
+  }
+
+  package "Analítica" {
+    usecase "visualizarEstadísticas()"
+    usecase "exportarStoryPoint()"
+  }
+
+
+Admin --> "crearHistoriaUsuario()"
+Admin --> "editarHistoriaUsuario()"
+Admin --> "eliminarHistoriaUsuario()"
+
+Admin --> "crearSubtarea()"
+Admin --> "editarSubtarea()"
+Admin --> "eliminarSubtarea()"
+
+Admin --> "visualizarEstadísticas()"
+Admin --> "exportarStoryPoint()"
+
+@enduml

@@ -1,0 +1,51 @@
+@startuml
+
+title Cerrar Sesión - Asana Plus
+
+skinparam {
+    NoteBackgroundColor #whiteSmoke
+    ArrowColor #green
+    NoteBorderColor #green
+    linetype polyline
+}
+
+hide empty description
+
+state startState as "ASANA PLUS"
+state endState as "ASANA PLUS"
+
+startState --> CerrarSesion
+note on link
+    <b>Usuario Solicita</b>
+    * Cerrar sesión en Asana Plus
+end note
+
+CerrarSesion --> endState
+
+state CerrarSesion {
+    state Paso1 as " "
+    state Confirmacion <<choice>>
+
+    [*] --> Paso1
+
+    Paso1 --> Confirmacion
+    note on link
+        <b>Sistema Permite</b>
+        * Confirmar cierre de sesión
+        * Cancelar y regresar
+    end note
+
+    Confirmacion --> [*]
+    note on link
+        <b>Usuario Confirma</b>
+        * Cerrar sesión
+    end note
+
+    Confirmacion --> endState
+    note on link
+        <b>Usuario Cancela</b>
+        * Regresa a la pantalla anterior
+    end note
+}
+
+@enduml

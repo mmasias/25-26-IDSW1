@@ -1,7 +1,8 @@
+
+
 @startuml
 ' Asana Plus como plataforma
 hide empty members
-package "AsanaPlus" {
     abstract class Usuario {
         id
         nombre
@@ -33,35 +34,43 @@ package "AsanaPlus" {
         horas
         fecha
     }
-class Administrador
-{
-}
+    
+    class Administrador
+    {
+    }
 
     class Equipo {
         nombre
     }
+    
+    class Asana {
+    }
+    
+    class Estadística {
+    }
+    
+    class Gráfica{
+    }
+    
 
+    
+    
     Proyecto "1" o-- "N" Sprint : contiene
-    Sprint "1" o-- "N" HistoriaDeUsuario : contiene
+    Proyecto "1" *-- "N" Asana : contiene
+    Asana  .right.  Usuario 
+    Sprint "1" o-left- "N" HistoriaDeUsuario : contiene
     HistoriaDeUsuario "1" o-- "N" Subtarea : compuestaPor
-Usuario <|-- Administrador
+    Usuario <|-- Administrador
 
     Equipo "1" o-- "N" Usuario : contiene
     Equipo -left Proyecto : tiene
 
-    Usuario "1" o-- "N" HistoriaDeUsuario : finaliza
+    Usuario "1" o-- "N" HistoriaDeUsuario : asignadoA
     Subtarea "1" o-- "N" RegistroDeHoras : contiene
+    Subtarea  --  Usuario : realizadaPor
+    HistoriaDeUsuario  --> Estadística : analiza
+    Estadística  -- Gráfica : produce
+
 }
 
-package "SERVICIO EXTERNO" {
-    abstract class ServicioExterno {
-        url
-    }
-    class AsanaDeveloper extends ServicioExterno {
-        apiKey
-        workspaceID
-    }
-}
-
-AsanaPlus ..> ServicioExterno : se comunica
 @enduml
