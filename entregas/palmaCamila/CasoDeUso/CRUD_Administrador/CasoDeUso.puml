@@ -23,6 +23,12 @@ actor "Administrador" as Admin
     usecase UC9 as "visualizarEstadísticas()"
     usecase UC10 as "exportarStoryPoint()"
   }
+  
+  package "Gestión de Proyectos" {
+    usecase UC11 as "listarHistoriasDeUsuario()" 
+    usecase UC12 as "listarSprints()" 
+
+}
 
 Admin --> UC1
 Admin --> UC2
@@ -34,6 +40,9 @@ Admin --> UC7
 Admin --> UC8
 Admin --> UC9
 Admin --> UC10
+Admin --> UC11
+Admin --> UC12
+
 
 
 @enduml
