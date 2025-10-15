@@ -5,33 +5,35 @@ left to right direction
 
 actor "Administrador" as Admin
 
+  package "Gestión de Historias de Usuario" {
+    usecase UC1 as "abrirHistoriaUsuario()"
+    usecase UC2 as "crearHistoriaUsuario()"
+    usecase UC3 as "editarHistoriaUsuario()"
+    usecase UC4 as "eliminarHistoriaUsuario()"
+  }
 
-
-  package "Gestión de Tareas" {
-    usecase "crearHistoriaUsuario()"
-    usecase "editarHistoriaUsuario()"
-    usecase "eliminarHistoriaUsuario()"
-
-    usecase "crearSubtarea()"
-    usecase "editarSubtarea()"
-    usecase "eliminarSubtarea()"
+  package "Gestión de Subtareas" {
+    usecase UC5 as "abrirSubtarea()"
+    usecase UC6 as "crearSubtarea()"
+    usecase UC7 as "editarSubtarea()"
+    usecase UC8 as "eliminarSubtarea()"
   }
 
   package "Analítica" {
-    usecase "visualizarEstadísticas()"
-    usecase "exportarStoryPoint()"
+    usecase UC9 as "visualizarEstadísticas()"
+    usecase UC10 as "exportarStoryPoint()"
   }
 
+Admin --> UC1
+Admin --> UC2
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+Admin --> UC6
+Admin --> UC7
+Admin --> UC8
+Admin --> UC9
+Admin --> UC10
 
-Admin --> "crearHistoriaUsuario()"
-Admin --> "editarHistoriaUsuario()"
-Admin --> "eliminarHistoriaUsuario()"
-
-Admin --> "crearSubtarea()"
-Admin --> "editarSubtarea()"
-Admin --> "eliminarSubtarea()"
-
-Admin --> "visualizarEstadísticas()"
-Admin --> "exportarStoryPoint()"
 
 @enduml
