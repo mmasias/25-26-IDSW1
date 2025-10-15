@@ -6,13 +6,9 @@ actor "Tiempo" as Tiempo
 
 
   package "Gestión de Proyectos" {
-    usecase "listarHistoriasDeUsuario()" 
-    usecase "listarSprints()" 
     usecase "sincronizarAsana()"
 
 }
-Tiempo --> "listarHistoriasDeUsuario()"
-Tiempo --> "listarSprints()"
 Tiempo --> "sincronizarAsana()"
 
 @enduml
