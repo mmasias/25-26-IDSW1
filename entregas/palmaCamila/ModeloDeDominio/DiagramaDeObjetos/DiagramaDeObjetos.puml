@@ -1,0 +1,65 @@
+@startuml
+
+object Asana1
+
+object Proyecto1 {
+    nombre = "Sprint 29 Septiembre / 10 Octubre - 2025"
+}
+
+object EquipoA {
+    nombre = "Presencia Web"
+}
+
+object Sprint01 {
+    fechaInicio = "29-09-2025"
+    fechaFin = "10-10-2025"
+}
+
+object Usuario1 {
+    id = "U001"
+    nombre = "Ana"
+    email = "ana@ctuneatlantico.com"
+}
+
+object HistoriaDeUsuario1 {
+    descripcion = "Como CWO solicito el diseño de la página de proyectos"
+    puntosHistoria = 5
+    estado = "completada"
+    fechaFinalizacion = "10-10-2025"
+}
+
+object SubtareaA {
+    descripcion = "Propuesta de diseño"
+    estado = "completada"
+}
+
+object RegistroHoras1 {
+    horas = 12
+    fecha = "10-10-2025"
+}
+
+object Estadistica1 {
+    totalStoryPoints= 5
+    promedioStoryPoints = 5
+}
+
+object Grafica1 {
+    tipo = "Barras"
+    datos = "[Ana: 5; 5]"
+    titulo = "Story Points por Usuario"
+}
+
+
+Asana1 -- Proyecto1
+Proyecto1 -- EquipoA
+EquipoA -- Usuario1
+Proyecto1 -- Sprint01
+Sprint01 -- HistoriaDeUsuario1
+HistoriaDeUsuario1 -- SubtareaA
+SubtareaA -- RegistroHoras1
+Usuario1 -- HistoriaDeUsuario1 : asignadaA
+SubtareaA -- Usuario1 : realizadaPor
+HistoriaDeUsuario1-- Estadistica1
+Estadistica1 -- Grafica1
+
+@enduml

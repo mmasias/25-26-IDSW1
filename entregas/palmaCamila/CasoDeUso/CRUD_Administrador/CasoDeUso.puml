@@ -1,0 +1,48 @@
+@startuml
+title Casos de uso – Administrador
+
+left to right direction
+
+actor "Administrador" as Admin
+
+  package "Gestión de Historias de Usuario" {
+    usecase UC1 as "abrirHistoriaUsuario()"
+    usecase UC2 as "crearHistoriaUsuario()"
+    usecase UC3 as "editarHistoriaUsuario()"
+    usecase UC4 as "eliminarHistoriaUsuario()"
+  }
+
+  package "Gestión de Subtareas" {
+    usecase UC5 as "abrirSubtarea()"
+    usecase UC6 as "crearSubtarea()"
+    usecase UC7 as "editarSubtarea()"
+    usecase UC8 as "eliminarSubtarea()"
+  }
+
+  package "Analítica" {
+    usecase UC9 as "visualizarEstadísticas()"
+    usecase UC10 as "exportarStoryPoint()"
+  }
+  
+  package "Gestión de Proyectos" {
+    usecase UC11 as "listarHistoriasDeUsuario()" 
+    usecase UC12 as "listarSprints()" 
+
+}
+
+Admin --> UC1
+Admin --> UC2
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+Admin --> UC6
+Admin --> UC7
+Admin --> UC8
+Admin --> UC9
+Admin --> UC10
+Admin --> UC11
+Admin --> UC12
+
+
+
+@enduml

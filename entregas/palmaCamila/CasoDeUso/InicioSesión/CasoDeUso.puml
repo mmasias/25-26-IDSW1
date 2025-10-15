@@ -1,0 +1,60 @@
+@startuml
+
+title Iniciar Sesión - Asana Plus
+
+skinparam {
+    NoteBackgroundColor #whiteSmoke
+    ArrowColor #green
+    NoteBorderColor #green
+    linetype polyline
+}
+
+hide empty description
+
+state endState as "ASANA PLUS"
+
+[*] --> IniciarSesion
+note on link
+    <b>Usuario Solicita</b>
+    * Iniciar sesión en Asana Plus
+end note
+
+IniciarSesion --> endState
+
+state IniciarSesion {
+    state Paso1 as " "
+    state Paso2 as " "
+    state Validacion <<choice>>
+
+    [*] --> Paso1
+
+    Paso1 --> Paso2
+    note on link
+        <b>Sistema Solicita</b>
+        * Correo electrónico
+        * Contraseña
+        <b>Sistema Permite</b>
+        * Acceder a Asana Plus
+    end note
+
+    Paso2 --> Validacion
+    note on link
+        <b>Usuario Introduce</b>
+        * Correo electrónico
+        * Contraseña
+    end note
+
+    Validacion --> INICIO
+    note on link
+        <b>Sistema Muestra</b>
+        * Pantalla principal del usuario
+    end note
+
+    Validacion -[#red]-> Paso1
+    note on link
+        <b>Sistema Muestra</b>
+        * Mensaje de error en los datos introducidos
+    end note
+}
+
+@enduml

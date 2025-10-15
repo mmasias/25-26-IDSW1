@@ -1,0 +1,59 @@
+@startuml
+hide empty members
+
+    class Asana {
+    }
+package "ASANA" {
+    class Proyecto {
+    }
+    class Sprint {
+        fechaInicio
+        fechaFin
+    }
+    class HistoriaDeUsuario {
+        descripcion
+        puntosHistoria
+        estado
+        fechaFinalizacion
+    }
+    class Subtarea {
+    }
+    class RegistroDeHoras {
+
+    }
+
+    Asana "N" *-right- "1" Proyecto : contiene
+    Proyecto "1" o-- "N" Sprint : contiene
+    Sprint "1" o-- "N" HistoriaDeUsuario : contiene
+    HistoriaDeUsuario "1" o-- "N" Subtarea : compuestaPor
+    Subtarea "1" o-- "N" RegistroDeHoras : contiene
+    
+}
+
+class Administrador
+class Usuario {
+
+}
+class Equipo {
+}
+
+
+Equipo -left Proyecto : tiene
+Usuario <|-- Administrador
+    Usuario "1" o-- "N" HistoriaDeUsuario : asignadoA
+
+
+Equipo "N" o-- "1" Usuario : contiene
+
+package "PLUS" {
+    class Estadística {
+    }
+    class Gráfica {
+    }
+    
+    Estadística -- Gráfica : produce
+}
+
+HistoriaDeUsuario --> Estadística : analiza
+
+@enduml

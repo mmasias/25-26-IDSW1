@@ -1,0 +1,14 @@
+@startuml
+title Casos de uso – Tiempo
+left to right direction
+
+actor "Tiempo" as Tiempo
+
+
+  package "Gestión de Proyectos" {
+    usecase "sincronizarAsana()"
+
+}
+Tiempo --> "sincronizarAsana()"
+
+@enduml
