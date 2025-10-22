@@ -2,6 +2,15 @@
 
 > *Entiéndase "deberíamos saber" como una combinación de "nos debería sonar", "no nos debería sorprender", "deberíamos conocer", "deberíamos saber manejar", en función del tema abordado. En cualquier caso, lo mínimo es "no nos debería sorprender" y deberíamos poder tener una mínima conversación o lectura sobre estos temas.*
 
+## 22 de octubre
+- Repaso usando el proyecto de un tetris, enfatizando activamente la conexión entre [modelado del dominio](https://github.com/puntoReflex/pyTetris/blob/main/docs/modeloDelDominio.md) y actividad de [encontrar actores y casos de uso](https://github.com/puntoReflex/pyTetris/blob/main/IdSw%40Tetris.md#actores-y-casos-de-uso).
+- Actividad de Priorizar casos de uso.
+- Actividad de detallar un caso de uso: cómo hacerlo.
+
+## 15 de octubre
+- Inicio de la diciplina de requisitos.
+- Primera actividad de la disciplina de requisitos: encontrar actores y casos de uso.
+
 ## 8 de octubre
 - Aplicación práctica del modelo del dominio: iteración, validación, refinamiento.
 - Evolución del modelo a través de múltiples versiones.
