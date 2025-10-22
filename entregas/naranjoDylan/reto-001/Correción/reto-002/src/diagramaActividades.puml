@@ -1,0 +1,28 @@
+@startuml
+start
+
+:Iniciar sesión (Usuario);
+:Crear nuevo presupuesto;
+
+repeat
+  :Agregar o editar items;
+  :Calcular total del presupuesto;
+  
+  if (¿Total correcto?) then (no)
+    :Ajustar items;
+  endif
+repeat while (¿Total correcto?) is (no) not (sí)
+
+repeat
+  :Enviar a revisión;
+  :Esperar respuesta;
+  
+  if (¿Aprobado?) then (no)
+    :Notificar rechazo;
+    :Editar items;
+  endif
+repeat while (¿Aprobado?) is (no) not (sí)
+
+:Presupuesto listo;
+stop
+@enduml

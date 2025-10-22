@@ -1,0 +1,8 @@
+@startuml
+[*] --> Borrador
+Borrador --> EnRevision : enviar()
+EnRevision --> Aprobado : aprobar()
+EnRevision --> Rechazado : rechazar()
+Rechazado --> Borrador : editar()
+Aprobado --> [*]
+@enduml

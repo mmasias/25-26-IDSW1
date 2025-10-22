@@ -1,0 +1,8 @@
+@startuml
+class Usuario
+class Presupuesto
+class Item
+
+Usuario --> Presupuesto : crea
+Presupuesto --> Item : contiene
+@enduml
