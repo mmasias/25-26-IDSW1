@@ -10,6 +10,7 @@ Repo de materiales y proyectos de la asignatura **Ingeniería del software** del
   - [Ejercicios](temario/ejercicios/README.md)
 - Evaluaciones
   - Evaluación continua: [Retos!](evaluaciones/retos/README.md)
+  - [Sesiones de requisitado](https://github.com/mmasias/25-26-idsw1-sdr)
   - Exámenes
     - Parcial: [Enunciado](evaluaciones/examenes/examenParcial/README.md) | Repositorio de trabajo y entrega.
     - Final: [Enunciado](evaluaciones/examenes/examenFinal/README.md) | Repositorio de trabajo y entrega.
