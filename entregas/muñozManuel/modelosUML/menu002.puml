@@ -1,0 +1,12 @@
+@startuml
+
+entity Menu
+
+entity Producto
+
+entity Estilo
+
+"Menu" -- "Producto"
+"Menu" -- "Estilo"
+
+@enduml
