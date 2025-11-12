@@ -1,7 +1,9 @@
-# Ingeniería del software I - Rama de entregas
+# Cambios realizados
 
-Rama de entregas de artefactos de los retos y ejercicios de la asignatura **IdSw1** del [Grado de Ingeniería Informática](https://www.uneatlantico.es/escuela-politecnica-superior/estudios-grado-oficial-en-ingenieria-informatica) la [Universidad Europea del Atlántico](https://www.uneatlantico.es).
+En este repositorio, además de entregar el diagrama de clases junto a la imagen que representa y lo mismo con dos diagrama de objetos, he decidido añadir una relación entre Esquema y Conultas, lo cual me pareció pertinente agregarlo tras realizar la 2ª parte del examen parcial de la asignatura.
 
-## Instrucciones
+Apesar de que en un primer momento no pensé que fuera tan relevante, cosa que expliqué en la parte escrita hecha en clase, es verdad de que sería correcto agregarlo a mi MDD.
 
-- Cree una rama a partir de esta rama para dar inicio a los trabajos, siguiendo las instrucciones indicadas en dicho ejercicio, trabajo o reto.
+Además, completé los DDO con ejemplos diferentes a los propuestos en la 1ª parte del examen ya que me parecieron más claros de comprender y más completos, a parte de agregar en estos el cambio de la relación extra entre Consultas y Esquema.
+
+Espero que disfruten del contenido y sea claro y fácil de entender.

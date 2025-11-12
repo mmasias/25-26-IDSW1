@@ -1,0 +1,36 @@
+@startuml DDO 2: Base de Datos RRHH 
+title "DDO 2: Base de Datos RRHH"
+skinparam classAttributeIconSize 0
+skinparam handwritten false
+hide methods
+
+object "admin : Usuario" as admin
+object "analista : Usuario" as user2
+object "dbRRHH : BD" as bd
+object "recursos : Esquema" as esq
+object "tblEmpleados : Tabla" as tEmp
+object "qActualizarSal : Consulta" as q1
+object "qVerAntiguedad : Consulta" as q2
+object "pk_emp : PK" as pk
+object "c_emp_id : Campo" as c1
+object "c_salario : Campo" as c2
+object "c_fecha_ing : Campo" as c3
+
+admin --> bd : administra
+admin ..> q1 : ejecuta
+user2 ..> q2 : ejecuta
+
+bd *-- esq : organiza
+esq *-- tEmp : agrupa
+
+q1 ..> esq : localiza en
+q2 ..> esq : localiza en
+
+q1 ..> tEmp : obtiene/modifica datos de
+q2 ..> tEmp : obtiene/modifica datos de
+
+tEmp *-- pk : identifica
+tEmp *-- c1 : contiene
+tEmp *-- c2 : contiene
+tEmp *-- c3 : contiene
+@enduml

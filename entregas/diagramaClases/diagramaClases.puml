@@ -1,0 +1,35 @@
+@startuml Diagrama de Clases
+
+hide methods
+
+class Usuario {
+rol
+}
+
+class "Bases De Datos" as BD
+class Esquema
+
+class Tabla {
+columna
+registro
+}
+
+class Consulta
+class Indice
+class Campo
+class "Clave Foranea" as FK
+class "Clave Primaria" as PK
+
+Usuario --> BD : administra
+Usuario ..> Consulta : ejecuta
+BD *-- Esquema : organiza
+Esquema *-- Tabla : agrupa
+Consulta ..> Tabla : obtiene/modifica datos de
+Consulta ..> Esquema : localiza en
+Tabla *-- Indice : optimiza búsqueda
+Tabla *-- Campo : contiene
+Tabla *-- FK : relaciona entre
+Tabla *-- PK : identifica de forma única
+Indice ..> Campo : referencia
+
+@enduml

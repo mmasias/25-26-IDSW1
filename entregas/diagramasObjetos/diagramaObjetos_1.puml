@@ -1,0 +1,42 @@
+@startuml DDO 1: Base de Datos Comercial
+title "DDO 1: Base de Datos Comercial"
+skinparam classAttributeIconSize 0
+skinparam handwritten false
+hide methods
+
+object "adminUser : Usuario" as admin
+object "dbComercial : BD" as bd
+object "ventas : Esquema" as esq
+object "tblClientes : Tabla" as tCli
+object "tblPedidos : Tabla" as tPed
+object "qVerPedidos : Consulta" as q
+object "pk_cli : PK" as pkCli
+object "pk_ped : PK" as pkPed
+object "fk_ped_cli : FK" as fkPed
+object "idx_cli_nombre : Indice" as idx
+object "c_cli_id : Campo" as c1
+object "c_cli_nombre : Campo" as c2
+object "c_ped_id : Campo" as c3
+
+admin --> bd : administra
+admin ..> q : ejecuta
+
+bd *-- esq : organiza
+esq *-- tCli : agrupa
+esq *-- tPed : agrupa
+
+q ..> esq : localiza en
+q ..> tCli : obtiene datos de
+q ..> tPed : obtiene datos de
+
+tCli *-- pkCli : identifica
+tCli *-- idx : optimiza
+tCli *-- c1 : contiene
+tCli *-- c2 : contiene
+
+tPed *-- pkPed : identifica
+tPed *-- fkPed : relaciona
+tPed *-- c3 : contiene
+
+idx ..> c2 : referencia
+@enduml
