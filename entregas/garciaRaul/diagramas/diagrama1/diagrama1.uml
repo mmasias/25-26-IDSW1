@@ -1,0 +1,42 @@
+@startuml
+title Gestor de Bases de Datos - Modelo del Dominio
+
+class "Base de datos"
+class Esquema
+class User
+class Rol
+class Permiso
+class Operación
+class Vista
+class Tabla
+class Trigger
+class Atributo
+class "Tipo de dato"
+class "Foreign key"
+class "Primary key"
+class Action
+
+"Base de datos" *-- Esquema : contiene
+Esquema *-- Tabla : contiene
+
+
+
+Permiso .. Operación 
+
+Tabla o-- Atributo : contiene
+"Tipo de dato" o-- Atributo 
+
+Trigger -u-o Tabla : usa
+
+
+"Foreign key" o-u- Tabla 
+"Primary key" o-u- "Foreign key" 
+Action .u. "Primary key" 
+
+Vista o-l- Tabla 
+Vista -r-o Permiso 
+Permiso -r-o Rol 
+Rol -r-o User 
+
+@enduml
+
