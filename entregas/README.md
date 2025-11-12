@@ -1,18 +1,7 @@
-# Carpeta de entregas
+# Ingeniería del software I - Rama de entregas
 
-Cree en esta carpeta su carpeta de entregas, usando el estándar apellidoNombre
+Rama de entregas de artefactos de los retos y ejercicios de la asignatura **IdSw1** del [Grado de Ingeniería Informática](https://www.uneatlantico.es/escuela-politecnica-superior/estudios-grado-oficial-en-ingenieria-informatica) la [Universidad Europea del Atlántico](https://www.uneatlantico.es).
 
-**Dentro de su carpeta**, organice los artefactos que entrega de acuerdo a lo visto en la asignatura.
+## Instrucciones
 
-Lo habitual es:
-
-```
-/entregas/apellidoNombre/README.md   <-- Archivo README.md de entrada
-                        /src         <-- Código fuente
-                        /documentos  <-- Documentos adicionales
-                        /modelosUML  <-- Código fuente de diagramas en PlantUML
-                        /images      <-- Imágenes
-
-```
-
-Recuerde siempre empezar el trabajo desde una rama limpia (salvo que se le indique lo contrario) y enviar el pull request a la rama correcta.
+- Cree una rama a partir de esta rama para dar inicio a los trabajos, siguiendo las instrucciones indicadas en dicho ejercicio, trabajo o reto.

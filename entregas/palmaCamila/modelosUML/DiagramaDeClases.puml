@@ -1,0 +1,36 @@
+@startuml
+hide empty members
+DataSet o-right- Schema
+Schema *-right- View
+View -- Table
+User *-- Role
+Role *-- Permission
+Permission -- Operation
+View -- Permission
+
+Table o-- PrimaryKey
+Table o-- Index
+Table -- Trigger
+Table o-- Constraint
+Table o-- ForeignKey
+Table -left-* Schema
+
+ForeignKey *-- Column
+PrimaryKey *-- Column
+Constraint *-- Column
+
+Column *-- TypeOfData
+Table -- Column
+
+Constraint *-- CheckContrain
+Constraint *-- UniqueContrain
+
+Table -[hidden]down-> Column
+ForeignKey -[hidden]down-> Column
+PrimaryKey -[hidden]down-> Column
+
+Table -[hidden]-> View
+Permission -[hidden]up-> View
+Permission -[hidden]left-> View
+
+@enduml

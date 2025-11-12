@@ -1,0 +1,129 @@
+@startuml
+hide empty members
+
+
+object DataSet1 {
+  nombre = "SistemaVentas"
+}
+
+object Schema1 {
+  nombre = "ventas"
+}
+
+object View1 {
+  nombre = "VistaProductos"
+}
+
+object Table1 {
+  nombre = "Productos"
+}
+
+object User1 {
+  nombre = "admin"
+}
+
+object Role1 {
+  nombre = "gestor_datos"
+}
+
+object Permission1 {
+  tipo = "SELECT"
+}
+
+object Operation1 {
+  nombre = "Lectura"
+}
+
+object PrimaryKey1 {
+  nombre = "pk_productos"
+}
+
+object Index1 {
+  nombre = "idx_nombre"
+}
+
+object Trigger1 {
+  nombre = "trg_actualiza_stock"
+}
+
+object Constraint1 {
+  nombre = "chk_precio_positivo"
+}
+
+object ForeignKey1 {
+  nombre = "fk_venta_producto"
+}
+
+object Column1 {
+  nombre = "id_producto"
+}
+
+object Column2 {
+  nombre = "nombre"
+}
+
+object Column3 {
+  nombre = "precio"
+}
+
+object Column4 {
+  nombre = "id_venta"
+}
+
+object TypeOfData1 {
+  tipo = "Numérico"
+}
+
+
+object TypeOfData2 {
+  tipo = "Texto"
+}
+
+object CheckContrain1 {
+  condicion = "precio > 0"
+}
+
+object UniqueContrain1 {
+  columnas = "nombre"
+}
+
+DataSet1 o-right- Schema1
+Schema1 *-right- View1
+View1 -- Table1
+User1 *-- Role1
+Role1 *-- Permission1
+Permission1 -- Operation1
+View1 -- Permission1
+
+Table1 o-- PrimaryKey1
+Table1 o-- Index1
+Table1 -- Trigger1
+Table1 o-- Constraint1
+Table1 o-- ForeignKey1
+Table1 -left-* Schema1
+
+ForeignKey1 *-- Column4
+PrimaryKey1 *-- Column1
+Constraint1 *-- Column3
+
+Column1 *-- TypeOfData1
+Column2 *-- TypeOfData2
+Column3 *-- TypeOfData1
+Column4 *-- TypeOfData1
+Table1 -- Column1
+Table1 -- Column2
+Table1 -- Column3
+Table1 -- Column4
+
+Constraint1 *-- CheckContrain1
+Constraint1 *-- UniqueContrain1
+
+Table1 -[hidden]down-> Column1
+ForeignKey1 -[hidden]down-> Column1
+PrimaryKey1 -[hidden]down-> Column1
+
+Table1 -[hidden]-> View1
+Permission1 -[hidden]up-> View1
+Permission1 -[hidden]left-> View1
+
+@enduml
