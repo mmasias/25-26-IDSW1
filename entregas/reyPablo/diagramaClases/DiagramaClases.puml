@@ -1,0 +1,59 @@
+@startuml
+title Modelo de Dominio (Diagrama de Clases)
+
+
+class Usuario
+class Rol
+class Permiso
+class OperacionPermiso
+class Vista
+class Esquema
+class BBDD
+class Tabla
+class Trigger
+class Registro
+class Atributo
+class TipoDeDato
+class ForeignKey
+class PrimaryKey
+class Acciones
+class Constrain
+
+
+
+
+
+
+
+
+Usuario  o-d-  Rol : tiene
+
+Rol  o-d-  Permiso : tiene
+
+Permiso o-d- Vista : utiliza
+
+Vista o-d- Tabla : basada
+
+Tabla o-d- Constrain : contiene
+
+Tabla o-d- ForeignKey : contiene
+
+ForeignKey o-d- PrimaryKey : contiene
+
+PrimaryKey ..d. Acciones : contiene
+
+Tabla o-d- Atributo : contiene
+
+Atributo o-d-TipoDeDato : contiene
+
+Tabla o-d- Registro : contiene
+
+Tabla o-d- Trigger : usa
+
+Permiso ..r.. OperacionPermiso : hace
+
+Vista *-l- Esquema : basada
+
+Esquema *-l- BBDD : contiene
+
+@enduml

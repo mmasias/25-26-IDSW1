@@ -1,0 +1,41 @@
+@startuml
+title Diagrama de Objetos - Universidad (Administrativo)
+
+object "Usuario: Pedro" as Usuario1
+
+object "Rol: Admin" as Rol1
+
+object "Permiso: Root" as Permiso1
+
+object "BBDD: Universidad" as BBDD1
+
+object "Esquema: Recursos" as Esquema1
+
+object "Vista: VistaPrestamosActivos" as Vista1
+
+object "Tabla: Carreras" as Tabla1
+
+object "Tabla: Departamentos" as Tabla2
+
+object "Tabla: Aulas" as Tabla3
+
+object "Trigger: AsignarAula" as Trigger1
+
+object "Constrain: NotNull_Codigo" as Constrain1
+
+Usuario1 --> Rol1
+Rol1 --> Permiso1
+Permiso1 --> Vista1
+
+BBDD1 --> Esquema1
+Esquema1 --> Vista1
+Vista1 --> Tabla2
+
+BBDD1 --> Tabla1
+BBDD1 --> Tabla2
+BBDD1 --> Tabla3
+
+Tabla3 --> Trigger1
+Tabla1 --> Constrain1
+
+@enduml
