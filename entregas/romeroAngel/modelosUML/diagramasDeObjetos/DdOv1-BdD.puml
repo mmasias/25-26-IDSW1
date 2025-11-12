@@ -1,0 +1,97 @@
+@startuml
+
+' Objetos de la base de datos
+object database1 {
+  name = "DB_Principal"
+}
+
+object schema1 {
+  name = "Schema_Ventas"
+}
+
+object user1 {
+  name = "Alice"
+}
+
+object role1 {
+  permission = "lectura"
+}
+
+object view1 {
+  name = "Vista_Pedidos"
+}
+
+object table1 {
+  name = "Pedidos"
+}
+
+' Fields
+object field1 {
+  name = "pedido_id"
+}
+object field2 {
+  name = "cliente_id"
+}
+object field3 {
+  name = "fecha"
+}
+
+' PrimaryKey y ForeignKey
+object pk1 {
+  name = "PK_Pedidos"
+}
+object fk1 {
+  name = "FK_Cliente"
+}
+
+' Index
+object index1 {
+  name = "IDX_Pedido"
+}
+
+' DataTypes
+object datatype1 {
+  name = "INT"
+}
+object datatype2 {
+  name = "DATE"
+}
+
+' Constraints
+object constraint1 {
+  name = "NOT NULL"
+}
+object constraint2 {
+  name = "UNIQUE"
+}
+
+' Relaciones
+database1 --> schema1
+schema1 --> table1
+schema1 --> view1
+
+user1 *-- role1
+user1 --> view1
+
+view1 --> table1
+
+table1 *-- field1
+table1 *-- field2
+table1 *-- field3
+table1 *-- index1
+
+field1 *-- datatype1
+field2 *-- datatype1
+field3 *-- datatype2
+
+field1 *-- constraint1
+field2 *-- constraint1
+field2 *-- constraint2
+field3 *-- constraint1
+
+index1 --|> field1
+pk1 --|> field1
+fk1 --|> field2
+fk1 --> pk1
+
+@enduml

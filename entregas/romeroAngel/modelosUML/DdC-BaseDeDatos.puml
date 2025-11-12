@@ -1,0 +1,33 @@
+@startuml 
+
+
+class Database 
+class Schema 
+class User 
+class Role{ 
+  permission 
+} 
+class View 
+class Table 
+class Field 
+class PrimaryKey 
+class ForeignKey 
+class Index 
+class DataType 
+class Constraint 
+
+Database --> Schema : tiene 
+Schema --> View : contiene 
+User *-- Role : tiene 
+User --> View : interacciona 
+View --> Table : representa 
+Table *-- Field 
+Field *-- DataType : tiene 
+Field *-- Constraint : puede tener
+Index --|> Field
+ForeignKey --|> Field 
+PrimaryKey --|> Field 
+ForeignKey --> PrimaryKey : referencia 
+
+
+@enduml
