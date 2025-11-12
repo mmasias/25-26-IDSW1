@@ -1,0 +1,41 @@
+@startuml
+
+' --- OBJETOS REALES ---
+object "Esquema UEA" as Schema
+object "Tabla Estudiantes" as Tabla
+object "Vista Resumen Inscripciones" as View
+object "Campo DNI" as Campo
+object "Atributo Tipo Texto" as Atributos
+object "Restricción No Nulo" as Contrains
+object "Relación Estudiante-Curso" as Relacion
+object "Clave Foránea (Curso)" as ForeignKey
+object "Clave Primaria (Estudiante)" as PrimaryKey
+object "Usuario: Ana López" as Usuario
+object "Rol: Administrador" as Role
+object "Permiso: Ver Reportes" as Permiso
+object "Trigger: Actualizar Créditos" as Trigger
+object "Índice: DNI" as Indice
+
+' --- RELACIONES ---
+Schema *-- Tabla : contiene
+Schema *-- View : pertenece a
+
+Tabla o-- Campo : tiene
+Tabla *-- Indice : posee
+Tabla o-- Trigger : incluye
+
+Campo o-- Atributos : define
+Campo o-- Contrains : aplica
+
+Tabla o-- Relacion : establece
+Relacion o-- ForeignKey : incluye
+ForeignKey o-- PrimaryKey : referencia a
+
+PrimaryKey *-- Campo : se aplica a
+
+Usuario *-- Role : tiene
+Role *-- Permiso : otorga
+
+Permiso ..> View : se aplica a
+
+@enduml

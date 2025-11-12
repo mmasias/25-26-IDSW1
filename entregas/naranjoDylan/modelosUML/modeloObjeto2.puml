@@ -1,0 +1,41 @@
+@startuml
+
+' --- OBJETOS ---
+object "Esquema Carrefour" as Schema
+object "Tabla Productos" as Tabla
+object "Vista Reporte Ventas" as View
+object "Campo Código de Barras" as Campo
+object "Atributo Tipo Decimal" as Atributos
+object "Restricción Stock Mínimo" as Contrains
+object "Relación Producto-Pedido" as Relacion
+object "Clave Foránea (Producto)" as ForeignKey
+object "Clave Primaria (Pedido)" as PrimaryKey
+object "Usuario: Carlos Ruiz" as Usuario
+object "Rol: Vendedor" as Role
+object "Permiso: Ver Reportes" as Permiso
+object "Trigger: Reducir Stock" as Trigger
+object "Índice: Código de Barras" as Indice
+
+' --- RELACIONES ---
+Schema *-- Tabla : contiene
+Schema *-- View : pertenece a
+
+Tabla o-- Campo : tiene
+Tabla *-- Indice : posee
+Tabla o-- Trigger : incluye
+
+Campo o-- Atributos : define
+Campo o-- Contrains : aplica
+
+Tabla o-- Relacion : establece
+Relacion o-- ForeignKey : incluye
+ForeignKey o-- PrimaryKey : referencia a
+
+PrimaryKey *-- Campo : se aplica a
+
+Usuario *-- Role : tiene
+Role *-- Permiso : otorga
+
+Permiso ..> View : se aplica a
+
+@enduml
