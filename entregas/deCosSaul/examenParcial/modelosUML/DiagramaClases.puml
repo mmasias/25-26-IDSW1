@@ -1,0 +1,27 @@
+@startuml
+class BaseDeDatos
+class Schema
+class Tabla
+class ForeignKey
+class Campo
+class Dato
+class Usuario
+class Rol
+class Restriccion
+class Consulta
+class Tipo
+
+BaseDeDatos *-d- Schema: Contiene
+Schema *-d- Tabla: Contenido en
+Tabla -l-> ForeignKey: Tiene
+ForeignKey -r-> Tabla: Relaciona
+Tabla *-d- Campo: Compuesta por
+Campo *-d- Dato: Contiene
+Campo -r-> Restriccion: Contiene
+Tabla -r-> Consulta: Permite
+Usuario *-d- Rol: forma parte de
+Rol *-d- Restriccion: aplica
+Restriccion -d- Consulta: Sobre
+Consulta *-d- Tipo: tiene
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+object "BaseDeDatos: Universidad"
+object "Schema: alumnosSchema"
+object "Tabla: alumnos"
+object ForeignKey
+object Campos
+object Dato
+object Usuario
+object Rol
+object Restriccion
+object Consulta
+object Tipo
+
+@enduml
