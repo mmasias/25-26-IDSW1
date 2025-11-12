@@ -1,0 +1,100 @@
+@startuml
+object "BaseDatos1:BaseDeDatos" as bd1 {
+}
+
+object "Esquema1:Esquema" as esq1 {
+}
+
+object "Tabla1:Tabla" as tab1 {
+  Nombre: "Empleados"
+}
+
+object "Tabla2:Tabla" as tab2 {
+  Nombre: "Departamentos"
+}
+
+object "Vista1:Vista" as vis1 {
+  Nombre: "Vista_Empleados_Activos"
+}
+
+object "Atributo1:Atributo" as atr1 {
+  Nombre: "id_empleado"
+}
+
+object "Atributo2:Atributo" as atr2 {
+  Nombre: "nombre"
+}
+
+object "Atributo3:Atributo" as atr3 {
+  Nombre: "id_departamento"
+}
+
+object "TipoDato1:TipoDeDato" as tipo1 {
+  Tipo: "INTEGER"
+}
+
+object "TipoDato2:TipoDeDato" as tipo2 {
+  Tipo: "VARCHAR(100)"
+}
+
+object "PrimaryKey1:PrimaryKey" as pk1 {
+  Nombre: "PK_Empleados"
+  Campo: "id_empleado"
+}
+
+object "ForeignKey1:ForeignKey" as fk1 {
+  Nombre: "FK_Empleado_Departamento"
+  Campo: "id_departamento"
+}
+
+object "Constrain1:Constrain" as cons1 {
+  Nombre: "CHK_Nombre_NotNull"
+  Tipo: "NOT NULL"
+}
+
+object "Trigger1:Trigger" as trig1 {
+  Nombre: "TRG_Auditoria_Empleados"
+  Evento: "AFTER INSERT"
+}
+
+object "Accion1:Accion" as acc1 {
+  Tipo: "ON DELETE CASCADE"
+}
+
+object "User1:User" as user1 {
+  Nombre: "admin_user"
+  Email: "admin@empresa.com"
+}
+
+object "Rol1:Rol" as rol1 {
+  Nombre: "Administrador"
+}
+
+object "Permiso1:Permiso" as perm1 {
+  Tipo: "SELECT, INSERT, UPDATE"
+}
+
+object "OpPermiso1:OperacionesPermiso" as op1 {
+  Operacion: "SELECT"
+}
+
+bd1 -r-> esq1 : contiene
+esq1 -r-> vis1 : contiene
+vis1 -d-> tab1 : basada en
+tab1 -d-> atr1 : contiene
+tab1 -d-> atr2 : contiene
+tab1 -d-> atr3 : contiene
+tab1 -r-> cons1 : contiene
+tab1 -d-> fk1 : se realiza mediante
+tab1 -d-> trig1 : usa
+atr1 -d-> tipo1 : contiene
+atr2 -d-> tipo2 : contiene
+atr3 -d-> tipo1 : contiene
+fk1 -d-> pk1 : tiene
+pk1 -d-> acc1 : contiene
+user1 -d-> rol1 : tiene
+rol1 -d-> perm1 : tiene
+perm1 -d-> vis1 : utiliza
+perm1 -r-> op1 : realiza
+
+@enduml
