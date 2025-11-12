@@ -1,0 +1,58 @@
+@startuml primerDiagramaObjetos
+title Base de Datos de Spotify (Música)
+
+' --- OBJETOS ---
+
+object "Ingeniero_Sonido : Usuario" as User {
+    rol = "Editor"
+}
+
+object "Spotify_DB : Bases De Datos" as BD
+
+object "Esquema_Musica : Esquema" as Esq
+
+object "Tabla_Canciones : Tabla" as Tabla {
+    columna = "id_cancion, titulo, duracion, id_artista"
+    registro = "[1, 'Bohemian Rhapsody', '5:55', 'ART-99']"
+}
+
+object "Buscar_Top_10 : Consulta" as Qry {
+    filtro = "reproducciones > 1M"
+}
+
+object "Indice_Por_Titulo : Indice" as Idx
+
+object "Campo_Titulo_Cancion : Campo" as Campo {
+    valor = "Bohemian Rhapsody"
+}
+
+' RELACIÓN INTUITIVA:
+' La canción tiene un código de artista (FK) que apunta al Artista real (PK)
+object "FK_id_artista : Clave Foranea" as FK {
+    valor = "ART-99"
+}
+object "PK_id_artista : Clave Primaria" as PK {
+    valor = "ART-99"
+}
+
+' --- RELACIONES ---
+
+User --> BD : gestiona
+User --> Qry : realiza
+
+BD *-- Esq : organiza
+Esq *-- Tabla : agrupa
+
+Qry ..> Tabla : lee canciones
+
+Tabla o-- Idx : optimiza búsqueda
+Tabla o-- Campo : contiene
+
+Tabla o-- FK : tiene columna
+Tabla o-- PK : valida existencia
+
+FK -right-> PK : referencia a
+
+Idx ..> Campo
+
+@enduml

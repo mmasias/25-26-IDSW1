@@ -1,0 +1,54 @@
+@startuml segundoDiagramaObjetos
+title Base de Datos de Amazon (Logística)
+
+' --- OBJETOS ---
+
+object "Jefe_Logistica : Usuario" as User {
+    rol = "Admin"
+}
+
+object "Amazon_AWS : Bases De Datos" as BD
+
+object "Esquema_Ventas : Esquema" as Esq
+
+object "Tabla_Pedidos : Tabla" as Tabla {
+    columna = "id_pedido, producto, precio, id_cliente"
+    registro = "[5001, 'iPhone 15', 900€, 'CLI-55']"
+}
+
+object "Ver_Pedidos : Consulta" as Qry
+
+object "Indice_Fecha : Indice" as Idx
+
+object "Campo_Producto : Campo" as Campo {
+    valor = "iPhone 15"
+}
+
+object "FK_id_cliente : Clave Foranea" as FK {
+    valor = "CLI-55"
+}
+object "PK_id_cliente : Clave Primaria" as PK {
+    valor = "CLI-55"
+}
+
+' --- RELACIONES ---
+
+User --> BD : gestiona
+User --> Qry : realiza
+
+BD *-- Esq : organiza
+Esq *-- Tabla : agrupa
+
+Qry ..> Tabla : filtra
+
+Tabla o-- Idx : busca
+Tabla o-- Campo : contiene
+
+Tabla o-- FK : incluye
+Tabla o-- PK : verifica
+
+FK -right-> PK : referencia a
+
+Idx ..> Campo
+
+@enduml

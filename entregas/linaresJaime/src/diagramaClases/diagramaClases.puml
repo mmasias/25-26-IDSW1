@@ -1,0 +1,46 @@
+@startuml diagramaClases
+
+' Definición de las Clases
+class Usuario {
+    rol
+}
+
+class "Bases De Datos" as BD
+
+class Esquema
+
+class Tabla {
+    columna
+    registro
+}
+
+class Consulta
+class Indice
+class Campo
+
+class "Clave Foranea" as FK
+class "Clave Primaria" as PK
+
+' Definición de las Relaciones
+
+Usuario --> BD : gestiona
+Usuario --> Consulta : realiza
+
+BD *-- Esquema : organiza
+
+Esquema *-- Tabla : agrupa
+
+Consulta ..> Tabla : obtiene/modifica datos de tabla
+
+Tabla o-- Indice : optimiza búsqueda
+Tabla o-- Campo : contiene valores
+
+Tabla o-- FK : relaciona entre
+Tabla o-- PK : identifica de forma única
+
+' --- CAMBIO CLAVE ---
+FK -right-> PK : referencia a
+
+Indice ..> Campo
+
+@enduml
