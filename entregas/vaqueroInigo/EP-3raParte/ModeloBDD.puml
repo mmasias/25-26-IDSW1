@@ -1,0 +1,39 @@
+@startuml
+' ModeloBDD
+skinparam classAttributeIconSize 0
+skinparam handwritten false
+hide circle
+skinparam nodesep 80
+skinparam ranksep 90
+
+' Clases
+class "Bases De Datos" as BD
+class Usuario
+class Rol
+class Esquema
+class Consulta
+class Tabla 
+class Indice
+class Campo
+class "Clave Primaria" as PK
+class "Clave Foranea" as FK
+
+' Relaciones
+BD --> Usuario : contiene
+BD --> Esquema : organiza
+
+Usuario --> Rol : tiene
+Usuario --> Consulta : ejecuta
+Consulta ..> Tabla : obtiene / modifica datos de
+
+Esquema --> Tabla : agrupa
+Tabla --> Campo : contiene
+Tabla --> Indice : optimiza búsqueda
+Indice ..> Campo : referencia
+
+' Claves (misma altura y relacionadas)
+Tabla --> PK : identifica de forma única
+Tabla --> FK : relaciona entre
+PK <--> FK : relación
+
+@enduml
