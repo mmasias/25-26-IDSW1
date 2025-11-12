@@ -1,0 +1,53 @@
+@startuml
+
+Class User{}
+Class Rol{}
+Class Permisos{}
+Class Operaciones{}
+Class View{}
+Class Schema{}
+Class Dataset{}
+Class Tabla{}
+Class PrimaryKey{}  
+Class ForeignKey{}
+Class Index{}
+Class Constraint{}  
+Class Trigger{}
+Class CheckConstraint{}
+Class UniqueConstraint{}
+Class Columna{}
+
+User *-- Rol
+Rol *-- Permisos
+Permisos *-- Operaciones
+Dataset *-l- Schema
+Schema -l- View
+Permisos -r- View : ver
+View *-- Tabla
+
+
+Tabla o-- PrimaryKey
+Tabla o-- Trigger
+Tabla *-- Index
+Tabla o-- ForeignKey
+Tabla o-- Constraint
+Tabla *-- Columna
+
+Tabla -[hidden]down-> PrimaryKey
+Tabla -[hidden]down-> Trigger
+Tabla -[hidden]down-> Index
+Tabla -[hidden]down-> ForeignKey
+Tabla -[hidden]down-> Constraint
+
+PrimaryKey -[hidden]r- Trigger
+Trigger -[hidden]r- Index
+
+
+PrimaryKey *-- Columna
+ForeignKey *-- Columna
+Constraint o-- CheckConstraint
+Constraint o-- UniqueConstraint
+UniqueConstraint *-- Columna
+
+
+@enduml

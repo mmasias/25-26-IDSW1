@@ -1,0 +1,49 @@
+@startuml
+object User{
+    username = "María"
+}
+object Rol{
+    type = "admin"
+}
+object Permisos{
+    level = "todos"
+}
+object Operaciones{
+    operation = "create"
+    operation = "read"
+    operation = "update"
+    operation = "delete"
+}
+object View{
+    name = "alumnos_view"
+}
+object Schema{
+    string: name
+    int: id
+}   
+object Dataset{
+    name = UNEAT
+}
+object Tabla{
+    name = "alumnos"
+}
+object index{
+    ID
+}
+object Columna{
+    name = "ID"
+    type = "int"
+}
+
+User -- Rol
+Rol -- Permisos
+Permisos -- Operaciones
+Dataset -l- Schema
+Schema -l- View
+Permisos -r- View
+View -- Tabla
+Tabla -- Columna
+Tabla -- index
+
+
+@enduml

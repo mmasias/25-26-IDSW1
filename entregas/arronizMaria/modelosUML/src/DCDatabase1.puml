@@ -1,0 +1,18 @@
+@startuml
+Class Admin{}
+Class Database{}
+Class Tabla{}
+Class Columna{}
+Class Fila{}
+Class Datos{}
+Class Relaciones{}
+
+Admin -r- Database: maneja
+Database *-- Tabla: tiene
+Tabla *-- Columna: formado por
+Tabla *-- Fila: Formado por
+Fila *-- Datos: Tiene
+Tabla -r- Relaciones
+
+Fila -[hidden]right-> Columna
+@enduml
