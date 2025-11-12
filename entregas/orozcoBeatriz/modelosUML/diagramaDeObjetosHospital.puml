@@ -1,0 +1,43 @@
+@startuml diagramaObjetosHospital
+title Diagrama de Objetos - Base de Datos de Hospital
+
+object "Usuario_Doctor : Usuario" as UserDoc {
+    rol = "Medico"
+}
+
+object "Hospital_DB : Bases De Datos" as BD
+
+object "Esquema_Pacientes : Esquema" as EsqPac {
+    define = "Tabla_Pacientes"
+    columnas = "id_paciente PK, nombre NN, apellidos NN, fecha_nac, alergias"
+    reglas = "CHECK fecha_nac <= TODAY()"
+}
+
+object "Tabla_Pacientes : Tabla" as TablaPac {
+    columnas = "id_paciente, nombre, apellidos, fecha_nac, alergias"
+    registro = "[2001, 'Ana', 'Perez', '1990-04-12', 'Penicilina']"
+}
+
+object "Consulta_Ver_Pacientes : Consulta" as QryPac {
+    sql = "SELECT * FROM Tabla_Pacientes WHERE id_paciente = ?"
+}
+
+object "Rol_Medico : Rol" as RolMed {
+    nombre = "Medico"
+}
+
+object "Permiso_Ver_Pacientes : Permiso" as PermPac {
+    nombre = "VER_PACIENTES"
+}
+
+BD *-- EsqPac
+EsqPac --> TablaPac
+QryPac --> TablaPac
+
+UserDoc *-- RolMed
+RolMed *-- PermPac
+PermPac ..> TablaPac
+UserDoc --> QryPac
+
+@enduml
+

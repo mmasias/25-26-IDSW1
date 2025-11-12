@@ -1,0 +1,44 @@
+@startuml diagramaDeClases
+title Diagrama de Clases - Gestión de Base de Datos
+
+class Tabla
+class Campo
+class TipoDeCampo
+class Restriccion
+class Llave
+class Primaria
+class Foranea
+class Disparador
+class Esquema
+class Vista
+class Consulta
+class Permiso
+class Rol
+class Usuario
+
+Esquema *-- Tabla : contiene >
+Esquema *-- Campo : contiene (relacion añadida) >
+Tabla *-- Campo : contiene (relacion añadida) >
+Campo --> Restriccion : tiene >
+Restriccion --> TipoDeCampo : es >
+
+Usuario *-- Rol : tiene >
+Rol *-- Permiso : tiene >
+Usuario --> Consulta : ejecuta >
+Tabla --> Vista : tiene >
+Consulta --> Vista : devuelve >
+Tabla <|-- Consulta : se ejecuta sobre >
+Permiso -- Vista : aplica a >
+Tabla *-- Llave : contiene >
+Llave <|-- Primaria
+Llave <|-- Foranea
+
+Disparador -l-> Tabla : actúa sobre >
+
+Tabla -[hidden]-> Esquema
+Esquema -[hidden]-> Vista
+Vista -[hidden]-> Consulta
+Consulta -[hidden]-> Rol
+Rol -[hidden]-> Usuario
+
+@enduml

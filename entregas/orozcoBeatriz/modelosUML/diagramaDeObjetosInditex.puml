@@ -1,0 +1,73 @@
+@startuml diagramaObjetosInditex
+title Diagrama de Objetos - Base de Datos de Inditex
+
+object "Empleado_RRHH : Usuario" as UserRH {
+    rol = "Recursos Humanos"
+}
+object "Empleado_Tienda : Usuario" as UserTienda {
+    rol = "Vendedor"
+}
+
+object "Inditex_DB : Bases De Datos" as BD
+
+object "Esquema_Empleados : Esquema" as EsqEmp {
+    define = "Tabla_Empleados"
+    columnas = "id_empleado PK, nombre NN, apellidos NN, depto, salario"
+    reglas = "CHECK salario >= 0"
+}
+object "Esquema_Stock : Esquema" as EsqStock {
+    define = "Tabla_Stock"
+    columnas = "sku PK, tienda NN, unidades NN"
+    reglas = "CHECK unidades >= 0"
+}
+
+object "Tabla_Empleados : Tabla" as TablaEmp {
+    columnas = "id_empleado, nombre, apellidos, depto, salario"
+    registro = "[101, 'Maria', 'Lopez', 'RRHH', 3200]"
+}
+object "Tabla_Stock : Tabla" as TablaStock {
+    columnas = "sku, tienda, unidades"
+    registro = "['ZARA123', 'Santander', 54]"
+}
+
+object "Consulta_Empleados : Consulta" as QryEmp {
+    sql = "SELECT * FROM Tabla_Empleados WHERE depto = 'RRHH'"
+}
+object "Consulta_Stock : Consulta" as QryStock {
+    sql = "SELECT * FROM Tabla_Stock WHERE tienda = 'Santander'"
+}
+
+object "Rol_RRHH : Rol" as RolRH {
+    nombre = "RRHH"
+}
+object "Rol_Tienda : Rol" as RolTienda {
+    nombre = "Tienda"
+}
+object "Permiso_Ver_Empleados : Permiso" as PermEmp {
+    nombre = "VER_EMPLEADOS"
+    scope = "Tabla_Empleados"
+}
+object "Permiso_Ver_Stock : Permiso" as PermStock {
+    nombre = "VER_STOCK"
+    scope = "Tabla_Stock"
+}
+
+BD *-- EsqEmp
+BD *-- EsqStock
+EsqEmp --> TablaEmp
+EsqStock --> TablaStock
+
+QryEmp --> TablaEmp
+QryStock --> TablaStock
+
+UserRH *-- RolRH
+RolRH *-- PermEmp
+PermEmp ..> TablaEmp
+UserRH --> QryEmp
+
+UserTienda *-- RolTienda
+RolTienda *-- PermStock
+PermStock ..> TablaStock
+UserTienda --> QryStock
+
+@enduml
