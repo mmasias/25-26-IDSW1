@@ -1,14 +1,111 @@
 @startuml
-object "BaseDeDatos: Universidad"
-object "Schema: alumnosSchema"
-object "Tabla: alumnos"
-object ForeignKey
-object Campos
-object Dato
-object Usuario
-object Rol
-object Restriccion
-object Consulta
-object Tipo
+object BaseDeDatos_Universidad {
+  nombre = "BD Universidad"
+}
+object Schema_Alumno {
+  nombre = "AlumnoSchema"
+}
+object Tabla_Alumno {
+  nombre = "Tabla Alumno"
+}
+object Campo_IDAlumno {
+  nombre = "id_alumno"
+}
+
+object Campo_NombreAlumno {
+  nombre = "nombre"
+}
+
+object Schema_Profesor {
+  nombre = "ProfesorSchema"
+}
+
+object Tabla_Profesor {
+  nombre = "Profesor"
+}
+
+object Campo_IDProfesor {
+  nombre = "id_profesor"
+  tipo = "INT"
+}
+
+object Campo_NombreProfesor {
+  nombre = "nombre"
+  tipo = "VARCHAR(45)"
+}
+
+object FK_Alumno_Profesor {
+  nombre = "Alumno-Profesor"
+}
+
+object Dato_IdAlumno {
+  valor = 1
+}
+
+object Dato_IdProfesor {
+  valor = 1
+}
+
+object Dato_NombreAlumno {
+  valor = "Paco"
+}
+
+object Dato_NombreProfesor {
+  valor = "Manolo"
+}
+
+object Usuario_Administrador { 
+nombre = "Administrador" 
+}
+
+object Rol_Administrador { 
+nombre = "Rol administrador" 
+}
+
+object Restriccion_VARCHAR {
+  tipo = "VARCHAR"
+}
+
+object Restriccion_INT {
+  tipo = "INT"
+}
+
+object Restriccion_Administrador {
+  descripcion = "CRUD Sobre todas las tablas"
+}
+
+object Consulta_Insert_Profesor {
+  descripcion = "INSERT INTO Profesor values (1, Pepe)"
+}
+
+BaseDeDatos_Universidad *-- Schema_Alumno
+BaseDeDatos_Universidad *-- Schema_Profesor
+
+Usuario_Administrador *-- Rol_Administrador
+Rol_Administrador *-- Restriccion_Administrador
+Restriccion_Administrador -- Consulta_Insert_Profesor
+Consulta_Insert_Profesor -- Tabla_Profesor
+
+Schema_Alumno *-- Tabla_Alumno
+Schema_Profesor *-- Tabla_Profesor
+
+Tabla_Alumno *-- Campo_IDAlumno
+Tabla_Alumno *-- Campo_NombreAlumno
+Campo_IDAlumno --> Dato_IdAlumno
+Campo_NombreAlumno --> Dato_NombreAlumno
+
+Tabla_Profesor *-- Campo_IDProfesor
+Tabla_Profesor *-- Campo_NombreProfesor
+Campo_IDProfesor --> Dato_IdProfesor
+Campo_NombreProfesor --> Dato_NombreProfesor
+
+Tabla_Alumno --> FK_Alumno_Profesor
+FK_Alumno_Profesor --> Tabla_Profesor
+
+Campo_IDAlumno -- Restriccion_INT
+Campo_NombreAlumno -- Restriccion_VARCHAR
+
+Campo_IDProfesor -- Restriccion_INT
+Campo_NombreProfesor -- Restriccion_VARCHAR
 
 @enduml
