@@ -1,0 +1,67 @@
+@startuml
+class Usuario{
+}
+
+class Rol{
+}
+
+class Permiso{
+}
+
+class Vista{
+}
+
+class Tabla{
+}
+
+class Esquema{
+}
+
+class BaseDeDatos{
+}
+
+class OperacionPermiso{
+}
+
+class Trigger{
+}
+
+class Registro{
+}
+
+class Atributo{
+}
+
+class TipoDeDato{
+}
+
+class Constrain{
+}
+
+class ForeignKey{
+}
+
+class PrimaryKey{
+}
+
+class Acciones{
+}
+
+Usuario o-- Rol : tiene
+Rol o-- Permiso : tiene
+Permiso o-- Vista : utiliza
+BaseDeDatos *-- Esquema : contiene
+Esquema *-- Vista : contiene
+Permiso ..r. OperacionPermiso : hace
+Vista o-- Tabla : utiliza
+Tabla o-- Trigger : contiene
+Tabla o-- Registro : contiene
+Tabla o-- Atributo : contiene
+Tabla o-- Constrain : contiene
+Tabla o-- ForeignKey
+Atributo o-- TipoDeDato : contiene
+Registro ... TipoDeDato : usa
+Atributo o-- Registro : tiene
+ForeignKey o-- PrimaryKey
+PrimaryKey ... Acciones
+@enduml

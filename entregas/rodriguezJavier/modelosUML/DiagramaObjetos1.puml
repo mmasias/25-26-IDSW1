@@ -1,0 +1,87 @@
+@startuml
+title Infraestructura Académica - Universidad
+
+object "BaseDatos_Academica:BaseDeDatos" as bd_acad {
+  Nombre: "Universidad_DB"
+}
+
+object "Esquema_Academico:Esquema" as esquema_acad {
+  Nombre: "Academico"
+}
+
+object "Tabla_Alumnos:Tabla" as tab_alum {
+  Nombre: "Alumnos"
+}
+
+object "Tabla_Profesores:Tabla" as tab_prof {
+  Nombre: "Profesores"
+}
+
+object "Tabla_Asignaturas:Tabla" as tab_asig {
+  Nombre: "Asignaturas"
+}
+
+object "Vista_Alumnos_Matriculados:Vista" as vista_alum {
+  Nombre: "Vista_Alumnos_Matriculados"
+}
+
+object "Atributo_id_alumno:Atributo" as atr_idalumno {
+  Nombre: "id_alumno"
+}
+
+object "Atributo_nombre:Atributo" as atr_nombre {
+  Nombre: "nombre"
+}
+
+object "Atributo_id_asignatura:Atributo" as atr_idasig {
+  Nombre: "id_asignatura"
+}
+
+object "Tipo_INTEGER:TipoDeDato" as tipo_int {
+  Tipo: "INTEGER"
+}
+
+object "Tipo_VARCHAR:TipoDeDato" as tipo_varchar {
+  Tipo: "VARCHAR(100)"
+}
+
+object "PrimaryKey_Alumnos:PrimaryKey" as pk_alum {
+  Nombre: "PK_Alumnos"
+  Campo: "id_alumno"
+}
+
+object "ForeignKey_Alumno_Asignatura:ForeignKey" as fk_alum_asig {
+  Nombre: "FK_Alumno_Asignatura"
+  Campo: "id_asignatura"
+}
+
+object "Trigger_Actualizar_Matricula:Trigger" as trg_mat {
+  Nombre: "TRG_Actualizar_Fecha_Matricula"
+  Evento: "AFTER INSERT"
+}
+
+object "Constraint_Nombre_NotNull:Constrain" as cons_nn {
+  Nombre: "CHK_Nombre_NotNull"
+  Tipo: "NOT NULL"
+}
+
+bd_acad -r-> esquema_acad : contiene
+esquema_acad -r-> vista_alum : contiene
+vista_alum -d-> tab_alum : basada en
+
+tab_alum -d-> atr_idalumno : contiene
+tab_alum -d-> atr_nombre : contiene
+tab_alum -d-> pk_alum : usa
+tab_alum -d-> fk_alum_asig : depende de
+tab_alum -r-> cons_nn : aplica
+tab_alum -r-> trg_mat : activa
+
+tab_prof -d-> tipo_varchar : usa
+tab_asig -d-> atr_idasig : contiene
+
+atr_idalumno -d-> tipo_int : tiene tipo
+atr_nombre -d-> tipo_varchar : tiene tipo
+atr_idasig -d-> tipo_int : tiene tipo
+
+fk_alum_asig -d-> pk_alum : referencia clave primaria
+@enduml

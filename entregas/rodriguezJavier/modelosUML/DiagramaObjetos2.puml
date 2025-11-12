@@ -1,0 +1,59 @@
+@startuml
+title Gestión Administrativa - Universidad
+
+object "BaseDatos_Admin:BaseDeDatos" as bd_admin {
+  Nombre: "Universidad_DB"
+}
+
+object "Esquema_Seguridad:Esquema" as esquema_seg {
+  Nombre: "Administrativo"
+}
+
+object "Usuario_Admin:User" as user_admin {
+  Nombre: "admin_uni"
+  Email: "admin@universidad.edu"
+}
+
+object "Usuario_Soporte:User" as user_soporte {
+  Nombre: "soporte_uni"
+  Email: "soporte@universidad.edu"
+}
+
+object "Rol_Coordinador:Rol" as rol_coord {
+  Nombre: "Coordinador Académico"
+}
+
+object "Rol_Tecnico:Rol" as rol_tec {
+  Nombre: "Técnico de Sistemas"
+}
+
+object "Permiso_Operaciones:Permiso" as perm_op {
+  Tipo: "SELECT, UPDATE, INSERT"
+}
+
+object "Permiso_Seguridad:Permiso" as perm_seg {
+  Tipo: "GRANT, REVOKE"
+}
+
+object "Operacion_Permiso:OperacionesPermiso" as op_perm {
+  Operación: "Gestionar datos de alumnos y asignaturas"
+}
+
+object "Accion_Seguridad:Accion" as acc_seg {
+  Tipo: "ON DELETE CASCADE"
+}
+
+bd_admin -r-> esquema_seg : contiene
+esquema_seg -d-> user_admin : gestiona
+esquema_seg -d-> user_soporte : administra
+
+user_admin -d-> rol_coord : posee rol
+user_soporte -d-> rol_tec : posee rol
+
+rol_coord -d-> perm_op : tiene permisos
+rol_tec -d-> perm_seg : gestiona seguridad
+
+perm_op -r-> op_perm : realiza operaciones
+perm_seg -r-> acc_seg : aplica acción
+
+@enduml
