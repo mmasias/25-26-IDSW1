@@ -1,0 +1,161 @@
+@startuml
+object BaseDeDatos_Tienda { 
+  nombre = "BD Tienda" 
+}
+
+object Schema_Productos { 
+  nombre = "ProductosSchema" 
+}
+
+object Schema_Clientes { 
+  nombre = "ClientesSchema" 
+}
+
+object Schema_Pedidos { 
+  nombre = "PedidosSchema" 
+}
+
+object Tabla_Producto { 
+  nombre = "Producto" 
+}
+
+object Tabla_Cliente { 
+  nombre = "Cliente" 
+}
+
+object Tabla_Pedido { 
+  nombre = "Pedido" 
+}
+
+object Campo_IDProducto { 
+  nombre = "id_producto" 
+}
+
+object Campo_NombreProducto { 
+  nombre = "nombre" 
+}
+
+object Campo_PrecioProducto { 
+  nombre = "precio" 
+}
+
+object Campo_IDCliente { 
+  nombre = "id_cliente" 
+}
+
+object Campo_NombreCliente { 
+  nombre = "nombre" 
+}
+
+object Campo_EmailCliente { 
+  nombre = "email" 
+}
+
+object Campo_IDPedido { 
+  nombre = "id_pedido" 
+}
+
+object Campo_FechaPedido { 
+  nombre = "fecha" 
+}
+
+
+object Dato_IDProducto { 
+  valor = 1 
+}
+
+object Dato_NombreProducto { 
+  valor = "Portatil" 
+}
+
+object Dato_PrecioProducto { 
+  valor = 1200.00 
+}
+
+object Dato_IDCliente { 
+  valor = 1 
+}
+
+object Dato_NombreCliente { 
+  valor = "Carlos" 
+}
+
+object Dato_EmailCliente { 
+  valor = "carlos@email.com" 
+}
+
+object Dato_IDPedido { 
+  valor = 1001 
+}
+
+object Dato_FechaPedido { 
+  valor = "2025-11-12" 
+}
+
+
+object FK_Pedido_Cliente { 
+  nombre = "Pedido-Cliente" 
+}
+
+object FK_Pedido_Producto { 
+  nombre = "Pedido-Producto" 
+}
+
+object Usuario_Admin { 
+  nombre = "Administrador" 
+}
+
+object Rol_Admin { 
+  nombre = "Rol Administrador" 
+}
+
+object Restriccion_Admin { 
+  descripcion = "CRUD sobre todas las tablas" 
+}
+object Consulta_Insert_Pedido { 
+  descripcion = "INSERT INTO Pedido values (1, 2025-11-12)" 
+}
+
+BaseDeDatos_Tienda *-- Schema_Productos
+BaseDeDatos_Tienda *-- Schema_Clientes
+BaseDeDatos_Tienda *-- Schema_Pedidos
+
+Schema_Productos *-- Tabla_Producto
+Schema_Clientes *-- Tabla_Cliente
+Schema_Pedidos *-- Tabla_Pedido
+
+Tabla_Producto *-- Campo_IDProducto
+Tabla_Producto *-- Campo_NombreProducto
+Tabla_Producto *-- Campo_PrecioProducto
+
+Tabla_Cliente *-- Campo_IDCliente
+Tabla_Cliente *-- Campo_NombreCliente
+Tabla_Cliente *-- Campo_EmailCliente
+
+Tabla_Pedido *-- Campo_IDPedido
+Tabla_Pedido *-- Campo_FechaPedido
+
+Campo_IDProducto --> Dato_IDProducto
+Campo_NombreProducto --> Dato_NombreProducto
+Campo_PrecioProducto --> Dato_PrecioProducto
+
+Campo_IDCliente --> Dato_IDCliente
+Campo_NombreCliente --> Dato_NombreCliente
+Campo_EmailCliente --> Dato_EmailCliente
+
+Campo_IDPedido --> Dato_IDPedido
+Campo_FechaPedido --> Dato_FechaPedido
+
+Tabla_Pedido -- FK_Pedido_Cliente
+FK_Pedido_Cliente -- Tabla_Cliente
+Tabla_Pedido -- FK_Pedido_Producto
+FK_Pedido_Producto -- Tabla_Producto
+
+
+
+Usuario_Admin *-- Rol_Admin
+Rol_Admin *-- Restriccion_Admin
+Restriccion_Admin -- Consulta_Insert_Pedido
+Consulta_Insert_Pedido -- Tabla_Pedido
+
+@enduml
