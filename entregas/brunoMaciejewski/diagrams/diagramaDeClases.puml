@@ -1,0 +1,26 @@
+@startuml
+
+class BaseDeDatos
+class Usuario
+class Rol
+class Tabla
+class Vista
+class Constraint
+class Campo{
+  Tipo
+  EsPrimary
+}
+class ForeingKey{
+  Tabla
+}
+
+Usuario *-- Rol
+BaseDeDatos *-- Tabla
+Rol -- Vista
+Rol o-- Tabla
+Tabla *-- Vista
+Tabla *-- Campo
+Campo *-- Constraint
+Campo <|-- ForeingKey
+
+@enduml

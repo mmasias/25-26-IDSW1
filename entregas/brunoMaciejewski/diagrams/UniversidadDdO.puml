@@ -1,0 +1,33 @@
+@startuml
+object "Universidad : BaseDeDatos" as Universidad
+object "Grado : Tabla" as Grado
+object "Nombre : Campo" as NombreGrado{
+PrimaryKey: Si
+Tipo: String
+}
+object "Alumno : Tabla" as Alumno
+object "Nombre : Campo" as NombreAlumno{
+PrimaryKey: Si
+Tipo: String
+}
+object "Grado : ForeingKey" as GradoAlumno{
+PrimaryKey: No
+Tipo: String
+Tabla: Grado.Nombre
+}
+object "AlumnosIngeniería : Vista" as Vista
+object Usuario
+object "Admin : Rol" as Admin
+
+Universidad <-- Grado
+Universidad <-- Alumno
+
+Grado <-- NombreGrado
+
+Alumno <-- NombreAlumno
+Alumno <-- GradoAlumno
+Alumno <-- Vista
+
+Usuario <-- Admin
+Admin <-- Vista
+@enduml

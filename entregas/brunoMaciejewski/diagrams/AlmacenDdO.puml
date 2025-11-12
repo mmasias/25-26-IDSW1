@@ -1,0 +1,41 @@
+@startuml
+object "Almacen : BaseDeDatos" as Almacen
+object "Item : Tabla" as Item
+object "Nombre : Campo" as NombreItem{
+PrimaryKey: Si
+Tipo: String
+}
+object "Stock : Campo" as StockItem{
+PrimaryKey: No
+Tipo: Int
+}
+object "Solo positivos : Constraint" as Constraint
+object "Pedido : Tabla" as Pedido
+object "Item : ForeingKey" as ItemPedido{
+PrimaryKey: Si
+Tipo: String
+Tabla: Item.Nombre
+}
+object "Cantidad : Campo" as CantidadPedido{
+PrimaryKey: No
+Tipo: Int
+}
+object "SinStock : Vista" as Vista
+object Usuario
+object "Gestor : Rol" as Gestor
+
+Almacen <-- Item
+Almacen <-- Pedido
+
+Item <-- StockItem
+Item <-- NombreItem
+Item <-- Vista
+StockItem <-- Constraint
+
+Pedido <-- ItemPedido
+Pedido <-- CantidadPedido
+CantidadPedido <-- Constraint
+
+Usuario <-- Gestor
+Gestor <-- Vista
+@enduml
