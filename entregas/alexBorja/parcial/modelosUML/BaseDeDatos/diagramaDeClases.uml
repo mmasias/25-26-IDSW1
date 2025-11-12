@@ -1,0 +1,38 @@
+@startuml
+
+' --- Clases (Entidades) ---
+class dataset
+class esquema
+class View
+class Tabla
+class Indice
+class Constraint
+class Columna
+class TipoDato
+class "Primary key" as PKey
+class "Foreing key" as FKey
+class User
+class Roles
+class Permisos
+
+dataset o-- esquema
+esquema *-- View
+
+View --|> Tabla
+
+Tabla o-- Indice
+Tabla o-- Constraint
+Tabla *-- Columna
+
+Columna *-- TipoDato
+
+User *-- Roles
+Roles o-- Permisos
+Permisos o-- View
+
+Constraint o-- Columna
+
+Constraint o-- PKey
+Constraint o-- FKey
+
+@enduml

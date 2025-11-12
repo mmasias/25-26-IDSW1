@@ -1,0 +1,85 @@
+@startuml
+' --- Definición de Objetos (Instancias) ---
+
+' Instancias de Usuario, Rol y Permiso
+object "u_ana: User" as user_ana {
+  nombre = "ana_rectora"
+}
+object "r_rector: Roles" as role_rector {
+  nombre = "Rectorado"
+}
+object "p_ver_todo: Permisos" as perm_total {
+  tipo = "SELECT (Auditoría)"
+}
+
+' Instancias de Dataset, Esquema y Vista
+object "ds_campus: dataset" as ds_campus {
+  nombre = "dataset_universidad"
+}
+object "esq_acad: esquema" as esq_academico {
+  nombre = "esquema_academico"
+}
+object "v_decanato: View" as view_decanato {
+  nombre = "vista_estudiantes_decanato"
+}
+
+' Instancias de Tabla, Columna y TipoDato
+object "t_estudiantes: Tabla" as tabla_estudiantes {
+  nombre = "tabla_estudiantes"
+}
+object "c_id_est: Columna" as col_id {
+  nombre = "col_id_estudiante"
+}
+object "c_gpa: Columna" as col_gpa {
+  nombre = "promedio_gpa"
+}
+object "tipo_int: TipoDato" as tipo_int {
+  nombre = "INTEGER"
+}
+object "tipo_float: TipoDato" as tipo_float {
+  nombre = "FLOAT"
+}
+
+' Instancias de Restricciones (Constraint y PKey)
+object "c_pk_est: Constraint" as const_pk {
+  nombre = "pk_estudiantes"
+}
+object "obj_pkey_est: PKey" as pkey_obj {
+  descripcion = "PK de la tabla estudiantes"
+}
+
+
+' --- Vínculos (Links) entre Objetos ---
+' (Estos vínculos replican la estructura del diagrama de ventas)
+
+' Vínculos de Usuario y Permisos
+user_ana -- role_rector : "tiene_rol"
+role_rector -- perm_total : "tiene_permiso"
+perm_total -- view_decanato : "aplica_sobre_vista"
+
+' Vínculos de Estructura de Datos
+ds_campus -- esq_academico : "contiene_esquema"
+esq_academico -- view_decanato : "contiene_vista"
+
+' Vínculos de la Tabla
+' (Asumiendo que la vista se basa en la tabla)
+view_decanato -- tabla_estudiantes : "se_basa_en"
+
+' Vínculos de la Tabla con sus Columnas
+tabla_estudiantes -- col_id : "tiene_columna"
+tabla_estudiantes -- col_gpa : "tiene_columna"
+
+' Vínculos de las Columnas con sus TipoDato
+col_id -- tipo_int : "es_de_tipo"
+col_gpa -- tipo_float : "es_de_tipo"
+
+' Vínculos de las Restricciones
+' La Tabla tiene la Restricción
+tabla_estudiantes -- const_pk : "tiene_constraint"
+' La Restricción es de tipo PKey
+const_pk -- pkey_obj : "es_de_tipo"
+' La Restricción se aplica a la Columna
+const_pk -- col_id : "se_aplica_a"
+
+
+@enduml

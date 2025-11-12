@@ -1,0 +1,81 @@
+@startuml
+' --- Definición de Objetos (Instancias) ---
+
+object "admin_user: User" as admin_user {
+  nombre = "admin_user"
+}
+object "r_admin: Roles" as role_admin {
+  nombre = "Administrador"
+}
+object "p_total: Permisos" as perm_total {
+  tipo = "SELECT, INSERT, UPDATE"
+}
+
+object "ds_main: dataset" as ds_main {
+  nombre = "dataset_principal"
+}
+object "esq_pub: esquema" as esq_public {
+  nombre = "esquema_publico"
+}
+object "v_ventas_q1: View" as view_ventas {
+  nombre = "vista_ventas_trim_Q1"
+}
+
+object "t_ventas: Tabla" as tabla_ventas {
+  nombre = "tabla_ventas"
+}
+object "c_id: Columna" as col_id {
+  nombre = "col_id_venta"
+}
+object "c_total: Columna" as col_total {
+  nombre = "col_total"
+}
+object "tipo_int: TipoDato" as tipo_int {
+  nombre = "INT"
+}
+object "tipo_dec: TipoDato" as tipo_decimal {
+  nombre = "DECIMAL(10, 2)"
+}
+
+object "c_pk_ventas: Constraint" as const_pk {
+  nombre = "pk_ventas"
+}
+object "obj_pkey: PKey" as pkey_obj {
+  descripcion = "Clave primaria de la tabla ventas"
+}
+
+
+' --- Vínculos (Links) entre Objetos ---
+' Muestran cómo los objetos se relacionan en este momento
+
+' Vínculos de Usuario y Permisos
+admin_user -- role_admin
+role_admin -- perm_total
+perm_total -- view_ventas
+
+' Vínculos de Estructura de Datos
+ds_main -- esq_public
+esq_public -- view_ventas
+
+' Vínculos de la Tabla
+' (Asumiendo que la vista se basa en la tabla)
+view_ventas -- tabla_ventas
+
+' Vínculos de la Tabla con sus Columnas
+tabla_ventas -- col_id
+tabla_ventas -- col_total
+
+' Vínculos de las Columnas con sus TipoDato
+col_id -- tipo_int
+col_total -- tipo_decimal
+
+' Vínculos de las Restricciones
+' La Tabla tiene la Restricción
+tabla_ventas -- const_pk
+' La Restricción es de tipo PKey
+const_pk -- pkey_obj
+' La Restricción se aplica a la Columna
+const_pk -- col_id
+
+
+@enduml
