@@ -1,0 +1,63 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam defaultFontName Inter
+hide empty members
+
+class Usuario
+class Rol
+class Permiso
+class Operacion
+class Vista
+class BaseDeDatos
+class Esquema
+class Tabla
+class Constraint
+class Trigger
+class Registro
+class ForeignKey
+class Atributo
+class TipoDato
+class PrimaryKey
+
+enum Acciones{
+    CASCADE
+    SET NULL
+    RESTRICT
+    NO ACTION
+}
+
+Usuario -l- Rol : "tiene"
+Rol -l- Permiso : "tiene"
+Permiso .. Operacion : "utiliza"
+Permiso -l- Vista : "utiliza"
+
+BaseDeDatos *-- Esquema : "contiene"
+Esquema *-- Vista : "contiene"
+
+Vista -- Tabla : "basada en"
+
+Tabla *-- Constraint : "contiene"
+
+Tabla *-- Trigger : "usa"
+
+Tabla *-- Registro : "contiene"
+
+Tabla *-- ForeignKey : "contiene"
+
+Tabla *-- Atributo : "contiene"
+Atributo -- TipoDato : "tiene"
+
+
+Constraint <|-- PrimaryKey
+Constraint <|-- ForeignKey
+
+PrimaryKey *-- Atributo : "compuesta por"
+
+ForeignKey *-- Atributo : "compuesta por"
+
+
+ForeignKey -- PrimaryKey : "referencia"
+
+ForeignKey .. Acciones: "utiliza"
+@enduml

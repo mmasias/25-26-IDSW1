@@ -1,0 +1,58 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam defaultFontName Inter
+hide empty members
+
+
+class Usuario
+class Rol
+class Permiso
+class Operacion
+class Vista
+class BaseDeDatos
+class Esquema
+class Tabla
+class Constraint
+class Trigger
+class Registro
+class ForeignKey
+class Atributo
+class TipoDato
+class PrimaryKey
+
+
+
+enum Accion {
+    AUTO_INCREMENTE
+    DROP_CASCADE
+}
+
+Usuario -- Rol : "tiene"
+Rol -- Permiso : "tiene"
+Permiso .. Operacion : "utiliza"
+Permiso -- Vista : "utiliza"
+
+
+BaseDeDatos *-- Esquema : "contiene"
+Esquema *-- Vista : "contiene"
+
+Vista -- Tabla : "basada en"
+Tabla *-- Constraint : "contiene"
+
+Tabla *-- Trigger : "usa"
+Tabla *-- Registro : "contiene"
+
+Tabla *-- ForeignKey : "contiene"
+
+Tabla *-- Atributo : "contiene"
+Atributo -- TipoDato : "contiene"
+
+Atributo *-- PrimaryKey : "contiene"
+
+ForeignKey *-- PrimaryKey : "contiene"
+
+PrimaryKey .. Accion : "utiliza"
+
+@enduml
