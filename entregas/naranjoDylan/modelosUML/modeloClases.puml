@@ -1,0 +1,40 @@
+@startuml
+
+class View
+class Schema
+class Tabla
+class Relacion
+class ForeignKey
+class PrimaryKey
+class Usuario
+class Role
+class Permiso
+class Trigger
+class Indice
+class Campo
+class Atributos
+class Contrains
+
+' --- RELACIONES --- 
+Schema *-- Tabla : contiene
+Schema *-- View : pertenece a
+
+Tabla o-- Campo : tiene
+Tabla *-- Indice : posee
+Tabla o-- Trigger : incluye
+
+Campo o-- Atributos : define
+Campo o-- Contrains : aplica
+
+Tabla o-- Relacion : establece
+Relacion o-- ForeignKey : incluye
+ForeignKey o-- PrimaryKey : referencia a
+
+PrimaryKey *-- Campo : se aplica a
+
+Usuario *-- Role : tiene
+Role *-- Permiso : otorga
+
+Permiso ..> View : se aplica a
+
+@enduml
