@@ -1,0 +1,23 @@
+@startuml
+
+class Inventario {
+}
+
+class Producto {
+}
+
+class Encargado {
+}
+
+class Proveedor {
+}
+
+class Uso {
+}
+
+Inventario -- Producto : tiene
+Producto -- Encargado : tiene
+Producto -- Proveedor : tiene
+Producto -- Uso : tiene
+
+@enduml

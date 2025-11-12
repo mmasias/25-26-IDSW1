@@ -1,0 +1,37 @@
+@startuml
+object "inventario1 : Inventario" as inventario1
+
+object "producto1 : Producto" as producto1 {
+  nombre = "Laptop HP"
+  cantidad = 10
+  estado = "Disponible"
+}
+
+object "producto2 : Producto" as producto2 {
+  nombre = "Mouse Logitech"
+  cantidad = 0
+  estado = "Sin stock"
+}
+
+object "encargado1 : Encargado" as encargado1 {
+  nombre = "Ibuprofeno Fernandez"
+}
+
+object "proveedor1 : Proveedor" as proveedor1 {
+  nombre = "FUNIBER"
+}
+
+object "uso1 : Uso" as uso1 {
+  area = "Ordenación Academica"
+  fecha = "09/10/2025"
+}
+
+inventario1 -- producto1
+inventario1 -- producto2
+producto1 -- encargado1
+producto1 -- proveedor1
+producto1 -- uso1
+producto2 -- encargado1
+producto2 -- proveedor1
+
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+[*] --> EnAlmacen
+EnAlmacen --> Reservado : reservar()
+Reservado --> EnTransito : enviar()
+EnTransito --> Entregado : recibir()
+Entregado --> [*]
+@enduml
