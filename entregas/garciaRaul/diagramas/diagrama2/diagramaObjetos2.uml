@@ -1,0 +1,89 @@
+@startuml
+title Gestor de Bases de Datos - Diagrama de Objetos
+hide empty members
+
+object "Base de datos: GestorVentas" as bd {
+  nombre = "GestorVentas"
+  motor = "PostgreSQL"
+  tamaño = "2.3 GB"
+}
+
+object "Esquema: Public" as esquema {
+  nombre = "public"
+  propietario = "admin"
+}
+
+object "User: raul" as user_raul {
+  usuario = "raul"
+  email = "raul@empresa.com"
+}
+
+object "Rol: Administrador" as rol_admin {
+  rol = "Administrador"
+  privilegios = "TOTAL"
+}
+
+object "Permiso: Insertar" as permiso_insertar {
+  tipo = "INSERT"
+}
+
+object "Operación: InsertarPedido" as op_insertar {
+  nombre = "InsertarPedido"
+  descripción = "Agrega un nuevo pedido a la tabla Pedido"
+}
+
+object "Vista: VistaPedidos" as vista_pedidos {
+  nombre = "VistaPedidos"
+  consulta = "SELECT * FROM Pedido WHERE total > 0"
+}
+
+object "Tabla: Pedido" as t_pedido {
+  nombre = "Pedido"
+  filas = "1200"
+  última_actualización = "2025-11-10"
+}
+
+object "Trigger: trg_actualizar_total" as trg_total {
+  evento = "AFTER INSERT"
+  acción = "Recalcular total de pedido"
+}
+
+object "Atributo: total" as a_total {
+  nombre = "total"
+  valor_ejemplo = "254.99"
+}
+
+object "Tipo de dato: DECIMAL" as tipo_decimal {
+  precisión = "10,2"
+}
+
+object "Foreign key: fk_cliente_pedido" as fk_cliente_pedido {
+  referencia = "Cliente.id_cliente"
+  estado = "ACTIVA"
+}
+
+object "Primary key: pk_cliente" as pk_cliente {
+  columna = "id_cliente"
+}
+
+object "Action: validarPK" as action_validar {
+  descripción = "Verifica unicidad de la clave primaria"
+}
+
+' --- Relaciones (idénticas al UML de clases original) ---
+bd *-- esquema : contiene
+esquema *-- t_pedido : contiene
+permiso_insertar .. op_insertar
+t_pedido o-- a_total : contiene
+tipo_decimal o-- a_total
+trg_total --o a_total : usa
+trg_total -u-o t_pedido : usa
+fk_cliente_pedido o-u- t_pedido
+pk_cliente o-u- fk_cliente_pedido
+action_validar .u. pk_cliente
+vista_pedidos o-l- t_pedido
+vista_pedidos -r-o permiso_insertar
+permiso_insertar -r-o rol_admin
+rol_admin -r-o user_raul
+
+@enduml
