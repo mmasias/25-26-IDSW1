@@ -1,0 +1,36 @@
+@startuml
+title Objetos - Tienda Online
+
+
+class "Base de datos: ECommerce" as DB
+
+class "Usuario: Manager" as UsuarioManager
+class "Rol: Manager" as RolManager
+class "Permisos: Inventario" as PermisosInventario
+
+UsuarioManager --> RolManager
+RolManager --> PermisosInventario
+
+
+class "Tabla: Productos" as Productos {
+
+}
+
+class "Tabla: Clientes" as Clientes {
+
+}
+
+class "Tabla: Pedidos" as Pedidos {
+
+}
+
+DB --> Productos
+DB --> Clientes
+DB --> Pedidos
+
+
+PermisosInventario --> Productos
+
+
+
+@enduml

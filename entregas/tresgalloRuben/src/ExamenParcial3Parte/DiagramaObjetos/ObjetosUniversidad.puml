@@ -1,0 +1,37 @@
+@startuml
+title Objetos - Universidad
+
+
+class "Base de datos: Universidad" as DB
+
+
+class "Usuario: Admin" as UsuarioAdmin
+class "Rol: Admin" as RolAdmin
+class "Permisos: Root" as PermisosRoot
+
+UsuarioAdmin --> RolAdmin
+RolAdmin --> PermisosRoot
+
+
+class "Tabla: Asignaturas" as Asignaturas {
+
+}
+
+class "Tabla: Alumnos" as Alumnos {
+
+}
+
+class "Tabla: Profesores" as Profesores {
+
+}
+
+' Relaciones desde Base de datos
+DB --> Asignaturas
+DB --> Alumnos
+DB --> Profesores
+
+' Permisos se relaciona con Asignaturas
+PermisosRoot --> Asignaturas
+
+
+@enduml
