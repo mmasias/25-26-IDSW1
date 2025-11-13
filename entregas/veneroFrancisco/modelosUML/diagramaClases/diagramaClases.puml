@@ -1,0 +1,62 @@
+@startuml
+
+
+
+class Usuario {
+ - rol
+}
+
+class Consulta {
+}
+
+class BaseDeDatos {
+}
+
+class Esquema {
+}
+
+class Tabla {
+ - columnas
+ - registros
+}
+
+class Campo {
+}
+
+class Indice {
+}
+
+class ClavePrimaria {
+}
+
+class ClaveForanea {
+}
+
+' --- ALINEACIÓN HORIZONTAL FORZADA ---
+Consulta -[hidden]right- BaseDeDatos
+Indice -[hidden]right- Tabla
+ClavePrimaria -[hidden]right- ClaveForanea
+' -------------------------------------
+
+' --- Relaciones con rombos ---
+Usuario --> BaseDeDatos : gestiona
+Usuario --> Consulta : realiza
+
+BaseDeDatos *-- Esquema : organiza
+Esquema *-- Tabla : agrupa
+
+Tabla o-- Indice : optimiza búsqueda
+Tabla o-- Campo : contiene valores
+Campo --> Restricciones : restricciones
+
+Consulta ..> Tabla : contiene / modifica datos de tabla
+
+Tabla o-- ClavePrimaria : identifica de forma unica
+Tabla o-- ClaveForanea : relaciona entre
+
+ClavePrimaria  <-->  ClaveForanea : se relaciona
+
+' --- NUEVA RELACIÓN DISCONTINUA ---
+Indice ..> Campo : se basa en
+
+@enduml

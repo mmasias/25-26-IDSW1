@@ -1,0 +1,80 @@
+@startuml
+title Diagrama de Objetos - Instancia "Tienda Online"
+
+object Gerente_Lopez
+Gerente_Lopez : nombre = "Jorge Lopez"
+Gerente_Lopez : rol = "Gerente E-commerce"
+Gerente_Lopez : idUsuario = 205
+
+object DB_Ventas
+DB_Ventas : nombre = "db_ventas"
+DB_Ventas : motor = "MySQL"
+DB_Ventas : estado = "Online"
+
+object Schema_Inventario
+Schema_Inventario : nombre = "inventario"
+Schema_Inventario : propietario = "Gerente_Lopez"
+
+object Tabla_Productos
+Tabla_Productos : nombre = "Productos"
+Tabla_Productos : filas = 4500
+Tabla_Productos : esquema = "inventario"
+
+
+object Campo_Referencia
+Campo_Referencia : nombre = "referencia"
+Campo_Referencia : tipoDato = "VARCHAR(50)"
+
+
+object ClavePrimaria_Producto
+ClavePrimaria_Producto : nombre = "ClavePrimaria_producto"
+ClavePrimaria_Producto : columna = "id_producto"
+
+object ClaveForanea_Categoria
+ClaveForanea_Categoria : nombre = "ClaveForanea_categoria"
+ClaveForanea_Categoria : columna = "id_categoria"
+ClaveForanea_Categoria : referencia = "Tabla_Categorias"
+
+
+object Index_Referencia
+Index_Referencia : nombre = "index_referencia_producto"
+Index_Referencia : tipo = "Arbol" '
+
+
+object Restriccion_Check_Referencia
+Restriccion_Check_Referencia : nombre = "check_ref_formato"
+Restriccion_Check_Referencia : tipo = "CHECK"
+Restriccion_Check_Referencia : condicion = "referencia LIKE 'REF-%'"
+
+object Consulta_Stock
+Consulta_Stock : tipo = "SELECT"
+Consulta_Stock : sql = "SELECT * FROM Stock..."
+Consulta_Stock : usuario = "Gerente_Lopez"
+
+
+Consulta_Stock -[hidden]right- DB_Ventas
+
+Index_Referencia -[hidden]left- Tabla_Productos
+
+ClavePrimaria_Producto -[hidden]right- ClaveForanea_Categoria
+
+Gerente_Lopez --> DB_Ventas : gestiona
+Gerente_Lopez --> Consulta_Stock : realiza
+
+DB_Ventas *-- Schema_Inventario : organiza
+Schema_Inventario *-- Tabla_Productos : agrupa
+
+Tabla_Productos o-- Campo_Referencia : contiene
+
+Tabla_Productos o---- ClavePrimaria_Producto : identifica de forma unica
+Tabla_Productos o---- ClaveForanea_Categoria : relaciona entre
+Tabla_Productos o-- Index_Referencia : optimiza busqueda
+
+Campo_Referencia --> Restriccion_Check_Referencia : contiene
+
+Consulta_Stock ..> Tabla_Productos : contiene/modifica datos
+Index_Referencia ..> Campo_Referencia : se basa en
+
+ClavePrimaria_Producto <--> ClaveForanea_Categoria : se relaciona
+
+@enduml

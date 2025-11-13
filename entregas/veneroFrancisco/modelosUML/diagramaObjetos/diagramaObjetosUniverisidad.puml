@@ -1,0 +1,78 @@
+@startuml
+title Diagrama de Objetos - Instancia "Universidad" 
+
+' --- Objetos con Atributos ---
+object Admin_Perez
+Admin_Perez : nombre = "Juan Perez"
+Admin_Perez : rol = "Administrador"
+Admin_Perez : idUsuario = 101
+
+object DB_Facultad
+DB_Facultad : nombre = "db_facultad"
+DB_Facultad : motor = "MySQL"
+DB_Facultad : estado = "Online"
+
+object Schema_Academico
+Schema_Academico : nombre = "academico"
+Schema_Academico : propietario = "Admin_Perez"
+
+object Tabla_Estudiantes
+Tabla_Estudiantes : nombre = "Estudiantes"
+Tabla_Estudiantes : filas = 1500
+Tabla_Estudiantes : esquema = "academico"
+
+object Campo_Nombre
+Campo_Nombre : nombre = "nombre"
+Campo_Nombre : tipoDato = "VARCHAR(100)"
+
+
+object ClavePrimaria_Estudiante
+ClavePrimaria_Estudiante : nombre = "ClavePrimaria_estudiante"
+ClavePrimaria_Estudiante : columna = "id_estudiante"
+
+object ClaveForanea_Curso
+ClaveForanea_Curso : nombre = "ClaveForanea_curso"
+ClaveForanea_Curso : columna = "id_curso"
+ClaveForanea_Curso : referencia = "Tabla_Cursos"
+
+object Index_Nombre
+Index_Nombre : nombre = "index_nombre_estudiante"
+Index_Nombre : tipo = "Arbol"
+
+object Restriccion_Check_Nombre
+Restriccion_Check_Nombre : nombre = "check_nombre_longitud"
+Restriccion_Check_Nombre : tipo = "CHECK"
+Restriccion_Check_Nombre : condicion = "LENGTH(nombre) > 1"
+
+object Consulta_Notas
+Consulta_Notas : tipo = "SELECT"
+Consulta_Notas : sql = "SELECT * FROM Notas..."
+Consulta_Notas : usuario = "Admin_Perez"
+
+
+Consulta_Notas -[hidden]right- DB_Facultad
+
+Index_Nombre -[hidden]left- Tabla_Estudiantes
+
+ClavePrimaria_Estudiante -[hidden]right- ClaveForanea_Curso
+
+Admin_Perez --> DB_Facultad : gestiona
+Admin_Perez --> Consulta_Notas : realiza
+
+DB_Facultad *-- Schema_Academico : organiza
+Schema_Academico *-- Tabla_Estudiantes : agrupa
+
+Tabla_Estudiantes o-- Campo_Nombre : contiene
+
+Tabla_Estudiantes o---- ClavePrimaria_Estudiante : identifica de forma unica
+Tabla_Estudiantes o---- ClaveForanea_Curso : relaciona entre
+Tabla_Estudiantes o-- Index_Nombre : optimiza busqueda
+
+Campo_Nombre --> Restriccion_Check_Nombre : contiene
+
+Consulta_Notas ..> Tabla_Estudiantes : contiene/modifica datos
+Index_Nombre ..> Campo_Nombre : se basa en
+
+ClavePrimaria_Estudiante <--> ClaveForanea_Curso : se relaciona
+
+@enduml
