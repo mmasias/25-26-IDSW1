@@ -1,0 +1,59 @@
+@startuml
+
+class Tabla{
+nombre
+}
+class Vista{
+}
+class Consulta{
+}
+class Usuario{
+nombre
+contraseña
+}
+class Rol{
+}
+class Permiso{
+}
+class Llave{
+}
+enum TipoLlave{
+primaria
+foránea
+}
+class Esquema{
+}
+class Trigger{
+}
+class Indice{
+}
+class Campo{
+}
+enum TipoCampo{
+texto
+número
+fecha
+...
+}
+class Restriccion{
+}
+
+Usuario "many" *-- "1" Rol : tiene
+Rol "many" *-- "many" Permiso : tiene
+Usuario --> Consulta : ejecuta
+Consulta --> Tabla : ejecuta
+Tabla "1" *-- "1" Esquema : tiene
+Tabla "1" *-- "many" Llave : tiene
+Tabla "1" *-- "many" Restriccion : tiene
+Tabla "1" *-- "many" Vista : tiene
+Tabla "1" *-- "many" Indice : tiene
+Tabla "1" *-- "many" Trigger : tiene
+Trigger --> Tabla : actúa
+Esquema "1" *-- "many" Campo : contiene
+Campo .. TipoCampo
+Campo "1" o-- "many" Restriccion : tiene
+Indice -- Campo : contiene
+Llave .. TipoLlave
+Campo -- Llave
+
+@enduml

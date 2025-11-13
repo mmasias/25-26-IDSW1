@@ -1,0 +1,90 @@
+@startuml
+
+class Tabla{
+nombre
+}
+class Vista{
+}
+class Consulta{
+enunciado
+}
+class Usuario{
+nombre
+contraseña
+}
+class Rol{
+nombre
+}
+class Permiso{
+capacidad
+}
+enum TipoCapacidadPermiso{
+SELECT
+INSERT
+UPDATE
+DELETE
+CREATE
+DROP
+ALTER
+}
+class Llave{
+}
+enum TipoLlave{
+primaria
+foránea
+}
+class Esquema{
+}
+class Trigger{
+evento activación
+momento activación
+}
+enum TipoEventoActivación{
+INSERT
+UPDATE
+DELETE
+}
+enum TipoMomentoActivación{
+BEFORE
+AFTER
+}
+class Indice{
+}
+class Campo{
+}
+enum TipoCampo{
+texto
+número
+fecha
+...
+}
+class Restriccion{
+}
+
+Tabla "1" *-- "1" Esquema : tiene
+Tabla "1" *-- "many" Vista : tiene
+Tabla "1" *-- "many" Llave : tiene
+Tabla "1" *-- "many" Indice : tiene
+Tabla "1" *-- "many" Trigger : tiene
+Tabla "1" *-- "many" Restriccion : tiene                     
+Consulta -l-> Tabla : ejecuta
+Usuario -l-> Consulta : ejecuta
+Usuario "many" *-- "1" Rol : tiene
+Rol "many" *-- "many" Permiso : tiene
+Permiso .. TipoCapacidadPermiso
+Trigger .. TipoMomentoActivación
+Trigger .. TipoEventoActivación
+Llave .. TipoLlave
+Campo .. TipoCampo
+Esquema "1" *-- "many" Campo : contiene
+
+Trigger-r[#white] Esquema
+Esquema-l[#white] Vista
+
+Campo "1" o-- "many" Restriccion : tiene
+Campo -- Llave : puede ser
+Trigger --> Tabla : actúa
+Indice "many" *-- "1" Campo : tiene
+Trigger -> Vista : actúa
+
+@enduml

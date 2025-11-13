@@ -1,0 +1,87 @@
+@startuml
+
+object "Tabla1:Tabla" as Tabla1{
+nombre: alumnos
+}
+
+object "Consulta1:Consulta" as Consulta1{
+enunciado: SELECT * FROM alumnos;
+}
+
+object "Usuario1:Usuario" as Usuario1{
+nombre: martinlopez7
+contraseña: hsbn45drXB
+}
+
+object "Rol1:Rol" as Rol1{
+nombre: admin
+}
+
+object "Permiso1:Permiso" as Permiso1{
+capacidad: SELECT
+}
+
+object "Permiso2:Permiso" as Permiso2{
+capacidad: INSERT
+}
+
+object "Permiso3:Permiso" as Permiso3{
+capacidad: UPDATE
+}
+
+object "Permiso4:Permiso" as Permiso4{
+capacidad: DELETE
+}
+
+object "Permiso5:Permiso" as Permiso5{
+capacidad: CREATE
+}
+
+object "Permiso6:Permiso" as Permiso6{
+capacidad: DROP
+}
+
+object "Permiso7:Permiso" as Permiso7{
+capacidad: ALTER
+}
+
+object "Llave1:Llave" as Llave1{
+tipo: primaria
+}
+
+object "Esquema1:Esquema" as Esquema1{
+}
+
+object "Campo1:Campo" as Campo1{
+nombre: ID
+tipo: número
+}
+
+object "Campo2:Campo" as Campo2{
+nombre: nombre
+tipo: texto
+}
+
+object "Restriccion1:Restriccion" as Restriccion1{
+tipo: CHECK (ID>0)
+}
+
+Tabla1 *-- Esquema1 : tiene
+Tabla1 *-- Llave1 : tiene
+Tabla1 *-- Restriccion1 : tiene
+Consulta1 -l-> Tabla1 : ejecuta
+Usuario1 -l-> Consulta1 : ejecuta
+Usuario1 *-- Rol1 : tiene
+Rol1 *-- Permiso1 : tiene
+Rol1 *-- Permiso2 : tiene
+Rol1 *-- Permiso3 : tiene
+Rol1 *-- Permiso4 : tiene
+Rol1 *-- Permiso5 : tiene
+Rol1 *-- Permiso6 : tiene
+Rol1 *-- Permiso7 : tiene
+Esquema1 *-- Campo1 : contiene
+Esquema1 *-- Campo2 : contiene
+Campo1 o-- Restriccion1 : tiene
+Campo1 -- Llave1 : es
+
+@enduml

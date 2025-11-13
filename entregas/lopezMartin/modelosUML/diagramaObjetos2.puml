@@ -1,0 +1,80 @@
+@startuml
+
+object "Tabla1:Tabla" as Tabla1{
+nombre: productos
+}
+
+object "Esquema1:Esquema" as Esquema1{
+}
+
+object "Campo1:Campo" as Campo1{
+nombre: ID
+tipo: texto
+}
+
+object "Campo2:Campo" as Campo2{
+nombre: nombre
+tipo: texto
+}
+
+object "Campo3:Campo" as Campo3{
+nombre: stock
+tipo: número
+}
+
+object "Consulta1:Consulta" as Consulta1{
+enunciado: SELECT * FROM productos WHERE stock < 10;
+}
+
+object "Usuario1:Usuario" as Usuario1{
+nombre: paco
+contraseña: Zx#9c!vB
+}
+
+object "Rol1:Rol" as Rol1{
+nombre: revisor_inventario
+}
+
+object "Permiso1:Permiso" as Permiso1{
+capacidad: SELECT
+}
+
+object "Llave1:Llave" as Llave1{
+tipo: primaria
+}
+
+object "Restriccion1:Restriccion" as Restriccion1{
+tipo: CHECK (stock >= 0)
+}
+
+object "Vista1:Vista" as Vista1{
+}
+
+object "Trigger1:Trigger" as Trigger1{
+evento: UPDATE
+momento: AFTER
+}
+
+object "Indice1:Indice" as Indice1{
+}
+
+Tabla1 *-- Esquema1 : tiene
+Tabla1 *-- Llave1 : tiene
+Tabla1 *-- Restriccion1 : tiene
+Tabla1 *-- Vista1 : tiene
+Tabla1 *-- Indice1 : tiene
+Tabla1 *-- Trigger1 : tiene
+Consulta1 -l-> Tabla1 : ejecuta
+Usuario1 -l-> Consulta1 : ejecuta
+Usuario1  *-- Rol1 : tiene
+Rol1 *-- Permiso1 : tiene
+Esquema1 *-- Campo1 : contiene
+Esquema1 *-- Campo2 : contiene
+Esquema1 *-- Campo3 : contiene
+Campo1 -- Llave1 : es
+Campo3 o-- Restriccion1 : tiene
+Indice1 *-- Campo2 : tiene
+Trigger1 --> Tabla1 : actúa
+Trigger1 -> Vista1 : actúa
+
+@enduml
