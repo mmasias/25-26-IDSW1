@@ -1,0 +1,67 @@
+@startuml
+title Modelo del Dominio - Sistema de Gestión de Bases de Datos
+hide members
+class Usuario {
+}
+
+class Rol {
+}
+
+class Permiso {
+}
+
+class BaseDeDatos {
+}
+
+class Esquema {
+}
+
+class Vista {
+}
+
+class Tabla {
+}
+
+class Trigger {
+}
+
+class Registro {
+}
+
+class Atributo {
+}
+
+class TipoDeDato {
+}
+
+class PrimaryKey {
+}
+
+class ForeignKey {
+}
+
+class Accion {
+}
+
+Usuario o-- Rol : tiene >
+Rol o-- Permiso : otorga >
+Permiso --> Vista : autoriza operaciones sobre >
+
+BaseDeDatos -> Esquema : contiene >
+Esquema -> Vista : contiene >
+Vista -> Tabla : usa >
+
+Tabla o-- Registro : contiene >
+Tabla o-- Trigger : tiene >
+Tabla o-- Atributo : tiene >
+
+Atributo o-- TipoDeDato : tipo >
+
+Tabla o-- PrimaryKey : posee >
+Tabla o-- ForeignKey : posee >
+
+ForeignKey --> PrimaryKey : referencia >
+
+PrimaryKey --> Accion : define acción >
+
+@enduml
