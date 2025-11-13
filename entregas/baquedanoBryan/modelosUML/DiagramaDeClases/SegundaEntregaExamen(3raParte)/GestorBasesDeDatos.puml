@@ -1,0 +1,56 @@
+@startuml Gestor Base de Datos 
+
+Title Gestor Base de Datos
+
+class Database { }
+
+class Schema { }
+
+class Table {
+}
+
+class Field {
+  - dataType
+}
+
+class PrimaryKey { }
+
+class ForeignKey { }
+
+class View {
+  - query
+}
+
+class User { }
+
+class Role {
+  - permission
+}
+
+
+class Trigger {
+  - event
+  - timing
+}
+
+class Constraint {
+}
+
+
+Database --> Schema : contiene >
+Schema --> Table : define >
+Table --> Field : incluye >
+Table --> Constraint: establece >
+Field --> Constraint: establece >
+Schema --> View : expone >
+Database --> User: gestiona >
+User --> Role : posee >
+Role --> View : autoriza >
+Field <|-- PrimaryKey
+Field <|-- ForeignKey
+Table --> PrimaryKey : define >
+ForeignKey --> Table : referencia >
+Table --> Trigger : dispara >
+Trigger --> Table : actualiza >
+
+@enduml
