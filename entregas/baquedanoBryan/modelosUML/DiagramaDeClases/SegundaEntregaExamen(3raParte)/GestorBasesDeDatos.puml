@@ -1,4 +1,5 @@
-@startuml
+@startuml Gestor Base de Datos 
+
 Title Gestor Base de Datos
 
 class Database { }
@@ -28,6 +29,8 @@ class Role {
 
 
 class Trigger {
+  - event
+  - timing
 }
 
 class Constraint {
@@ -40,16 +43,14 @@ Table --> Field : incluye >
 Table --> Constraint: establece >
 Field --> Constraint: establece >
 Schema --> View : expone >
-Database --> User: tiene >
+Database --> User: gestiona >
 User --> Role : posee >
-Role --> View : puedeVer >
+Role --> View : autoriza >
 Field <|-- PrimaryKey
 Field <|-- ForeignKey
 Table --> PrimaryKey : define >
 ForeignKey --> Table : referencia >
 Table --> Trigger : dispara >
 Trigger --> Table : actualiza >
-
-
 
 @enduml

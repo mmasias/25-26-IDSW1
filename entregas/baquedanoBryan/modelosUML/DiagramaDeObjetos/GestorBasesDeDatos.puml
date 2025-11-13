@@ -1,0 +1,105 @@
+@startuml Diagrama de Objetos - Universidad
+title Diagrama de Objetos - Universidad 
+
+
+
+object baseDeDatosUniversidad {
+  nombre = "UniversidadDB"
+}
+
+object schemaAcademico {
+  nombre = "academico"
+}
+
+
+object tablaEstudiantes {
+  nombre = "Estudiantes"
+}
+
+
+object pkIdEstudiante <<PrimaryKey>> {
+  nombre = "idEstudiante"
+  dataType = "INT"
+}
+
+
+object campoNombreEstudiante <<Field>> {
+  nombre = "nombre"
+  dataType = "VARCHAR(100)"
+}
+
+
+object constraintNotNullNombre <<Constraint>> {
+  tipo = "NOT NULL"
+  expresion = "nombre IS NOT NULL"
+}
+
+
+
+object tablaMatriculas {
+  nombre = "Matriculas"
+}
+
+
+object pkIdMatricula <<PrimaryKey>> {
+  nombre = "idMatricula"
+  dataType = "INT"
+}
+
+
+object fkIdEstudianteMatricula <<ForeignKey>> {
+  nombre = "idEstudiante"
+  dataType = "INT"
+}
+
+
+object vistaEstudiantesMatriculados <<View>> {
+  query = "SELECT * FROM academico.Matriculas"
+}
+
+
+
+object usuarioJuan <<User>> {
+  username = "juan"
+}
+
+object rolProfesor <<Role>> {
+  permission = "VER_VISTAS_ESTUDIANTES"
+}
+
+
+
+object triggerInsertMatricula <<Trigger>> {
+  event = "INSERT"
+  timing = "AFTER"
+}
+
+
+
+baseDeDatosUniversidad -- schemaAcademico
+
+schemaAcademico -- tablaEstudiantes
+schemaAcademico -- tablaMatriculas
+schemaAcademico -- vistaEstudiantesMatriculados
+
+
+tablaEstudiantes -- pkIdEstudiante : define PK
+tablaEstudiantes -- campoNombreEstudiante
+campoNombreEstudiante -- constraintNotNullNombre : establece
+
+
+tablaMatriculas -- pkIdMatricula : define PK
+tablaMatriculas -- fkIdEstudianteMatricula : incluye FK
+
+
+fkIdEstudianteMatricula -- tablaEstudiantes : referencia
+
+
+tablaMatriculas -- triggerInsertMatricula : dispara
+triggerInsertMatricula -- tablaEstudiantes : actualiza
+
+
+baseDeDatosUniversidad -- usuarioJuan
+usuarioJuan -- rolProfesor : posee
+rolProfesor -- vistaEstudiantesMatriculados : autoriza
+@enduml
