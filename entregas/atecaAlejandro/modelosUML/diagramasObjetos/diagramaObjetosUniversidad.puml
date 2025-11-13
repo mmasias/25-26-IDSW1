@@ -1,0 +1,94 @@
+@startuml
+title Diagrama de Objetos - Sistema de Gestión de una Universidad
+hide members
+
+object "Usuario: Admin" as Usuario
+object "Rol: Admin" as Rol
+object "Permiso: Admin" as Permiso
+
+Usuario o-- Rol : tiene >
+Rol o-- Permiso : otorga >
+
+object "BaseDeDatos: Universidad" as BD
+
+object "Esquema: academico" as Esquema
+object "Vista: Vista_Alumnos" as Vista
+
+BD -> Esquema : contiene >
+Esquema -> Vista : contiene >
+
+Permiso --> Vista : autoriza operaciones sobre >
+
+object "Tabla: Docentes" as Docentes
+object "Tabla: Alumnos" as Alumnos
+object "Tabla: Asignaturas" as Asignaturas
+
+Vista -> Docentes : usa >
+Vista -> Alumnos : usa >
+Vista -> Asignaturas : usa >
+
+object "Atributo: ID_Docente" as ID_Docente
+object "Atributo: nombre_Docente" as Nombre_Docente
+object "TipoDeDato: INT" as Tipo_INT
+object "TipoDeDato: VARCHAR" as Tipo_VARCHAR
+
+Docentes o-- ID_Docente : tiene >
+Docentes o-- Nombre_Docente : tiene >
+ID_Docente o-- Tipo_INT
+Nombre_Docente o-- Tipo_VARCHAR
+
+object "Atributo: ID_Alumno" as ID_Alumno
+object "Atributo: nombre_Alumno" as Nombre_Alumno
+object "Atributo: DNI_Alumno" as DNI_Alumno
+object "Atributo: matriculado" as Matriculado
+object "TipoDeDato: BOOLEAN" as Tipo_BOOL
+
+Alumnos o-- ID_Alumno : tiene >
+Alumnos o-- Nombre_Alumno : tiene >
+Alumnos o-- DNI_Alumno : tiene >
+Alumnos o-- Matriculado : tiene >
+
+ID_Alumno o-- Tipo_INT
+Nombre_Alumno o-- Tipo_VARCHAR
+DNI_Alumno o-- Tipo_VARCHAR
+Matriculado o-- Tipo_BOOL
+
+object "Atributo: ID_Asignatura" as ID_Asignatura
+object "Atributo: nombre_Asignatura" as Nombre_Asignatura
+object "Atributo: creditos" as Creditos
+object "Atributo: semestre" as Semestre
+
+Asignaturas o-- ID_Asignatura : tiene >
+Asignaturas o-- Nombre_Asignatura : tiene >
+Asignaturas o-- Creditos : tiene >
+Asignaturas o-- Semestre : tiene >
+
+ID_Asignatura o-- Tipo_INT
+Nombre_Asignatura o-- Tipo_VARCHAR
+Creditos o-- Tipo_INT
+Semestre o-- Tipo_INT
+
+object "PrimaryKey: PK_Docentes" as PK_Docentes
+object "PrimaryKey: PK_Alumnos" as PK_Alumnos
+object "PrimaryKey: PK_Asignaturas" as PK_Asignaturas
+object "ForeignKey: FK_Asignatura" as FK_Asignatura
+object "Accion: CascadeDelete" as Accion
+
+Docentes o-- PK_Docentes : posee >
+Alumnos o-- PK_Alumnos : posee >
+Asignaturas o-- PK_Asignaturas : posee >
+
+Alumnos o-- FK_Asignatura : posee >
+FK_Asignatura --> PK_Asignaturas : referencia >
+
+PK_Alumnos --> Accion : define acción >
+
+object "Registro: Docente1" as Reg_Docente
+object "Registro: Alumno1" as Reg_Alumno
+object "Registro: Asignatura1" as Reg_Asignatura
+
+Docentes o-- Reg_Docente : contiene >
+Alumnos o-- Reg_Alumno : contiene >
+Asignaturas o-- Reg_Asignatura : contiene >
+
+@enduml
