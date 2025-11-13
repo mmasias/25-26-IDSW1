@@ -1,0 +1,46 @@
+@startuml
+title Diagrama de Objetos - Sistema de Gestión de Telefónica
+hide members
+
+' ==== Usuarios y permisos ====
+object "Usuario: Laura" as Usuario
+object "Rol: Analista" as Rol
+object "Permiso: Facturación" as Permiso
+
+Usuario o-- Rol : tiene >
+Rol o-- Permiso : otorga >
+
+' ==== Base de datos ====
+object "BaseDeDatos: Telefonica" as BD
+
+object "Esquema: facturacion" as Esquema
+object "Vista: Vista_Clientes_Facturas" as Vista
+
+BD -> Esquema : contiene >
+Esquema -> Vista : contiene >
+
+Permiso --> Vista : autoriza operaciones sobre >
+
+' ==== Tablas ====
+object "Tabla: Clientes" as Clientes
+object "Tabla: Facturas" as Facturas
+object "Tabla: Planes" as Planes
+
+Vista -> Clientes : usa >
+Vista -> Facturas : usa >
+Vista -> Planes : usa >
+
+' ==== Claves ====
+object "PrimaryKey: PK_Clientes" as PK_Clientes
+object "PrimaryKey: PK_Facturas" as PK_Facturas
+object "PrimaryKey: PK_Planes" as PK_Planes
+object "ForeignKey: FK_Facturas_Clientes" as FK_Facturas_Clientes
+
+Clientes o-- PK_Clientes : posee >
+Facturas o-- PK_Facturas : posee >
+Planes o-- PK_Planes : posee >
+
+Facturas o-- FK_Facturas_Clientes : posee >
+FK_Facturas_Clientes --> PK_Clientes : referencia >
+
+@enduml

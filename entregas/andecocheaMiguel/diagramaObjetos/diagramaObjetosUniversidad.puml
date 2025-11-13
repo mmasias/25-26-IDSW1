@@ -1,0 +1,44 @@
+@startuml
+title Diagrama de Objetos - Sistema de Gestión de una Universidad
+hide members
+
+object "Usuario: Admin" as Usuario
+object "Rol: Admin" as Rol
+object "Permiso: Admin" as Permiso
+
+Usuario o-- Rol : tiene >
+Rol o-- Permiso : otorga >
+
+object "BaseDeDatos: Universidad" as BD
+
+object "Esquema: academico" as Esquema
+object "Vista: Vista_Alumnos" as Vista
+
+BD -> Esquema : contiene >
+Esquema -> Vista : contiene >
+
+Permiso --> Vista : autoriza operaciones sobre >
+
+object "Tabla: Docentes" as Docentes
+object "Tabla: Alumnos" as Alumnos
+object "Tabla: Asignaturas" as Asignaturas
+
+Vista -> Docentes : usa >
+Vista -> Alumnos : usa >
+Vista -> Asignaturas : usa >
+
+object "PrimaryKey: PK_Docentes" as PK_Docentes
+object "PrimaryKey: PK_Alumnos" as PK_Alumnos
+object "PrimaryKey: PK_Asignaturas" as PK_Asignaturas
+object "ForeignKey: FK_Asignatura" as FK_Asignatura
+
+Docentes o-- PK_Docentes : posee >
+Alumnos o-- PK_Alumnos : posee >
+Asignaturas o-- PK_Asignaturas : posee >
+
+Alumnos o-- FK_Asignatura : posee >
+FK_Asignatura --> PK_Asignaturas : referencia >
+
+
+
+@enduml
