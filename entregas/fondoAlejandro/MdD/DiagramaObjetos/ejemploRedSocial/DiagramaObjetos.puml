@@ -1,0 +1,83 @@
+@startuml Diagrama_de_Objetos_EjemploRedSocial
+top to bottom direction
+skinparam classAttributeIconSize 0
+
+object usuario1 {
+  nombre = "Administrador de la Red Social"
+}
+
+object bd1 {
+  nombre = "BD_RedSocial"
+}
+
+object esquema1 {
+  nombre = "Interacciones"
+}
+
+object tabla1 {
+  nombre = "Usuarios"
+}
+
+object tabla2 {
+  nombre = "Publicaciones"
+}
+
+object consulta1 {
+  descripcion = "Obtener publicaciones de un usuario específico"
+}
+
+object indice1 {
+  nombre = "idx_usuario_id"
+}
+
+object indice2 {
+  nombre = "idx_publicacion_id"
+}
+
+object campo1 {
+  nombre = "id_usuario"
+}
+
+object campo2 {
+  nombre = "id_publicacion"
+}
+
+object campo3 {
+  nombre = "contenido"
+}
+
+object clavePrimaria1 {
+  campo = "id_usuario"
+}
+
+object clavePrimaria2 {
+  campo = "id_publicacion"
+}
+
+object claveForanea1 {
+  campo = "id_usuario"
+}
+
+object restriccion1 {
+  tipo = "CHECK (contenido IS NOT NULL)"
+}
+
+' Relaciones principales
+usuario1 --> bd1 : administra >
+usuario1 --> consulta1 : realiza >
+bd1 --> esquema1 : organiza >
+esquema1 --> tabla1 : agrupa >
+esquema1 --> tabla2 : agrupa >
+consulta1 ..> tabla1 : obtiene datos de >
+consulta1 ..> tabla2 : combina con >
+tabla1 --> campo1 : contiene >
+tabla1 --> clavePrimaria1 : identifica >
+tabla1 --> indice1 : contiene >
+tabla2 --> indice2 : contiene >
+tabla2 --> campo2 : contiene >
+tabla2 --> campo3 : contiene >
+tabla2 --> clavePrimaria2 : identifica >
+tabla2 --> claveForanea1 : relaciona con >
+campo3 --> restriccion1 : contiene >
+
+@enduml

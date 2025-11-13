@@ -1,0 +1,83 @@
+@startuml Diagrama_de_Objetos_EjemploHospital
+top to bottom direction
+skinparam classAttributeIconSize 0
+
+object usuario1 {
+  nombre = "Administrador Hospitalario"
+}
+
+object bd1 {
+  nombre = "BD_Hospital"
+}
+
+object esquema1 {
+  nombre = "AtencionMedica"
+}
+
+object tabla1 {
+  nombre = "Pacientes"
+}
+
+object tabla2 {
+  nombre = "Medicos"
+}
+
+object consulta1 {
+  descripcion = "Listar pacientes asignados a cada médico"
+}
+
+object indice1 {
+  nombre = "idx_paciente_id"
+}
+
+object indice2 {
+  nombre = "idx_medico_id"
+}
+
+object campo1 {
+  nombre = "id_paciente"
+}
+
+object campo2 {
+  nombre = "id_medico"
+}
+
+object campo3 {
+  nombre = "especialidad"
+}
+
+object clavePrimaria1 {
+  campo = "id_paciente"
+}
+
+object clavePrimaria2 {
+  campo = "id_medico"
+}
+
+object claveForanea1 {
+  campo = "id_medico"
+}
+
+object restriccion1 {
+  tipo = "NOT NULL"
+}
+
+' Relaciones principales
+usuario1 --> bd1 : administra >
+usuario1 --> consulta1 : realiza >
+bd1 --> esquema1 : organiza >
+esquema1 --> tabla1 : agrupa >
+esquema1 --> tabla2 : agrupa >
+consulta1 ..> tabla1 : obtiene datos de >
+consulta1 ..> tabla2 : cruza con >
+tabla1 --> campo1 : contiene >
+tabla1 --> clavePrimaria1 : identifica >
+tabla1 --> claveForanea1 : relaciona con >
+tabla1 --> indice1 : contiene >
+tabla2 --> indice2 : contiene >
+tabla2 --> campo2 : contiene >
+tabla2 --> campo3 : contiene >
+tabla2 --> clavePrimaria2 : identifica >
+campo3 --> restriccion1 : contiene >
+
+@enduml

@@ -1,0 +1,53 @@
+@startuml
+
+hide attributes
+hide methods
+hide circle 
+
+' Definición de las Clases 
+
+class Usuario {  
+} 
+
+class BaseDeDatos {
+}
+
+class Esquema {
+} 
+
+class Tabla {
+} 
+
+class Consulta {
+}
+
+class Indice {
+}
+
+class Campo {
+}
+
+class ClaveForanea {
+}
+
+class ClavePrimaria {
+}
+
+class Restricciones {
+}
+
+' Definición de las Relaciones 
+
+Usuario --> BaseDeDatos : administra 
+Usuario --> Consulta : realiza 
+BaseDeDatos --> Esquema : organiza
+Esquema --> Tabla : agrupa 
+Consulta ..> Tabla : obtener datos relación 
+Tabla --> Indice : contiene 
+Tabla --> Campo : contiene 
+Tabla --> ClaveForanea : relaciona entre 
+Tabla --> ClavePrimaria : identifica de forma única 
+Campo --> Indice : referencia
+Campo --> Restricciones : contiene
+
+@enduml
