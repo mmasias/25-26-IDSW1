@@ -1,5 +1,6 @@
 @startuml
 title Diagrama de Objetos - Sistema de Gestión Hospitalaria
+hide members
 
 object "Usuario: Admin" as Usuario
 object "Rol: Admin" as Rol
