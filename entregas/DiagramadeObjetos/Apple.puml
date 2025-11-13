@@ -1,0 +1,96 @@
+@startuml
+title Diagrama de Objetos - Apple
+
+object BaseDeDatos {
+  nombre = "Apple"
+}
+
+object Schema {
+  nombre = "Recursos Humanos"
+}
+
+object Usuario {
+  nombre = "EmpleadoRH"
+}
+
+object Rol {
+  permisos = "lectura y consulta"
+}
+
+object Tabla {
+  nombre = "Alumnos"
+}
+
+object Vista {
+  nombre = "Vista_EmpleadosActivos"
+}
+
+object Campos {
+  tipo = "Conjunto de campos de Empleados"
+}
+
+object columnaID as "columnaID : Columna" {
+  nombre = "ID_EMPLEADO"
+  tipo = "INT"
+}
+
+object columnaNombre as "columnaNombre : Columna" {
+  nombre = "Nombre"
+  tipo = "VARCHAR"
+}
+
+object columnaCorreo as "columnaCorreo : Columna" {
+  correo = "correo"
+  tipo = "VARCHAR"
+}
+
+object fila1 as "fila1 : Fila" {
+  valores = "2192321, Ana Torres,ana.torres@icloud.com"
+}
+
+object fila2 as "fila2 : Fila" {
+  valores = "2923131, Luis Gómez,luis.gomez@icoud.com"
+}
+
+object PrimaryKey {
+  nombre = "PK_IDEMPLEADO"
+}
+
+object Constrain {
+  tipo = "UNIQUE"
+  descripcion = "Unicidad en correo"
+}
+
+' Relaciones (según diagrama original: contiene / organiza / muestra / consulta / restricciones)
+BaseDeDatos --> Schema : contiene
+Schema --> Tabla : organiza
+Schema --> Vista : organiza
+
+Tabla --> PrimaryKey : contiene
+PrimaryKey --> columnaID : incluye
+Tabla --> columnaID : contiene
+Tabla --> columnaNombre : contiene
+Tabla --> columnaCorreo : contiene
+columnaCorreo --> fila1 
+columnaCorreo --> fila2
+columnaID --> fila1
+columnaID --> fila2
+columnaNombre --> fila1
+columnaNombre --> fila2
+
+Tabla --> Campos : contiene
+Campos --> columnaID : son
+Campos --> columnaNombre : son
+Campos --> columnaCorreo : son
+
+Vista --> Tabla : muestra
+
+Rol --> Constrain : contiene
+Constrain --> Campos : restricciones en
+
+Usuario --> Rol : tiene
+
+' (opcional) relación de rol consultando vista (interpretación del diagrama)
+Rol --> Vista : consulta
+
+@enduml

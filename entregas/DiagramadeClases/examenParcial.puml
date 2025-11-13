@@ -1,0 +1,59 @@
+@startuml
+title Diagrama de Clases - Examen Parcial
+
+class BaseDeDatos {
+}
+
+class Schema {
+}
+
+class Usuario {
+}
+
+class Rol {
+  + Permisos:permisos
+}
+class Vista {
+}
+
+class Tabla {
+}
+
+class Constrain {
+}
+
+class PrimaryKey {
+}
+
+class ForeignKey {
+}
+
+class Columna {
+}
+
+class Fila {
+}
+
+class Campos {
+  + Tipo: tipo
+}
+
+
+' ===== RELACIONES =====
+BaseDeDatos -- Schema : contiene >
+Usuario -- Rol : contiene >
+Rol -- Vista : consulta >
+Schema -- Vista
+Schema -- Tabla : organiza >
+Vista -- Tabla : muestra >
+Rol -- Constrain : contiene >
+Tabla -- PrimaryKey : contiene >
+Tabla -- ForeignKey : contiene >
+PrimaryKey -right- ForeignKey
+PrimaryKey -- Columna : contiene >
+ForeignKey -- Columna
+Columna -- Fila : contiene >
+Columna -- Campos : contiene >
+Constrain -- Tabla
+Constrain -- Campos : restricciones >
+@enduml
