@@ -1,0 +1,94 @@
+@startuml
+title Diagrama de Objetos - Sistema de Gestión Hospitalaria
+
+object "Usuario: Admin" as Usuario
+object "Rol: Admin" as Rol
+object "Permiso: Admin" as Permiso
+
+Usuario o-- Rol : tiene >
+Rol o-- Permiso : otorga >
+
+object "BaseDeDatos: Hospital" as BD
+
+object "Esquema: consultas_medicas" as Esquema
+object "Vista: Vista_Consultas" as Vista
+
+BD -> Esquema : contiene >
+Esquema -> Vista : contiene >
+
+Permiso --> Vista : autoriza operaciones sobre >
+
+object "Tabla: Doctores" as Doctores
+object "Tabla: Pacientes" as Pacientes
+object "Tabla: Consultas" as Consultas
+
+
+Vista -> Doctores : usa >
+Vista -> Pacientes : usa >
+Vista -> Consultas : usa >
+
+object "Atributo: ID_Doctor" as ID_Doctor
+object "Atributo: nombre_Doctor" as Nombre_Doctor
+object "Atributo: especialidad" as Especialidad
+object "TipoDeDato: INT" as Tipo_INT
+object "TipoDeDato: VARCHAR" as Tipo_VARCHAR
+
+Doctores o-- ID_Doctor : tiene >
+Doctores o-- Nombre_Doctor : tiene >
+Doctores o-- Especialidad : tiene >
+ID_Doctor o-- Tipo_INT
+Nombre_Doctor o-- Tipo_VARCHAR
+Especialidad o-- Tipo_VARCHAR
+
+object "Atributo: ID_Paciente" as ID_Paciente
+object "Atributo: nombre_Paciente" as Nombre_Paciente
+object "Atributo: fecha_nacimiento" as Fecha_Nacimiento
+
+Pacientes o-- ID_Paciente : tiene >
+Pacientes o-- Nombre_Paciente : tiene >
+Pacientes o-- Fecha_Nacimiento : tiene >
+
+ID_Paciente o-- Tipo_INT
+Nombre_Paciente o-- Tipo_VARCHAR
+Fecha_Nacimiento o-- Tipo_VARCHAR
+
+object "Atributo: ID_Consulta" as ID_Consulta
+object "Atributo: fecha_consulta" as Fecha_Consulta
+object "Atributo: diagnóstico" as Diagnóstico
+
+Consultas o-- ID_Consulta : tiene >
+Consultas o-- Fecha_Consulta : tiene >
+Consultas o-- Diagnóstico : tiene >
+
+ID_Consulta o-- Tipo_INT
+Fecha_Consulta o-- Tipo_VARCHAR
+Diagnóstico o-- Tipo_VARCHAR
+
+object "PrimaryKey: PK_Doctors" as PK_Doctores
+object "PrimaryKey: PK_Pacientes" as PK_Pacientes
+object "PrimaryKey: PK_Consultas" as PK_Consultas
+object "ForeignKey: FK_Doctor" as FK_Doctor
+object "ForeignKey: FK_Paciente" as FK_Paciente
+object "Accion: CascadeDelete" as Accion
+
+Doctores o-- PK_Doctores : posee >
+Pacientes o-- PK_Pacientes : posee >
+Consultas o-- PK_Consultas : posee >
+
+Consultas o-- FK_Doctor : posee >
+Consultas o-- FK_Paciente : posee >
+
+FK_Doctor --> PK_Doctores : referencia >
+FK_Paciente --> PK_Pacientes : referencia >
+
+PK_Pacientes --> Accion : define acción >
+
+object "Registro: Doctor1" as Reg_Doctor
+object "Registro: Paciente1" as Reg_Paciente
+object "Registro: Consulta1" as Reg_Consulta
+
+Doctores o-- Reg_Doctor : contiene >
+Pacientes o-- Reg_Paciente : contiene >
+Consultas o-- Reg_Consulta : contiene >
+
+@enduml
