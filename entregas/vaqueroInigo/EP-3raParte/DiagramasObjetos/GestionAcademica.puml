@@ -1,0 +1,67 @@
+@startuml DO Gestion Academica
+top to bottom direction
+
+object bdSistema {
+    nombre = "BD_GESTION"
+}
+
+object usrAdmin {
+    nombre = "admin"
+}
+
+object rolAdmin {
+    nombre = "Administrador"
+}
+
+object esquemaMain {
+    nombre = "public"
+}
+
+object tablaUsuario {
+    nombre = "Usuario"
+}
+
+object campoIdUsuario {
+    nombre = "idUsuario"
+    tipo = "INT"
+}
+
+object indiceIdUsuario {
+    nombre = "idx_idUsuario"
+}
+
+object pkUsuario {
+    columnas = "idUsuario" 
+}
+
+object fkEjemplo {
+    columnas = "idUsuario"
+    referencia = "Usuario.idUsuario"
+}
+
+object restricNoNullId {
+    regla = "idUsuario NOT NULL"
+}
+
+object consultaListadoUsuarios {
+    sql = "SELECT * FROM Usuario"
+}
+
+pkUsuario -r- fkEjemplo
+bdSistema -- usrAdmin : contiene          ' BaseDeDatos o-- Usuario
+usrAdmin -- rolAdmin : tiene rol          ' Usuario --> Rol
+usrAdmin -- consultaListadoUsuarios : realiza  ' Usuario --> Consulta
+
+bdSistema -- esquemaMain : organiza        ' BaseDeDatos *-- Esquema
+esquemaMain -- tablaUsuario : agrupa       ' Esquema *-- Tabla
+
+tablaUsuario -- campoIdUsuario : contiene valores   ' Tabla o-- Campo
+tablaUsuario -- indiceIdUsuario : optimiza búsqueda ' Tabla o-- Indice
+tablaUsuario -- pkUsuario : identifica de forma unica ' Tabla o-- ClavePrimaria
+tablaUsuario -- fkEjemplo : relaciona entre         ' Tabla o-- ClaveForanea
+
+indiceIdUsuario .. campoIdUsuario : se basa en      ' Indice ..> Campo
+campoIdUsuario -- restricNoNullId : restricciones   ' Campo --> Restricciones
+
+consultaListadoUsuarios .. tablaUsuario : contiene / modifica datos de tabla
+@enduml

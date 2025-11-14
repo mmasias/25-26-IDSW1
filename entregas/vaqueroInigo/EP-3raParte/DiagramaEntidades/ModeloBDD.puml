@@ -1,5 +1,6 @@
-@startuml
-top to bottom direction
+@startuml Diagrama de Entidades
+
+top to bottom direction 
 
 class Usuario {
 }
