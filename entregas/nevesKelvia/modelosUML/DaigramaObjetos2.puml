@@ -1,0 +1,50 @@
+@startuml
+
+object BD2 {
+    nombre = "InventarioDB"
+}
+
+object TablaProductos {
+    nombre = "Productos"
+}
+
+object ColumnaProdID {
+    nombre = "ProductoID"
+}
+
+object ColumnaProdNombre {
+    nombre = "ProductoNombre"
+}
+
+object FilaProd1 {
+    ProductoID = 101
+    ProductoNombre = "Laptop"
+}
+
+object Usuario2 {
+    nombre = "Bob"
+}
+
+object Rol2 {
+    nombre = "Usuario"
+}
+
+object Restriccion2 {
+    tipo = "UNIQUE"
+}
+
+object Consulta1 {
+    query = "SELECT * FROM Productos"
+}
+
+BD2 --> TablaProductos
+TablaProductos --> ColumnaProdID
+TablaProductos --> ColumnaProdNombre
+TablaProductos --> FilaProd1
+
+Usuario2 --> BD2 : accede_a
+Usuario2 --> Rol2
+Rol2 --> Restriccion2
+Usuario2 --> Consulta1 : realiza
+
+@enduml
