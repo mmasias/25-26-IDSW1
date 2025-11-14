@@ -1,0 +1,89 @@
+@startuml Diagrama de Clases - Errores y anotaciones
+Title Diagrama de Clases - Errores y anotaciones
+
+class "Base de Datos" as Database { }
+
+class Schema { }
+
+note right of Schema
+ El schema define tablas. Además es quien expone la vista.
+end note
+
+
+class User { }
+
+note right of User
+ Los usuarios contienen tablas, esto porque aunque a lo mejor las tablas se crean antes. En jerarquía las tablas no "tienen" usuarios.
+end note
+
+
+class Role {
+  - permission
+}
+
+
+class View { }
+
+note right of View
+ Quien interactua directamente con la vista, no es simplemente el usuario, si no su rol también.
+end note
+
+class Table { }
+
+
+class "Foreign Key" as ForeignKey { }
+
+note right of ForeignKey 
+ El foreign key es quien referencia la tabla. Además hereda de campo.
+end note
+
+
+class "Primary Key" as PrimaryKey { }
+
+note right of PrimaryKey 
+ La tabla es quien define la primary key. También hereda de campo y su relación con foreign key esta implícita.
+end note
+
+
+class Field {
+  - index
+  - constraint
+}
+
+note right of Field
+El campo no debería tener index y constraint como atributos. Constraint debería ser una clase, porque se usa tanto en campo como en tabla.
+end note
+
+
+class DataType { }
+
+note right of DataType
+El tipo de dato me parece que sí debería ser un atributo de campo, no una entidad separada.
+end note
+
+note "Me falto trigger, que tiene dos relaciones con la tabla. Tabla lo dispara pero este por lo tanto, la actualiza" as N1
+
+
+
+
+
+Database --> Schema : tiene >
+Database --> User : tiene >
+
+User --> Role : tiene >
+User --> View : interactuaCon >
+
+Schema --> Table : contiene >
+View --> Table : representaUna >
+
+Table --> ForeignKey : tiene >
+ForeignKey --> PrimaryKey : seRelaciona >
+
+Table --> PrimaryKey : tiene >
+
+PrimaryKey --> Field : seCompone >
+ForeignKey --> Field : seCompone >
+
+Table --> Field : tiene >
+Field --> DataType : tiene >
+@enduml

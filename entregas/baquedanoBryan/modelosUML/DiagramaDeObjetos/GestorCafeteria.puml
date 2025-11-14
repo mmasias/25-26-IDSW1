@@ -1,0 +1,105 @@
+@startuml Gestor Cafeteria
+title Diagrama de Objetos - Cafetería
+
+object baseDeDatosCafeteria {
+  nombre = "CafeteriaDB"
+}
+
+object schemaProductos {
+  nombre = "productos"
+}
+
+
+object tablaBebidas {
+  nombre = "Bebidas"
+}
+
+object pkIdBebida <<PrimaryKey>> {
+  nombre = "idBebida"
+  dataType = "INT"
+}
+
+object campoNombreBebida <<Field>> {
+  nombre = "nombre"
+  dataType = "VARCHAR(100)"
+}
+
+object constraintNotNullNombreBebida <<Constraint>> {
+  tipo = "NOT NULL"
+  expresion = "nombre IS NOT NULL"
+}
+
+object campoPrecioBebida <<Field>> {
+  nombre = "precio"
+  dataType = "DECIMAL"
+}
+
+
+object tablaPedidos {
+  nombre = "Pedidos"
+}
+
+object pkIdPedido <<PrimaryKey>> {
+  nombre = "idPedido"
+  dataType = "INT"
+}
+
+object fkIdBebidaPedido <<ForeignKey>> {
+  nombre = "idBebida"
+  dataType = "INT"
+}
+
+object campoCantidadPedido <<Field>> {
+  nombre = "cantidad"
+  dataType = "INT"
+}
+
+
+
+object vistaBebidasMasVendidas <<View>> {
+  query = "SELECT bebida, COUNT(*) FROM Pedidos GROUP BY bebida"
+}
+
+
+
+object usuarioMaria <<User>> {
+  username = "maria"
+}
+
+object rolCajera <<Role>> {
+  permission = "VER_VISTAS_VENTAS"
+}
+
+
+object triggerInsertPedido <<Trigger>> {
+  event = "INSERT"
+  timing = "AFTER"
+}
+
+
+
+baseDeDatosCafeteria -- schemaProductos
+
+schemaProductos -- tablaBebidas
+schemaProductos -- tablaPedidos
+schemaProductos -- vistaBebidasMasVendidas
+
+tablaBebidas -- pkIdBebida
+tablaBebidas -- campoNombreBebida
+tablaBebidas -- campoPrecioBebida
+campoNombreBebida -- constraintNotNullNombreBebida
+
+tablaPedidos -- pkIdPedido
+tablaPedidos -- fkIdBebidaPedido
+tablaPedidos -- campoCantidadPedido
+
+fkIdBebidaPedido -- tablaBebidas : referencia
+
+tablaPedidos -- triggerInsertPedido : dispara
+triggerInsertPedido -- tablaBebidas : actualiza
+
+baseDeDatosCafeteria -- usuarioMaria
+usuarioMaria -- rolCajera : posee
+rolCajera -- vistaBebidasMasVendidas : autoriza
+
+@enduml
