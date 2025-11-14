@@ -1,0 +1,39 @@
+@startuml
+
+class Consulta{
+  - tipo
+}
+
+class Tabla {
+  - filas
+  - columnas
+}
+
+class Campo{
+  - index
+  - cabecera
+  - nombre
+}
+
+class Esquema{
+  - Registro
+}
+
+
+BaseDeDato --> Esquema : tiene 
+Usuario --* Rol 
+Rol --o Permision
+Usuario --* Permision :necesita
+Permision --> BaseDeDato :accede a
+Esquema --o Consulta 
+Consulta --* Tabla : tiene
+BaseDeDato -- ForeingKey 
+BaseDeDato --> PrimaryKey
+PrimaryKeyKey *--* ForeingKey : se relaciona con
+ForeingKey o-- Tabla : pertenece a
+PrimaryKey o-- Tabla : pertenece a
+Tabla --o Relaciones
+Tabla --* Campo : tiene
+ 
+@enduml 
+'Resgistro se pasa adentro de esquema

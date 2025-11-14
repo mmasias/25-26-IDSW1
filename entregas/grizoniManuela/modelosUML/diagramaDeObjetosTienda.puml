@@ -1,0 +1,65 @@
+@startuml diagramaDeObjetosTienda
+
+object dbTienda {
+  nombre = "TiendaOnline"
+}
+
+object esquemaPublico {
+  nombre = "public"
+}
+
+object tablaUsuario {
+  nombre = "Usuario"
+  filas = 120
+  columnas = 4
+}
+
+object campoId {
+  index = 1
+  cabecera = "id_usuario"
+  nombre = "id"
+}
+
+object campoNombre {
+  index = 2
+  cabecera = "nombre_usuario"
+  nombre = "nombre"
+}
+
+object campoEmail {
+  index = 3
+  cabecera = "email_usuario"
+  nombre = "email"
+}
+
+object campoPassword {
+  index = 4
+  cabecera = "password"
+  nombre = "password"
+}
+
+object usuarioJuan {
+  nombre = "juan"
+}
+
+object rolAdmin {
+  nombre = "ADMIN"
+}
+
+object permisoTotal {
+  tipo = "LECTURA/ESCRITURA"
+}
+
+dbTienda -- esquemaPublico
+esquemaPublico -- tablaUsuario
+
+tablaUsuario -- campoId
+tablaUsuario -- campoNombre
+tablaUsuario -- campoEmail
+tablaUsuario -- campoPassword
+
+usuarioJuan -- rolAdmin
+usuarioJuan -- permisoTotal
+permisoTotal --> dbTienda : accede >
+
+@enduml

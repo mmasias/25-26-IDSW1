@@ -1,0 +1,100 @@
+@startuml diagramaDeObjetosLlaves
+
+object dbVentas {
+  nombre = "VentasDB"
+}
+
+object esquemaMain {
+  nombre = "main"
+}
+
+object tablaCliente {
+  nombre = "Cliente"
+  filas = 50
+  columnas = 3
+}
+
+object tablaPedido {
+  nombre = "Pedido"
+  filas = 200
+  columnas = 4
+}
+
+object campoClienteId {
+  index = 1
+  cabecera = "id_cliente"
+  nombre = "id"
+}
+
+object campoClienteNombre {
+  index = 2
+  cabecera = "nombre_cliente"
+  nombre = "nombre"
+}
+
+object campoClienteEmail {
+  index = 3
+  cabecera = "email_cliente"
+  nombre = "email"
+}
+
+object campoPedidoId {
+  index = 1
+  cabecera = "id_pedido"
+  nombre = "id"
+}
+
+object campoPedidoFecha {
+  index = 2
+  cabecera = "fecha_pedido"
+  nombre = "fecha"
+}
+
+object campoPedidoImporte {
+  index = 3
+  cabecera = "importe"
+  nombre = "importe"
+}
+
+object campoPedidoClienteId {
+  index = 4
+  cabecera = "id_cliente_fk"
+  nombre = "id_cliente"
+}
+
+object pkCliente {
+  nombre = "PK_Cliente"
+}
+
+object pkPedido {
+  nombre = "PK_Pedido"
+}
+
+object fkPedidoCliente {
+  nombre = "FK_Pedido_Cliente"
+}
+
+dbVentas -- esquemaMain
+esquemaMain -- tablaCliente
+esquemaMain -- tablaPedido
+
+tablaCliente -- campoClienteId
+tablaCliente -- campoClienteNombre
+tablaCliente -- campoClienteEmail
+
+tablaPedido -- campoPedidoId
+tablaPedido -- campoPedidoFecha
+tablaPedido -- campoPedidoImporte
+tablaPedido -- campoPedidoClienteId
+
+dbVentas -- pkCliente
+dbVentas -- pkPedido
+dbVentas -- fkPedidoCliente
+
+pkCliente -- tablaCliente
+pkPedido -- tablaPedido
+fkPedidoCliente -- tablaPedido
+
+pkCliente -- fkPedidoCliente : se relaciona >
+
+@enduml
