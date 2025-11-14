@@ -1,0 +1,44 @@
+@startuml
+object BD1 {
+    nombre = "VentasDB"
+}
+
+object TablaClientes {
+    nombre = "Clientes"
+}
+
+object ColumnaID {
+    nombre = "ID"
+}
+
+object ColumnaNombre {
+    nombre = "Nombre"
+}
+
+object Fila1 {
+    ID = 1
+    Nombre = "Juan Perez"
+}
+
+object Usuario1 {
+    nombre = "Alice"
+}
+
+object Rol1 {
+    nombre = "Admin"
+}
+
+object Restriccion1 {
+    tipo = "NO NULL"
+}
+
+BD1 --> TablaClientes
+TablaClientes --> ColumnaID
+TablaClientes --> ColumnaNombre
+TablaClientes --> Fila1
+
+Usuario1 --> BD1 : accede_a
+Usuario1 --> Rol1
+Rol1 --> Restriccion1
+
+@enduml

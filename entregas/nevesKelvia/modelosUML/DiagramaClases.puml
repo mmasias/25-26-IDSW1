@@ -1,0 +1,25 @@
+@startuml
+
+entity "BaseDeDatos" as BD
+entity "Tabla" as Tabla
+entity "Columna" as Columna
+entity "Fila" as Fila
+entity "Relacion" as Relacion
+entity "LlaveForanea" as FK
+entity "Usuario" as Usuario
+entity "Consulta" as Consulta
+entity "Rol" as Rol
+entity "Restriccion" as Restriccion
+
+BD *-- Tabla : contiene >
+Tabla *-- Columna : compuesta_de >
+Tabla *-- Fila : compuesta_de >
+Tabla o-- FK : usa >
+Tabla --> Relacion : puede_tener >
+
+Usuario --> BD : accede_a >
+Usuario o-- Consulta : realiza >
+Usuario --> Rol : tiene >
+Rol *-- Restriccion : define >
+
+@enduml
