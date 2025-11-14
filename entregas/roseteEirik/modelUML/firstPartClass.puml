@@ -1,0 +1,30 @@
+@startuml
+
+class User
+class Role
+class Permission
+class View
+class Table
+class Schema
+class Database
+class Trigger
+class Attribute
+class Constraint
+class Key
+class Foreign
+class Primary
+
+User -- Role
+Role -- Permission
+Permission -- View
+View *-- Table
+Table -left- Schema
+Table -right- Database
+Table o-- Trigger
+Table *-- Attribute
+Table *-- Key
+Attribute o-- Constraint
+Key <|-- Foreign
+Key <|-- Primary
+
+@enduml

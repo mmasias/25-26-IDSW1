@@ -1,0 +1,55 @@
+@startuml
+
+object "professor : User" as professor
+object "professorRole : Role" as professorRole
+object "manageCourses : Permission" as manageCourses
+
+object "dbCampus : Database" as dbCampus
+object "schemaCourses : Schema" as schemaCourses
+
+object "courses : Table" as courses
+object "viewActiveCourses : View" as viewActiveCourses
+object "triggerUpdateEnrollment : Trigger" as triggerUpdateEnrollment
+object "courseName : Attribute" as courseName
+object "credits : Attribute" as credits
+object "primaryCourseId : Primary" as primaryCourseId
+object "foreignDeptId : Foreign" as foreignDeptId
+object "notNullConstraintCourse : Constraint" as notNullConstraintCourse
+
+object "students : Table" as students
+object "viewEnrolledStudents : View" as viewEnrolledStudents
+object "triggerUpdateGrades : Trigger" as triggerUpdateGrades
+object "studentName : Attribute" as studentName
+object "studentID : Attribute" as studentID
+object "primaryStudentId : Primary" as primaryStudentId
+object "foreignCourseId : Foreign" as foreignCourseId
+object "notNullConstraintStudent : Constraint" as notNullConstraintStudent
+
+professor --> professorRole : has a
+professorRole --> manageCourses : has a
+manageCourses --> viewActiveCourses : over a
+
+courses *-- viewActiveCourses : has a
+courses o-- triggerUpdateEnrollment : has a
+courses *-- courseName : has a
+courses *-- credits : has a
+courses *-- primaryCourseId : has a
+courses *-- foreignDeptId : has a
+courseName --> notNullConstraintCourse : has a
+
+students *-- viewEnrolledStudents : has a
+students o-- triggerUpdateGrades : has a
+students *-- studentName : has a
+students *-- studentID : has a
+students *-- primaryStudentId : has a
+students *-- foreignCourseId : has a
+studentName --> notNullConstraintStudent : has a
+
+courses .up.> dbCampus : depends on a
+courses .up.> schemaCourses : needs a
+students .up.> dbCampus : depends on a
+students .up.> schemaCourses : needs a
+
+foreignCourseId --> primaryCourseId : references a
+
+@enduml

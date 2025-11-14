@@ -1,0 +1,24 @@
+@startuml
+
+object "director: User"
+object "administrador: Role"
+object "CRUD: Permission"
+
+object "estudiantes: Table"
+object "id, nombre: Schema"
+object "campus: Database"
+object "nombre: Attribute"
+object "id: Key"
+object "primaria: Primary"
+
+"director: User" -- "administrador: Role"
+"administrador: Role" -- "CRUD: Permission"
+"CRUD: Permission" -- "estudiantes: Table"
+"estudiantes: Table" -left- "id, nombre: Schema"
+"estudiantes: Table" -right- "campus: Database"
+"estudiantes: Table" *-- "nombre: Attribute"
+"estudiantes: Table" *-- "id: Key"
+Attribute o-- Constraint
+"id: Key" <|-- "primaria: Primary"
+
+@enduml

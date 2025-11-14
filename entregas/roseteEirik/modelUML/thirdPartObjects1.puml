@@ -1,0 +1,35 @@
+@startuml
+
+object "employee : User" as employee
+object "librarianRole : Role" as librarian
+object "manageBooks : Permission" as manageBooks
+
+object "dbLibrary : Database" as dbLibrary
+object "schemaBooks : Schema" as schemaBooks
+
+object "books : Table" as books
+object "viewAvailableBooks : View" as viewAvailableBooks
+object "triggerUpdateStock : Trigger" as triggerUpdateStock
+object "title : Attribute" as title
+object "author : Attribute" as author
+object "primaryBookId : Primary" as primaryBookId
+object "foreignCategoryId : Foreign" as foreignCategoryId
+object "notNullConstraint : Constraint" as notNullConstraint
+
+employee --> librarian : has a
+librarian --> manageBooks : has a
+manageBooks --> viewAvailableBooks : over a
+
+books *-- viewAvailableBooks : has a
+books o-- triggerUpdateStock : has a
+books *-- title : has a
+books *-- author : has a
+books *-- primaryBookId : has a
+books *-- foreignCategoryId : has a
+
+title --> notNullConstraint : has a
+
+books .up.> dbLibrary : depends on a
+books .up.> schemaBooks : needs a
+
+@enduml
