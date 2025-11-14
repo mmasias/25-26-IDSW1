@@ -1,0 +1,79 @@
+@startuml
+
+title Clases gestor BDD
+
+class Tabla {
+    nombre
+}
+
+class Llave {
+    esPrimaria
+    esForanea
+}
+
+class Esquema {
+    
+}
+
+class Campo {
+    nombre
+    tipoDato
+    cotejamiento
+    longitud
+    esClave
+    esAutoIncremental
+}
+
+class Restriccion {
+    nombre
+    tipo
+}
+
+class Consulta {
+    sentencia
+    tipoConsulta
+}
+
+class Usuario {
+    nombre
+    contrasena
+}
+
+class Rol {
+    nombreRol
+    descripcion
+}
+
+class Permiso {
+    nombrePermiso
+    descripcion
+}
+
+class Disparador {
+    nombre
+    evento
+    momento
+    accion
+    condicion
+}
+
+class Vista {
+    nombre
+    esActualizable
+    sentencia
+    fechaCreacion
+}
+
+Tabla *-- Esquema : pertenece a 
+Esquema *-- Campo : contiene 
+Campo <|-- Restriccion : tiene 
+Tabla <-- Consulta : se ejecuta sobre 
+Consulta *-- Usuario : ejecuta 
+Usuario *-- Rol : tiene 
+Rol *-- Permiso : tiene 
+Tabla -- Disparador : actúa sobre 
+Tabla -- Llave : tiene 
+Tabla <-- Vista : genera 
+Vista <|-- Consulta : devuelve 
+
+@enduml

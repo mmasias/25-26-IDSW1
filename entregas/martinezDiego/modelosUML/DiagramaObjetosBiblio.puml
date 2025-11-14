@@ -1,0 +1,98 @@
+@startuml
+
+title Objetos Biblioteca 
+
+object tablaLibros {
+    nombre = "Libros"
+}
+
+object tablaPrestamos {
+    nombre = "Prestamos"
+}
+
+object tablaUsuarios {
+    nombre = "Usuarios"
+}
+
+object esquemaBiblioteca {
+}
+
+object campoIDLibro {
+    nombre = "id_libro"
+    tipoDato = "INT"
+    cotejamiento = ""
+    longitud = 11
+    esClave = true
+    esAutoIncremental = true
+}
+
+object campoTitulo {
+    nombre = "titulo"
+    tipoDato = "VARCHAR"
+    cotejamiento = "utf8_general_ci"
+    longitud = 150
+    esClave = false
+    esAutoIncremental = false
+}
+
+object llaveIDLibro {
+    esPrimaria = true
+    esForanea = false
+}
+
+object consultaLibrosDisponibles {
+    sentencia = "SELECT * FROM Libros WHERE disponible = 1"
+    tipoConsulta = "SELECT"
+}
+
+object usuarioBibliotecaria {
+    nombre = "bibliotecaria1"
+    contrasena = "*******"
+}
+
+object rolLectura {
+    nombreRol = "Lectura"
+    descripcion = "Permite realizar consultas"
+}
+
+object permisoSelect {
+    nombrePermiso = "SELECT"
+    descripcion = "Puede leer datos"
+}
+
+object disparadorPrestamo {
+    nombre = "actualiza_stock"
+    evento = "INSERT"
+    momento = "AFTER"
+    accion = "disminuir_stock"
+    condicion = ""
+}
+
+object vistaLibrosDisponibles {
+    nombre = "vista_libros_disponibles"
+    esActualizable = false
+    sentencia = "SELECT * FROM Libros WHERE disponible = 1"
+    fechaCreacion = "14-11-2025"
+}
+
+
+tablaLibros *-- esquemaBiblioteca: contiene
+tablaPrestamos *-- esquemaBiblioteca: contiene
+tablaUsuarios *-- esquemaBiblioteca: contiene
+
+esquemaBiblioteca *-- campoIDLibro: tiene
+esquemaBiblioteca *-- campoTitulo: tiene
+
+tablaLibros -- llaveIDLibro: tiene
+
+tablaLibros <-- consultaLibrosDisponibles: se ejecuta sobre
+consultaLibrosDisponibles *-- usuarioBibliotecaria: realiza
+usuarioBibliotecaria *-- rolLectura: tiene
+rolLectura *-- permisoSelect: tiene
+
+tablaLibros -- disparadorPrestamo: actua sobre
+
+tablaLibros <-- vistaLibrosDisponibles: genera
+vistaLibrosDisponibles <|-- consultaLibrosDisponibles: devuelve
+
+@enduml

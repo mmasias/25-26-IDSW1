@@ -1,0 +1,85 @@
+@startuml
+
+title Objetos  Universidad
+
+object tablaEstudiantes {
+    nombre = "Estudiantes"
+}
+
+object esquemaAcademico {
+}
+
+object campoIDEstudiante {
+    nombre = "id_estudiante"
+    tipoDato = "INT"
+    cotejamiento = ""
+    longitud = 11
+    esClave = true
+    esAutoIncremental = true
+}
+
+object campoNombreEstudiante {
+    nombre = "nombre"
+    tipoDato = "VARCHAR"
+    cotejamiento = "utf8_general_ci"
+    longitud = 100
+    esClave = false
+    esAutoIncremental = false
+}
+
+
+object consultaListadoEstudiantes {
+    sentencia = "SELECT * FROM Estudiantes"
+    tipoConsulta = "SELECT"
+}
+
+object usuarioAdmin {
+    nombre = "admin_uni"
+    contrasena = "*******"
+}
+
+object rolAdmin {
+    nombreRol = "Administrador"
+    descripcion = "Control total sobre la BD"
+}
+
+object permisoTotal {
+    nombrePermiso = "ALL_PRIVILEGES"
+    descripcion = "Acceso total"
+}
+
+object disparadorActualizacion {
+    nombre = "actualiza_fecha"
+    evento = "UPDATE"
+    momento = "BEFORE"
+    accion = "SET fecha_actualizacion = NOW()"
+    condicion = ""
+}
+
+object vistaEstudiantes {
+    nombre = "vista_estudiantes"
+    esActualizable = true
+    sentencia = "SELECT nombre FROM Estudiantes"
+    fechaCreacion = "10-10-2025"
+}
+
+
+
+tablaEstudiantes *-- esquemaAcademico: contiene
+esquemaAcademico *-- campoIDEstudiante: tiene
+esquemaAcademico *-- campoNombreEstudiante: tiene
+
+
+
+tablaEstudiantes <-- consultaListadoEstudiantes: se ejecuta sobre
+consultaListadoEstudiantes *-- usuarioAdmin: realiza
+usuarioAdmin *-- rolAdmin: tiene
+rolAdmin *-- permisoTotal: tiene
+
+tablaEstudiantes -- disparadorActualizacion: actua sobre
+
+
+tablaEstudiantes <-- vistaEstudiantes: genera
+vistaEstudiantes <|-- consultaListadoEstudiantes: devuelve
+
+@enduml
