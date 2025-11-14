@@ -1,0 +1,67 @@
+@startuml Diagrama de Entidades
+
+top to bottom direction 
+
+class Usuario {
+}
+
+class Rol {
+}
+
+class Consulta {
+}
+
+class BaseDeDatos {
+}
+
+class Esquema {
+}
+
+class Tabla {
+}
+
+class Campo {
+}
+
+class Indice {
+}
+
+class ClavePrimaria {
+}
+
+class ClaveForanea {
+}
+
+class Restricciones {
+}
+
+Usuario -[hidden]down- Consulta
+Consulta -[hidden]down- Tabla
+BaseDeDatos -[hidden]down- Esquema
+Esquema -[hidden]down- Tabla
+Indice -[hidden]left- Tabla
+Campo -[hidden]left- Restricciones
+ClavePrimaria -[hidden]left- ClaveForanea
+
+BaseDeDatos o-- Usuario : contiene
+Usuario --> Rol : tiene rol
+
+Usuario --> Consulta : realiza
+
+BaseDeDatos *-- Esquema : organiza
+Esquema *-- Tabla : agrupa
+
+Tabla o-- Indice : optimiza búsqueda
+Tabla o-- Campo : contiene valores
+Campo --> Restricciones : restricciones
+
+Consulta ..> Tabla : contiene / modifica datos de tabla
+
+Tabla o-- ClavePrimaria : identifica de forma unica
+Tabla o-- ClaveForanea : relaciona entre
+
+ClavePrimaria <--> ClaveForanea : se relaciona
+
+Indice ..> Campo : se basa en
+
+@enduml

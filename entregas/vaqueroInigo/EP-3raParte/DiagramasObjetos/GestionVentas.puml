@@ -1,0 +1,98 @@
+@startuml DO Gestion Ventas
+top to bottom direction
+
+object bdVentas {
+    nombre = "BD_VENTAS"
+}
+
+object usrReport {
+    nombre = "reportUser"
+}
+
+object rolLectura {
+    nombre = "Lector"
+}
+
+object esquemaVentas {
+    nombre = "ventas"
+}
+
+object tablaCliente {
+    nombre = "Cliente"
+}
+
+object tablaPedido {
+    nombre = "Pedido"
+}
+
+object campoIdCliente {
+    nombre = "idCliente"
+    tipo = "INT"
+}
+
+object campoNombreCliente {
+    nombre = "nombre"
+    tipo = "VARCHAR(100)"
+}
+
+object campoIdPedido {
+    nombre = "idPedido"
+    tipo = "INT"
+}
+
+object campoIdClienteFK {
+    nombre = "idCliente"
+    tipo = "INT"
+}
+
+object indiceNombreCliente {
+    nombre = "idx_nombreCliente"
+}
+
+object pkCliente {
+    columnas = "idCliente"
+}
+
+object pkPedido {
+    columnas = "idPedido"
+}
+
+object fkPedidoCliente {
+    columnas = "idCliente"
+    referencia = "Cliente.idCliente"
+}
+
+object restricNoNullNombre {
+    regla = "nombre NOT NULL" 
+}
+
+object consultaPedidosPorCliente {
+    sql = "SELECT * FROM Pedido WHERE idCliente = ?"
+}
+
+pkCliente -r- fkPedidoCliente
+
+bdVentas -- usrReport : contiene                 ' BaseDeDatos o-- Usuario
+usrReport -- rolLectura : tiene rol              ' Usuario --> Rol
+usrReport -- consultaPedidosPorCliente : realiza ' Usuario --> Consulta
+
+bdVentas -- esquemaVentas : organiza             ' BaseDeDatos *-- Esquema
+esquemaVentas -- tablaCliente : agrupa           ' Esquema *-- Tabla
+esquemaVentas -- tablaPedido : agrupa           ' Esquema *-- Tabla
+
+tablaCliente -- campoIdCliente : contiene valores          ' Tabla o-- Campo
+tablaCliente -- campoNombreCliente : contiene valores      ' Tabla o-- Campo
+tablaCliente -- pkCliente : identifica de forma unica      ' Tabla o-- ClavePrimaria
+tablaCliente -- indiceNombreCliente : optimiza búsqueda    ' Tabla o-- Indice
+
+indiceNombreCliente .. campoNombreCliente : se basa en     ' Indice ..> Campo
+campoNombreCliente -- restricNoNullNombre : restricciones  ' Campo --> Restricciones
+
+tablaPedido -- campoIdPedido : contiene valores            ' Tabla o-- Campo
+tablaPedido -- campoIdClienteFK : contiene valores         ' Tabla o-- Campo
+tablaPedido -- pkPedido : identifica de forma unica        ' Tabla o-- ClavePrimaria
+tablaPedido -- fkPedidoCliente : relaciona entre           ' Tabla o-- ClaveForanea
+
+consultaPedidosPorCliente .. tablaPedido : contiene / modifica datos de tabla
+
+@enduml
