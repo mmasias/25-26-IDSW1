@@ -1,0 +1,41 @@
+@startuml
+
+class BasesDeDatos
+class Usuario
+class Roles
+class Administrador
+class Editor
+class Lector
+class Trigger
+class "Tabla uno a muchos"
+class "Tabla muchos a muchos"
+class Relacion
+class PrimaryKey
+class ForeignKey
+abstract Campos
+abstract Tabla
+
+BasesDeDatos "1" *-r- "N" Usuario
+BasesDeDatos "1" *-- "N" Tabla
+
+Tabla <-l- "Tabla uno a muchos"
+Tabla <-r- "Tabla muchos a muchos"
+Tabla "1" o-- "N" Relacion
+Tabla "1" *-- "N" Campos
+
+Usuario *-- Roles
+
+Roles *-- Administrador
+Roles *-- Editor
+Roles *-- Lector
+
+Administrador *-- Trigger : "Crea"
+
+Relacion *-- Campos
+
+Campos <-- PrimaryKey
+Campos <-- ForeignKey
+
+ForeignKey --> Tabla : "Es un PrimaryKey\nen otra tabla"
+
+@enduml

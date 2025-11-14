@@ -1,0 +1,63 @@
+@startuml
+object BasesDeDatos {
+    nombre = "BD_Empresa"
+}
+
+object Usuario_Admin {
+    nombre = "Carlos"
+}
+object Usuario_Editor {
+    nombre = "Ana"
+}
+
+object Roles_Admin
+object Administrador
+object Roles_Editor
+object Editor
+
+object Trigger_CrearEmpleado {
+    nombre = "tg_crear_empleado"
+}
+
+object Tabla_Empleado {
+    nombre = "Empleado"
+}
+object Tabla_Departamento {
+    nombre = "Departamento"
+}
+
+object Campos_PK_Empleado
+object Campos_FK_Depto
+object PrimaryKey_Empleado
+object ForeignKey_Depto
+
+object Relacion_DeptoEmpleado {
+    tipo = "1 a N"
+}
+
+BasesDeDatos *- Usuario_Admin
+BasesDeDatos *- Usuario_Editor
+
+Usuario_Admin *-- Roles_Admin
+Roles_Admin *-- Administrador
+Administrador *-- Trigger_CrearEmpleado
+
+Usuario_Editor *-- Roles_Editor
+Roles_Editor *-- Editor
+
+BasesDeDatos *-- Tabla_Empleado
+BasesDeDatos *-- Tabla_Departamento
+
+Tabla_Empleado *-- Campos_PK_Empleado
+Campos_PK_Empleado <-- PrimaryKey_Empleado
+
+Tabla_Empleado *-- Campos_FK_Depto
+Campos_FK_Depto <-- ForeignKey_Depto
+ForeignKey_Depto --> Tabla_Departamento
+
+Tabla_Empleado o-- Relacion_DeptoEmpleado
+Tabla_Departamento o-- Relacion_DeptoEmpleado
+
+Relacion_DeptoEmpleado *-- Campos_PK_Empleado
+
+@enduml

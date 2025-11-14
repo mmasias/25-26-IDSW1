@@ -1,0 +1,81 @@
+@startuml
+object BasesDeDatos {
+    nombre = "BD_Videojuegos"
+}
+
+object Usuario_Admin {
+    nombre = "Rafael"
+}
+object Usuario_Lector {
+    nombre = "Lucia"
+}
+
+object Roles_Admin
+object Administrador
+object Roles_Lector
+object Lector
+
+object Trigger_IniciarPartida {
+    nombre = "tg_iniciar_partida"
+}
+
+object Tabla_Juego {
+    nombre = "Juego"
+}
+object Tabla_Partida {
+    nombre = "Partida"
+}
+object Tabla_MM_JuegoPartida {
+    nombre = "Juego_Partida"
+}
+
+object Campos_PK_Juego
+object Campos_PK_Partida
+object Campos_FK_Juego
+object Campos_FK_Partida
+
+object PrimaryKey_Juego
+object PrimaryKey_Partida
+object ForeignKey_Juego
+object ForeignKey_Partida
+
+object Relacion_JuegoPartida {
+    tipo = "N a N"
+}
+
+BasesDeDatos *-- Usuario_Admin
+BasesDeDatos *-- Usuario_Lector
+
+Usuario_Admin *-- Roles_Admin
+Roles_Admin *-- Administrador
+Administrador *-- Trigger_IniciarPartida : "Crea"
+
+Usuario_Lector *-- Roles_Lector
+Roles_Lector *-- Lector
+
+BasesDeDatos *-- Tabla_Juego
+BasesDeDatos *-- Tabla_Partida
+BasesDeDatos *-- Tabla_MM_JuegoPartida
+
+Tabla_Juego *-- Campos_PK_Juego
+Campos_PK_Juego <-- PrimaryKey_Juego
+
+Tabla_Partida *-- Campos_PK_Partida
+Campos_PK_Partida <-- PrimaryKey_Partida
+
+Tabla_MM_JuegoPartida *-- Campos_FK_Juego
+Campos_FK_Juego <-- ForeignKey_Juego
+ForeignKey_Juego --> Tabla_Juego
+
+Tabla_MM_JuegoPartida *-- Campos_FK_Partida
+Campos_FK_Partida <-- ForeignKey_Partida
+ForeignKey_Partida --> Tabla_Partida
+
+Tabla_MM_JuegoPartida o-- Relacion_JuegoPartida
+Tabla_Juego o-- Relacion_JuegoPartida
+Tabla_Partida o-- Relacion_JuegoPartida
+
+Relacion_JuegoPartida *-- Campos_FK_Juego
+Relacion_JuegoPartida *-- Campos_FK_Partida
+
+@enduml
