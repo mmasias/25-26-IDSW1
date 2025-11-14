@@ -1,39 +1,66 @@
 @startuml
-' ModeloBDD
-skinparam classAttributeIconSize 0
-skinparam handwritten false
-hide circle
-skinparam nodesep 80
-skinparam ranksep 90
+top to bottom direction
 
-' Clases
-class "Bases De Datos" as BD
-class Usuario
-class Rol
-class Esquema
-class Consulta
-class Tabla 
-class Indice
-class Campo
-class "Clave Primaria" as PK
-class "Clave Foranea" as FK
+class Usuario {
+}
 
-' Relaciones
-BD --> Usuario : contiene
-BD --> Esquema : organiza
+class Rol {
+}
 
-Usuario --> Rol : tiene
-Usuario --> Consulta : ejecuta
-Consulta ..> Tabla : obtiene / modifica datos de
+class Consulta {
+}
 
-Esquema --> Tabla : agrupa
-Tabla --> Campo : contiene
-Tabla --> Indice : optimiza búsqueda
-Indice ..> Campo : referencia
+class BaseDeDatos {
+}
 
-' Claves (misma altura y relacionadas)
-Tabla --> PK : identifica de forma única
-Tabla --> FK : relaciona entre
-PK <--> FK : relación
+class Esquema {
+}
+
+class Tabla {
+}
+
+class Campo {
+}
+
+class Indice {
+}
+
+class ClavePrimaria {
+}
+
+class ClaveForanea {
+}
+
+class Restricciones {
+}
+
+Usuario -[hidden]down- Consulta
+Consulta -[hidden]down- Tabla
+BaseDeDatos -[hidden]down- Esquema
+Esquema -[hidden]down- Tabla
+Indice -[hidden]left- Tabla
+Campo -[hidden]left- Restricciones
+ClavePrimaria -[hidden]left- ClaveForanea
+
+BaseDeDatos o-- Usuario : contiene
+Usuario --> Rol : tiene rol
+
+Usuario --> Consulta : realiza
+
+BaseDeDatos *-- Esquema : organiza
+Esquema *-- Tabla : agrupa
+
+Tabla o-- Indice : optimiza búsqueda
+Tabla o-- Campo : contiene valores
+Campo --> Restricciones : restricciones
+
+Consulta ..> Tabla : contiene / modifica datos de tabla
+
+Tabla o-- ClavePrimaria : identifica de forma unica
+Tabla o-- ClaveForanea : relaciona entre
+
+ClavePrimaria <--> ClaveForanea : se relaciona
+
+Indice ..> Campo : se basa en
 
 @enduml
