@@ -1,0 +1,102 @@
+@startuml
+title Diagrama de Objetos de Veterinaria
+
+
+object baseDeDatosVeterinaria {
+  nombre = "VetDB"
+}
+
+object esquemaClinico {
+  nombre = "clinico"
+}
+
+object tablaMascotas {
+  nombre = "Mascotas"
+}
+
+object llaveIdMascota <<Llave>> {
+  nombre = "idMascota"
+}
+
+object tablaDuenos {
+  nombre = "Duenos"
+  Duenos = "Chucho"
+}
+
+object llaveIdDueno <<Llave>> {
+  nombre = "idDueno"
+  tipoDato = "int"
+}
+
+object foreignKeyMascotaDueno <<ForeignKey>> {
+  nombre = "idDueno"
+  tipoDato = "int"
+}
+
+object campoNombreMascota <<Campo>> {
+  nombre = "nombreMascota"
+  nombreMascota = "LeBron"
+  tipoDato = "VARCHAR"
+}
+
+object constraintNoNullNombreMascota <<Constraint>> {
+  tipo = "no null"
+  expresion = "nombre no nulo"
+}
+
+object activaInsertMascota <<Activa>> {
+  evento = "INSERT"
+  timing = "AFTER"
+}
+
+object tablaConsultasoServicios {
+  nombre = "ConsultasoServicios"
+  
+}
+
+object llaveIdConsulta <<Llave>> {
+  nombre = "idConsulta"
+  idConsulta = "N222"
+}
+
+
+object foreignKeyConsultaMascota <<ForeignKey>> {
+  nombre = "idMascota"
+  tipoDato = "int"
+}
+
+object viewConsultaMascota <<View>> {
+  query = "SELECT * FROM clinico.ConsultasoServicios"
+}
+
+
+object usuarioVeterinario <<Usuario>> {
+  nombreusuario = "Dra. Gomez"
+}
+
+object rolVeterinario <<Rol>> {
+  permiso = "Ver_Historial_Mascotas"
+  permiso = "Crear_Consulta"
+  permiso = "Actualizar_Historial"
+}
+
+baseDeDatosVeterinaria --> esquemaClinico : contiene
+tablaMascotas --> llaveIdMascota : define llave
+esquemaClinico --> tablaMascotas
+esquemaClinico --> tablaDuenos
+tablaDuenos --> llaveIdDueno : define llave
+tablaMascotas --> foreignKeyMascotaDueno : incluye llave foránea
+foreignKeyMascotaDueno --> tablaDuenos : referencia
+tablaMascotas --> campoNombreMascota
+campoNombreMascota --> constraintNoNullNombreMascota : establece
+tablaMascotas --> activaInsertMascota : dispara
+tablaConsultasoServicios --> llaveIdConsulta : define llave
+esquemaClinico --> tablaConsultasoServicios
+tablaConsultasoServicios --> foreignKeyConsultaMascota : incluye llave foránea
+foreignKeyConsultaMascota --> tablaMascotas : referencia
+esquemaClinico --> viewConsultaMascota
+baseDeDatosVeterinaria --> usuarioVeterinario
+usuarioVeterinario --> rolVeterinario : tiene
+rolVeterinario --> viewConsultaMascota : autorizar
+
+@enduml

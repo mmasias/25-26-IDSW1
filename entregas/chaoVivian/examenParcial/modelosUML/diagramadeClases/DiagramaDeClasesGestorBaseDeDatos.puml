@@ -1,0 +1,50 @@
+@startuml
+title  Gestor de Base de Datos
+
+class BaseDeDatos {}
+
+class Esquema {}
+
+class Tabla {}
+
+class Campo {
+ -tipoDatos
+}
+
+class Llave {}
+
+class ForeignKey { }
+
+class View { }
+
+class Usuario { }
+
+class Rol {
+ - permiso
+}
+
+class Activa {
+  -tiempo
+  -evento
+}
+
+class Constraint {}
+
+
+BaseDeDatos --> Esquema : contiene >
+Esquema --> Tabla : define >
+Tabla --> Campo : include >
+Tabla --> Constraint : establece >
+Campo --> Constraint : establece >
+Esquema --> View : expone >
+BaseDeDatos --> Usuario : gestiona >
+Usuario --> Rol : tiene >
+Rol --> View : autoriza >
+Campo <|-- Llave
+Campo <|-- ForeignKey
+Tabla --> Llave : define >
+ForeignKey --> Tabla : hacereferencia >
+Tabla --> Activa : la >
+Activa --> Tabla : actualiza >
+
+@enduml

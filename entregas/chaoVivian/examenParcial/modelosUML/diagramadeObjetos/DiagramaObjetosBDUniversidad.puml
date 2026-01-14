@@ -1,0 +1,87 @@
+@startuml
+title Diagrama de Objetos de Universidad
+
+object baseDeDatosUniversidad{
+  nombre = "UniBD"
+}
+
+object esquemaAcademico {
+  nombre = "academico"
+} 
+
+object tablaEstudiantes{
+  nombre = "estudiantes"
+}
+
+object llaveIdEstudiante <<Llave>> {
+  nombre = "IdEstudiante"
+  tipoDato = "int"
+}
+
+object campoNombreEstudiante <<Campo>> {
+  nombre = "nombre"
+  tipoDato = "VARCHAR"
+}
+
+object contraintNoNullNombre <<Contraint>> {
+  tipo = "no null"
+  espresion = "nombre no nulo"
+}
+object tablaMatriculas { 
+  nombre = "Matriculas"
+}
+
+object llaveIdMatricula <<Llave>> {
+  nombre = "idMatricula"
+}
+
+object foreignKeyIdEstudianteMatricula <<ForeignKey>> {
+  nombre = "IdEstudiante"
+  IdEstudiante = "15233806"
+  tipoDato = "int"
+}
+
+object viewEstudiantesMatriculados <<View>>{
+  query = "Seleccionar * FROM academico.Matriculas"
+}
+
+object usuarioVivian <<Usuario>>{
+  nombreusuario = "Vivian Daniela Chao Peraza"
+}
+
+object rolProfesor <<Rol>> {
+  permiso = "Ver_Tareas_Estudiante"
+  permiso = "Calificar_Tareas_Estudiante"
+  permiso = "Comentar_Tareas_Estudiante"
+}
+
+object activaInstertMatricula <<Activa>> {
+  evento = "INSERT"
+  timing = "AFTER"
+}
+
+baseDeDatosUniversidad -- esquemaAcademico
+
+esquemaAcademico -- tablaEstudiantes
+esquemaAcademico -- tablaMatriculas
+esquemaAcademico -- viewEstudiantesMatriculados
+
+
+tablaEstudiantes -- llaveIdEstudiante : define llave
+tablaEstudiantes -- campoNombreEstudiante
+campoNombreEstudiante -- contraintNoNullNombre : establece
+
+
+tablaMatriculas -- llaveIdMatricula : define llave
+tablaMatriculas -- foreignKeyIdEstudianteMatricula : include llave foranea
+
+foreignKeyIdEstudianteMatricula -- tablaEstudiantes : identifica
+
+tablaMatriculas -- activaInstertMatricula : dispara 
+activaInstertMatricula -- tablaEstudiantes : actualizar
+
+baseDeDatosUniversidad -- usuarioVivian
+usuarioVivian -- rolProfesor : tiene
+rolProfesor -- viewEstudiantesMatriculados : autorizar
+
+@enduml

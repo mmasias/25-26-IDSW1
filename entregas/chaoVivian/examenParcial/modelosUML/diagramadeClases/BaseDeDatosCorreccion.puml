@@ -1,0 +1,86 @@
+@startuml
+title Correciones -  Base de Datos
+
+class BaseDeDatos {
+  
+}
+
+class Esquema {
+
+}
+
+class Tabla {
+ 
+}
+
+class Columna {
+
+}
+
+class Campo {
+ -index
+ -constraint
+}
+
+
+class Llave {
+
+}
+
+class ForeignKey {
+  
+}
+
+
+
+class Usuario {
+  
+}
+
+class Rol {
+ - permiso
+  
+}
+
+
+class View {
+
+}
+
+class Consulta {
+
+}
+
+class TipoDatos {
+
+}
+
+
+BaseDeDatos  --> "tiene" Esquema
+BaseDeDatos  --> "tiene" Tabla
+Esquema  --> "contiene" Tabla
+Esquema  --> "puede" Consulta
+
+Tabla  --> "tiene" Columna
+Tabla  --> "tiene" Llave
+Tabla  --> "tiene" ForeignKey
+Tabla  --> "tiene" Campo
+
+Llave  --> "estaEn" Columna
+ForeignKey --> "seEntrelazaCon" Llave
+ForeignKey --> "seCompone" Campo
+
+Columna  --> "tiene" Campo
+Campo  --> "tiene" TipoDatos
+
+
+
+Usuario  --> "tiene" Rol
+Usuario  --> "interactuaCon" View
+
+
+Rol  --> "puede" Consulta
+View --> "representaUna" Tabla
+
+
+@enduml
