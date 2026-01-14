@@ -1,0 +1,69 @@
+@startuml
+
+object cafeteriaUNEATLANTICO {
+  id = 1
+  nombre = "Cafetería UNEATLANTICO"
+  ubicacion = "Campus Universitario"
+  horario = "08:00 - 18:00"
+}
+
+object empleadoJuan {
+  id = 10
+  nombre = "Juan Pérez"
+  rol = "Barista"
+}
+
+object clienteAna {
+  id = 20
+  nombre = "Ana López"
+  tipo = "Estudiante"
+}
+
+object pedido001 {
+  id = 100
+  estado = "EnPreparacion"
+  total = 2.50
+}
+
+object productoCafe {
+  id = 200
+  nombre = "Café solo"
+  precio = 1.50
+}
+
+object productoBocadillo {
+  id = 201
+  nombre = "Bocadillo vegetal"
+  precio = 1.00
+}
+
+object pagoTarjeta {
+  id = 300
+  metodo = "Tarjeta"
+  monto = 2.50
+}
+
+object proveedorLocal {
+  id = 400
+  nombre = "Proveedor Local Cantabria"
+}
+
+object ingredienteCafe {
+  id = 500
+  nombre = "Café molido"
+  stock = "2kg"
+}
+
+cafeteriaUNEATLANTICO -- empleadoJuan
+cafeteriaUNEATLANTICO -- clienteAna
+cafeteriaUNEATLANTICO -- pedido001
+
+pedido001 -- productoCafe
+pedido001 -- productoBocadillo
+pedido001 -- pagoTarjeta
+
+cafeteriaUNEATLANTICO -- proveedorLocal
+proveedorLocal -- ingredienteCafe
+productoCafe -- ingredienteCafe
+
+@enduml

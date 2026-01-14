@@ -1,0 +1,23 @@
+@startuml
+
+class Cafeteria
+class Empleado
+class Cliente
+class Pedido
+class Producto
+class Pago
+class Proveedor
+class Ingrediente
+
+Cafeteria -- Empleado : tiene un
+Cafeteria -- Cliente : atiende
+Cafeteria -- Pedido : gestiona
+
+Pedido -- Producto : incluye
+Pedido -- Pago : genera
+
+Cafeteria -- Proveedor : compra a
+Proveedor -- Ingrediente : suministra
+Producto -- Ingrediente : utiliza
+
+@enduml

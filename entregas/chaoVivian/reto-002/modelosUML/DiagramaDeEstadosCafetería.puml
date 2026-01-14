@@ -1,0 +1,19 @@
+@startuml
+
+[*] --> Creado
+
+Creado --> EnCola : registrar pedido
+EnCola --> EnPreparacion : iniciar preparacion
+
+EnPreparacion --> Listo : finalizar preparacion
+Listo --> Entregado : entregar pedido
+
+Entregado --> Pagado : confirmar pago
+
+Creado --> Cancelado : cancelar
+EnCola --> Cancelado : cancelar
+
+Pagado --> [*]
+Cancelado --> [*]
+
+@enduml
