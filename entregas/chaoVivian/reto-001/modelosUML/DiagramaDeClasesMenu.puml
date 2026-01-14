@@ -1,0 +1,16 @@
+@startuml
+
+class Menu
+class SeccionDeMenu
+class ItemDeMenu
+class Ingrediente
+class Categoria
+class RestriccionAlimenticia
+
+Menu -- SeccionDeMenu : contiene
+SeccionDeMenu -- ItemDeMenu : contiene
+ItemDeMenu -- Ingrediente : tiene
+ItemDeMenu -- Categoria : clasificado como
+ItemDeMenu -- RestriccionAlimenticia : tiene
+
+@enduml

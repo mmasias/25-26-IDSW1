@@ -1,0 +1,18 @@
+@startuml
+
+[*] --> Creado
+
+Creado --> EnRevision : enviar a revision
+EnRevision --> Aprobado : aprobar
+EnRevision --> Rechazado : rechazar
+
+Aprobado --> Disponible : publicar
+Disponible --> NoDisponible : agotar
+NoDisponible --> Disponible : reponer
+
+Disponible --> Descontinuado : retirar
+NoDisponible --> Descontinuado : retirar
+
+Descontinuado --> [*]
+
+@enduml

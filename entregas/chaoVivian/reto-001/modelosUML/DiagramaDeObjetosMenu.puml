@@ -1,0 +1,47 @@
+@startuml
+
+object menuPrincipal {
+  id = 1
+  nombre = "Menu General"
+  activo = true
+}
+
+object seccionBebidas {
+  id = 10
+  nombre = "Bebidas"
+  orden = 1
+}
+
+object itemCafe {
+  id = 100
+  nombre = "Café Americano"
+  precio = 2.50
+  disponible = true
+  tiempoPreparacionMinutos = 5
+}
+
+object ingredienteCafe {
+  id = 1000
+  nombre = "Café molido"
+  cantidad = "10g"
+  alergeno = false
+}
+
+object categoriaBebidaCaliente {
+  id = 200
+  nombre = "Bebida caliente"
+}
+
+object restriccionVegana {
+  id = 300
+  descripcion = "Apto para veganos"
+  tipo = "Vegana"
+}
+
+menuPrincipal -- seccionBebidas
+seccionBebidas -- itemCafe
+itemCafe -- ingredienteCafe
+itemCafe -- categoriaBebidaCaliente
+itemCafe -- restriccionVegana
+
+@enduml
